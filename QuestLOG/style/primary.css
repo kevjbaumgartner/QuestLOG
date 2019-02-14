@@ -1,0 +1,130 @@
+/* General Elements */
+html{
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	font-family: 'Quicksand', sans-serif !important;
+}
+
+body{
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	font-family: 'Quicksand', sans-serif !important;
+	margin: 0% auto;
+}
+
+/* Section Class Specific */
+.section{
+	border: 2px solid #121212;
+	width: 25%;
+	padding: 0% 1% 1% 1%;
+	margin: 0.5% auto;
+	background-color: #FAFAFA;
+	color: #121212;
+}
+
+.sectionHeader{
+	font-size: 1.5em;
+	text-align: center;
+	margin: 2% 0%;
+}
+
+.sectionSubheader{
+	font-size: 1.2em;
+	margin: 0.5% 0%;
+}
+
+.sectionDetail{
+	color: #565656;
+}
+
+/* Creation Specific */
+.creationButton{
+	font-family: 'Quicksand', sans-serif;
+	border: 0px solid transparent;
+	font-size: 1em;
+	background-color: #DBDBDB;
+	width: 25%;
+	margin: 1% 1%;
+	padding: 1% 0%;
+}
+
+.creationButton:hover{
+	background-color: #BABABA;
+}
+
+.creationButton:hover:active{
+	color: #FAFAFA;
+}
+
+#creationSubmitArea{
+	text-align: center;
+}
+
+.creationBigButton{
+	font-family: 'Quicksand', sans-serif;
+	border: 0px solid transparent;
+	font-size: 1.2em;
+	background-color: #DBDBDB;
+	margin: 2% auto 0% auto;
+	width: 50%;
+	padding: 1%;
+}
+
+.creationBigButton:hover{
+	background-color: #BABABA;
+}
+
+.creationBigButton:hover:active{
+	color: #FAFAFA;
+}
+
+.creationInput{
+	width: 96%;
+	padding: 2%;
+	margin: 1% 0%;
+	border: none;
+	color: #565656;
+	background-color: #EBEBEB;
+	font-size: 0.8em;
+}
+
+#creationStatsArea{
+	text-align: center;
+}
+
+.creationTip{
+	font-size: 1em;
+	color: #565656;
+}
+
+/* Character Specific */
+#characterStatsList{
+	font-size: 1.1em;
+	margin-left: 2%;
+}
+
+#characterStatsList li{
+	margin: 0.5% 0%;
+}
+
+/* Text Log Specific */
+#textLog{
+	border: 2px solid #121212;
+	text-align: left;
+	padding: 1%;
+	margin: 0% auto;
+	background-color: #EBEBEB;
+	color: #121212;
+}
+
+#textLog text{
+	color: green;
+}

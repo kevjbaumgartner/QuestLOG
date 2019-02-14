@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Meta Info -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>QuestLOG | ver 0.01a</title>
+
+		<!-- Google Fonts Imports -->
+		<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet"> 
+
+		<!-- Style Imports -->
+		<link rel="stylesheet" type="text/css" href="style/reset.css">
+		<link rel="stylesheet" type="text/css" href="style/primary.css">
+
+		<!-- JQuery Import -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="section" id="creationArea">
+			<h1 class="sectionHeader">Character Creation</h1>
+			<h2 class="sectionSubheader">Name: <input type="text" name="cname" class="creationInput" id="creationName" placeholder="E.g. Oswol Faerendael"></h2>
+			<h2 class="sectionSubheader">Race: <input type="text" name="crace" class="creationInput" id="creationRace" placeholder="E.g. Half Elf"></h2>
+			<hr>
+			<h1 class="sectionHeader">Stats</h1>
+			<div id="creationStatsArea">
+				<h2 class="sectionSubheader">Remaining Unalloted Stat Points: <label class="sectionDetail" id="creationUnallotedPoints"></label></h2>
+				<br>
+				<h2 class="sectionSubheader">STR: <label class="sectionDetail" id="creationSTR"></label><h3 class="creationTip">Increases damage dealt per attack</h3><br><button class="creationButton" onclick="incSTR()">+1</button><button class="creationButton" onclick="decSTR()">-1</button></h2>
+				<h2 class="sectionSubheader">DEX: <label class="sectionDetail" id="creationDEX"></label><h3 class="creationTip">Increases speed of attacks and SP</h3><br><button class="creationButton" onclick="incDEX()">+1</button><button class="creationButton" onclick="decDEX()">-1</button></h2>	
+				<h2 class="sectionSubheader">CON: <label class="sectionDetail" id="creationCON"></label><h3 class="creationTip">Increases defense and HP</h3><br><button class="creationButton" onclick="incCON()">+1</button><button class="creationButton" onclick="decCON()">-1</button></h2>	
+				<h2 class="sectionSubheader">WIS: <label class="sectionDetail" id="creationWIS"></label><h3 class="creationTip">Increases XP gain per enemy slain</h3><br><button class="creationButton" onclick="incWIS()">+1</button><button class="creationButton" onclick="decWIS()">-1</button></h2>
+				<h2 class="sectionSubheader">LUK: <label class="sectionDetail" id="creationLUK"></label><h3 class="creationTip">Increases your luck by just a little bit</h3><br><button class="creationButton" onclick="incLUK()">+1</button><button class="creationButton" onclick="decLUK()">-1</button></h2>
+			</div>
+			<hr>
+			<div id="creationSubmitArea">
+				<button class="creationBigButton" onclick="characterCreate()">Create</button>
+				<button class="creationBigButton" onclick="randomizeStats()">Randomize Stats</button>
+				<button class="creationBigButton" onclick="restartCreate()">Restart</button>
+			</div>
+		</div>
+	</body>
+
+	<!-- Script Imports -->
+	<script type="text/javascript" src="javascript/creation.js"></script>
+</html>
