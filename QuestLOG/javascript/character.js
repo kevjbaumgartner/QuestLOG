@@ -2,6 +2,8 @@
 var name;
 var race;
 
+var raceCount;
+
 var STR;
 var DEX;
 var CON;

@@ -8,27 +8,89 @@ var crCON;
 var crWIS;
 var crLUK;
 
+var raceCount;
+
 //characterCreate(), parses all collected preferential character data and stores it locally to pass to the main game page
 function characterCreate(){
 	crName = creationName.value;
 	crRace = creationRace.value;
 
 	if((crName.trim() != "") && (crRace.trim() != "") && (totalPoints < 1)){
-		localStorage.setItem("crName", crName);
-		localStorage.setItem("crRace", crRace);
-		localStorage.setItem("crSTR", crSTR);
-		localStorage.setItem("crDEX", crDEX);
-		localStorage.setItem("crCON", crCON);
-		localStorage.setItem("crWIS", crWIS);
-		localStorage.setItem("crLUK", crLUK);
-
 		if(confirm("Ready to begin as " + crName + "?")){
+			checkSpecialRace();
+			localStorage.setItem("crName", crName);
+			localStorage.setItem("crRace", crRace);
+			localStorage.setItem("crSTR", crSTR);
+			localStorage.setItem("crDEX", crDEX);
+			localStorage.setItem("crCON", crCON);
+			localStorage.setItem("crWIS", crWIS);
+			localStorage.setItem("crLUK", crLUK);
+			localStorage.setItem("raceCount", raceCount);
 			window.location.href = "QuestLOG.html";
 		}
 		else{
 
 		}
-		
+	}
+}
+
+//checkSpecialRace(), checks to see if the user has entered any special race keywords
+function checkSpecialRace(){
+	if(crRace.includes("Human") || crRace.includes("human")){
+		raceCount += 1;
+		crDEX += 1;
+		crWIS += 1;
+	}
+	if(crRace.includes("Dragon") || crRace.includes("dragon")){
+		raceCount += 1;
+		crSTR += 1;
+		crWIS += 1;
+	}
+	if(crRace.includes("Dwarf") || crRace.includes("dwarf")){
+		raceCount += 1;
+		crSTR += 1;
+		crCON += 1;
+	}
+	if(crRace.includes("Elf") || crRace.includes("elf")){
+		raceCount += 1;
+		crDEX += 1;
+		crWIS += 1;
+	}
+	if(crRace.includes("Orc") || crRace.includes("orc")){
+		raceCount += 1;
+		crSTR += 1;
+		crCON += 1;
+	}
+	if(crRace.includes("Gnome") || crRace.includes("gnome")){
+		raceCount += 1;
+		crDEX += 1;
+		crCON += 1;
+	}
+	if(crRace.includes("Halfling") || crRace.includes("halfling")){
+		raceCount += 1;
+		crDEX += 1;
+		crWIS += 1;
+	}
+	if(crRace.includes("Tiefling") || crRace.includes("tiefling")){
+		raceCount += 1;
+		crSTR += 1;
+		crWIS += 1;
+	}
+	if(crRace.includes("Goblin") || crRace.includes("goblin")){
+		raceCount += 1;
+		crLUK += 5;
+	}
+	if(crRace.includes("Giant") || crRace.includes("giant")){
+		raceCount += 1;
+		crSTR += 5;
+		crCON += 5;
+		crWIS = 1
+	}
+	if(crRace.includes("Ogre") || crRace.includes("ogre")){
+		raceCount += 1;
+		crSTR += 5;
+		crCON += 5;
+		crLUK = 1;
 	}
 }
 
@@ -68,6 +130,7 @@ function restartCreate(){
 	crCON = 0;
 	crWIS = 0;
 	crLUK = 0;
+	raceCount = 0;
 
 	$('#creationName').val(crName);
 	$('#creationRace').val(crRace);
@@ -77,6 +140,8 @@ function restartCreate(){
 	$('#creationCON').html(crCON);
 	$('#creationWIS').html(crWIS);
 	$('#creationLUK').html(crLUK);
+
+	localStorage.clear();
 }
 
 //Increase stats & Decrease stats

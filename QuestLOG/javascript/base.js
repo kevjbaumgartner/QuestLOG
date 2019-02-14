@@ -39,13 +39,26 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 	setUnspentPoints(0);
 	checkUnspentPoints();
 
+	document.title = "QuestLOG | " + name;
 	addLogText("Welcome " + name + " to QuestLOG version " + gameVer + "!")
+	
+	handleSpecialRace();
 }
 
 //addText(), adds the parameter as a new entry to the top of the text log and removes bottom most entry
 function addLogText(text){
 	$('#textLog').prepend('<span>> <text>' + text + '</text><br></span>');
 	$('#textLog span').last().remove();
+}
+
+//handleSpecialRace(), checks to see if the user has entered a special race and displays a dialogue response
+function handleSpecialRace(){
+	if(raceCount == 0){
+		addLogText("You have no predefined race! You're so quirky and random. No stat bonuses applied!");
+	}
+	else if(raceCount == 1){
+		addLogText("You have a predefined race! You're a true blooded patriot. Stat bonuses applied!");
+	}
 }
 
 window.onload = function(){
@@ -57,6 +70,7 @@ window.onload = function(){
 	CON = Number(localStorage.getItem("crCON"));
 	WIS = Number(localStorage.getItem("crWIS"));
 	LUK = Number(localStorage.getItem("crLUK"));
+	raceCount = Number(localStorage.getItem("raceCount"));
 
 	/*
 	if(window.performance && performance.navigation.type == 1){
