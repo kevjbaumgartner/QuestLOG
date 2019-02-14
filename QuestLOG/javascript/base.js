@@ -41,7 +41,6 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 
 	document.title = "QuestLOG | " + name;
 	addLogText("Welcome " + name + " to QuestLOG version " + gameVer + "!")
-	
 	handleSpecialRace();
 }
 

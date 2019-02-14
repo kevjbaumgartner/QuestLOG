@@ -311,9 +311,10 @@ function checkUnspentPoints(){
 
 //Level Up Functions
 function gainXP(val){
-	XP += val;
+	var hold = (val * (1 + (WIS/100))).toFixed(1);
+	XP += hold
 	updateXPText();
-	addLogText("Gained (" + val + ") XP!")
+	addLogText("Gained (" + hold + ") XP!")
 
 	if(XP >= reqXP){
 		XP -= reqXP;
