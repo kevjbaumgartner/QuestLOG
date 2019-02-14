@@ -21,7 +21,7 @@
 			<h1 class="sectionHeader">Character</h1>
 			<h2 class="sectionSubheader" id="characterName">Name: <label class="sectionDetail" id="characterNameText"></label></h2>
 			<h2 class="sectionSubheader" id="characterRace">Race: <label class="sectionDetail" id="characterRaceText"></label></h2>
-			<h2 class="sectionSubheader" id="characterStats">Stats:</h2>
+			<h2 class="sectionSubheader" id="characterStats">Stats: </h2>
 			<ul id="characterStatsList">
 				<li id="characterSTR">STR: <label class="sectionDetail" id="characterSTRText"></label></li>
 				<li id="characterDEX">DEX: <label class="sectionDetail" id="characterDEXText"></label></li>
@@ -29,6 +29,8 @@
 				<li id="characterWIS">WIS: <label class="sectionDetail" id="characterWISText"></label></li>
 				<li id="characterWIS">LUK: <label class="sectionDetail" id="characterLUKText"></label></li>
 			</ul>
+			<h2 class="sectionSubheader" id="characterUnpsentPoints">Unspent Points: <label class="sectionDetail"id="characterUnspentPointsText"></label></h2>
+			<button class="levelStatButton" id="lvSTRButton" onclick="lvSTR()">+1 STR</button><button class="levelStatButton" id="lvDEXButton" onclick="lvDEX()">+1 DEX</button><button class="levelStatButton" id="lvCONButton" onclick="lvCON()">+1 CON</button><button class="levelStatButton" id="lvWISButton" onclick="lvWIS()">+1 WIS</button><button class="levelStatButton" id="lvLUKButton" onclick="lvLUK()">+1 LUK</button>
 			<hr>
 			<h1 class="sectionHeader">Health & Stamina</h1>
 			<h2 class="sectionSubheader" id="characterHP">HP: <label class="sectionDetail" id="characterHPText"></label> / <label class="sectionDetail" id="characterMaxHPText"></label></h2>

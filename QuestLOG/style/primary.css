@@ -115,6 +115,28 @@ body{
 	margin: 0.5% 0%;
 }
 
+.levelStatButton{
+	font-family: 'Quicksand', sans-serif;
+	border: 0px solid transparent;
+	font-size: 0.8em;
+	background-color: #DBDBDB;
+	width: 19%;
+	margin: 1% 0.5%;
+	padding: 1% 0%;
+}
+
+.levelStatButton:hover{
+	background-color: #BABABA;
+}
+
+.levelStatButton:hover:active{
+	color: #FAFAFA;
+}
+
+.levelStatButton:disabled:hover:active{
+	color: #999999;
+}
+
 /* Text Log Specific */
 #textLog{
 	border: 2px solid #121212;

@@ -9,9 +9,9 @@ var WIS;
 var LUK;
 
 var HP;
-var maxHP;
+var maxHP = 50;
 var SP;
-var maxSP;
+var maxSP = 20;
 
 var LV;
 var XP;
@@ -21,6 +21,8 @@ var CC;
 var SC;
 var GC;
 var PC;
+
+var unspentPoints;
 
 //Getters, Setters, & Updates
 function setName(val){
@@ -274,11 +276,137 @@ function updatePCText(){
 	$('#characterPCText').html(PC);
 }
 
+
+function setUnspentPoints(val){
+	this.unspentPoints = val;
+	updateUnspentPointsText();
+}
+
+function getUnspentPoints(){
+	return this.unspentPoints;
+}
+
+function updateUnspentPointsText(){
+	$('#characterUnspentPointsText').html(unspentPoints);
+}
+
+function checkUnspentPoints(){
+	if(unspentPoints == 0){
+		lvSTRButton.prop('disabled', true);
+		lvDEXButton.prop('disabled', true);
+		lvCONButton.prop('disabled', true);
+		lvWISButton.prop('disabled', true);
+		lvLUKButton.prop('disabled', true);
+	}
+	else{
+		lvSTRButton.prop('disabled', false);
+		lvDEXButton.prop('disabled', false);
+		lvCONButton.prop('disabled', false);
+		lvWISButton.prop('disabled', false);
+		lvLUKButton.prop('disabled', false);
+	}
+}
+
+//Level Up Functions
+function gainXP(val){
+	XP += val;
+	updateXPText();
+	addLogText("Gained (" + val + ") XP!")
+
+	if(XP >= reqXP){
+		XP -= reqXP;
+		levelUp();
+	}
+}
+
+function levelUp(){
+	LV += 1;
+	updateLVText();
+
+	updateXPText();
+
+	reqXP = reqXP * 2;
+	updateReqXPText();
+
+	unspentPoints += 1;
+	updateUnspentPointsText();
+	checkUnspentPoints();
+
+	increaseMaxHP(5);
+	setHP(maxHP);
+	updateHPText();
+
+	increaseMaxSP(1);
+	setSP(maxSP);
+	updateSPText();
+
+	var d = new Date();
+	var time = d.toLocaleTimeString();
+	addLogText("Congratulations, Level Up: " + LV + " achieved at " + time + "!" );
+	addLogText("(1) Stat Point Granted!")
+}
+
+function lvSTR(){
+	STR += 1;
+	unspentPoints -= 1;
+	updateUnspentPointsText();
+	checkUnspentPoints();
+	updateSTRText();
+}
+
+function lvDEX(){
+	DEX += 1;
+	unspentPoints -= 1;
+	updateUnspentPointsText();
+	checkUnspentPoints();
+	updateDEXText();
+
+	increaseMaxSP(1);
+	updateMaxSPText();
+}
+
+function lvCON(){
+	CON += 1;
+	unspentPoints -= 1;
+	updateUnspentPointsText();
+	checkUnspentPoints();
+	updateCONText();
+
+	increaseMaxHP(3);
+	updateMaxHPText();
+}
+
+function lvWIS(){
+	WIS += 1;
+	unspentPoints -= 1;
+	updateUnspentPointsText();
+	checkUnspentPoints();
+	updateWISText();
+}
+
+function lvLUK(){
+	LUK += 1;
+	unspentPoints -= 1;
+	updateUnspentPointsText();
+	checkUnspentPoints();
+	updateLUKText();
+}
+
+function increaseMaxHP(val){
+	maxHP += val;
+	updateMaxHPText();
+}
+
+function increaseMaxSP(val){
+	maxSP += val;
+	updateMaxSPText();
+}
+
 //Calculation Functions
 function calculateMaxHP(){
-	return 50 + (CON * 3);
+	return maxHP + (CON * 3);
 }
 
 function calculateMaxSP(){
-	return 20 + (DEX);
+	return maxSP + (DEX);
 }

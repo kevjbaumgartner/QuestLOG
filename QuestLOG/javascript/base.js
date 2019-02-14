@@ -1,8 +1,14 @@
 //Variable Declarations
-var gameVer = "0.01a"
+var gameVer = "0.02a"
+var lvSTRButton = $('#lvSTRButton');
+var lvDEXButton = $('#lvDEXButton');
+var lvCONButton = $('#lvCONButton');
+var lvWISButton = $('#lvWISButton');
+var lvLUKButton = $('#lvLUKButton');
 
 //initializeGame(), encorporates selected character preferences and stats to begin the game
 function intializeGame(characterName, characterRace, characterSTR, characterDEX, characterCON, characterWIS, characterLUK, characterMaxHP, characterMaxSP){
+	//Initialize all character data
 	setName(characterName);
 	setRace(characterRace);
 
@@ -13,20 +19,25 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 	setLUK(characterLUK);
 
 	setMaxHP(characterMaxHP);
+	setMaxHP(calculateMaxHP());
 	setHP(maxHP);
 
 	setMaxSP(characterMaxSP);
+	setMaxSP(calculateMaxSP());
 	setSP(maxSP);
 
 	setLV(1);
 
-	setReqXP(1000);
+	setReqXP(10);
 	setXP(0);
 
 	setCC(0);
 	setSC(0);
 	setGC(0);
 	setPC(0);
+
+	setUnspentPoints(0);
+	checkUnspentPoints();
 
 	addLogText("Welcome " + name + " to QuestLOG version " + gameVer + "!")
 }
@@ -47,6 +58,7 @@ window.onload = function(){
 	WIS = Number(localStorage.getItem("crWIS"));
 	LUK = Number(localStorage.getItem("crLUK"));
 
+	/*
 	if(window.performance && performance.navigation.type == 1){
 		window.location.replace("CharacterCreation.html");
 	}
@@ -55,7 +67,8 @@ window.onload = function(){
 		window.location.replace("CharacterCreation.html");
 	}
 
-	intializeGame(name, race, STR, DEX, CON, WIS, LUK, calculateMaxHP(), calculateMaxSP);
-
 	localStorage.clear();
+	*/
+
+	intializeGame(name, race, STR, DEX, CON, WIS, LUK, maxHP, maxSP);
 }
