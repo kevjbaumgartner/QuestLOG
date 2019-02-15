@@ -17,6 +17,9 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
+		<div id="gameHeader">
+			<h1>QuestLOG ver 0.02a</h1>
+		</div>
 		<div class="section" id="characterArea">
 			<h1 class="sectionHeader">Character</h1>
 			<h2 class="sectionSubheader" id="characterName">Name: <label class="sectionDetail" id="characterNameText"></label></h2>
@@ -46,6 +49,39 @@
 			<h2 class="sectionSubheader" id="characterGC">GC: <label class="sectionDetail" id="characterGCText"></label></h2>
 			<h2 class="sectionSubheader" id="characterPC">PC: <label class="sectionDetail" id="characterPCText"></label></h2>
 		</div>
+		<div class="section" id="armourArea">
+			<h1 class="sectionHeader">Armour</h1>
+			<h2 class="sectionSubheader">Helmet: </h2>
+			<h2 class="sectionSubheader">Chest: </h2>
+			<h2 class="sectionSubheader">Gloves: </h2>
+			<h2 class="sectionSubheader">Pants: </h2>
+			<h2 class="sectionSubheader">Shoes: </h2>
+			<hr>
+			<h1 class="sectionHeader">Accessories</h1>
+			<h2 class="sectionSubheader">Amulet: </h2>
+			<h2 class="sectionSubheader">Earrings: </h2>
+			<h2 class="sectionSubheader">Ring: </h2>
+			<h2 class="sectionSubheader">Belt: </h2>
+			<h2 class="sectionSubheader">Cape: </h2>
+		</div>
+		<div class="section" id="weaponArea">
+			<h1 class="sectionHeader">Weapon</h1>
+			<h2 class="sectionSubheader">Name: </h2>
+			<h2 class="sectionSubheader">Type: </h2>
+			<h2 class="sectionSubheader">Rarity: </h2>
+			<hr>
+			<h2 class="sectionSubheader">Damage: </h2>
+			<h2 class="sectionSubheader">Attack Speed: </h2>
+			<h2 class="sectionSubheader">Critical Chance: </h2>
+			<h2 class="sectionSubheader">Critical Damage Bonus: </h2>
+			<br>
+			<h2 class="sectionSubheader">Estimated DPS: </h2>
+			<hr>
+			<h2 class="sectionSubheader">Quirks: </h2>
+		</div>
+		<div class="section" id="questArea">
+			<h1 class="sectionHeader">Quest Board</h1>
+		</div>
 		<div class="section" id="textArea">
 			<h1 class="sectionHeader">Log</h1>
 			<div id="textLog">
@@ -66,4 +102,5 @@
 	<!-- Script Imports -->
 	<script type="text/javascript" src="javascript/base.js"></script>
 	<script type="text/javascript" src="javascript/character.js"></script>
+	<script type="text/javascript" src="javascript/quest.js"></script>
 </html>

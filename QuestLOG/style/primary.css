@@ -18,16 +18,27 @@ body{
     user-select: none;
 	font-family: 'Quicksand', sans-serif !important;
 	margin: 0% auto;
+	text-align: center;
+}
+
+/* Game Header Specific */
+#gameHeader{
+	font-size: 2em;
+	margin: 1% 0%;
 }
 
 /* Section Class Specific */
 .section{
-	border: 2px solid #121212;
-	width: 25%;
+	outline: 2px solid #121212;
+	width: 20%;
 	padding: 0% 1% 1% 1%;
-	margin: 0.5% auto;
+	margin: 1% 1.5%;
 	background-color: #FAFAFA;
 	color: #121212;
+	float: left;
+	text-align: left;
+	min-width: 200px;
+	min-height: 650px;
 }
 
 .sectionHeader{
@@ -45,7 +56,33 @@ body{
 	color: #565656;
 }
 
+/* Text Log Specific */
+#textLog{
+	border-top: 2px solid #121212;
+	text-align: left;
+	padding: 1%;
+	margin: 0% auto;
+	background-color: #EBEBEB;
+	color: #121212;
+}
+
+#textLog text{
+	color: green;
+}
+
 /* Creation Specific */
+.creationSection{
+	outline: 2px solid #121212;
+	width: 20%;
+	padding: 0% 1% 1% 1%;
+	margin: 1% auto;
+	background-color: #FAFAFA;
+	color: #121212;
+	text-align: left;
+	min-width: 200px;
+	min-height: 650px;
+}
+
 .creationButton{
 	font-family: 'Quicksand', sans-serif;
 	border: 0px solid transparent;
@@ -133,20 +170,6 @@ body{
 	color: #FAFAFA;
 }
 
-.levelStatButton:disabled:hover:active{
-	color: #999999;
-}
-
-/* Text Log Specific */
-#textLog{
-	border: 2px solid #121212;
-	text-align: left;
-	padding: 1%;
-	margin: 0% auto;
-	background-color: #EBEBEB;
-	color: #121212;
-}
-
-#textLog text{
-	color: green;
+.levelStatButton:disabled{
+	pointer-events: none;
 }

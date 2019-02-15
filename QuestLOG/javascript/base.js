@@ -53,10 +53,12 @@ function addLogText(text){
 //handleSpecialRace(), checks to see if the user has entered a special race and displays a dialogue response
 function handleSpecialRace(){
 	if(raceCount == 0){
-		addLogText("You have no predefined race! You're so quirky and random. No stat bonuses applied!");
+		addLogText("You have no predefined race! You're so quirky and random.");
+		addLogText("Sadly there are no bonuses to being a " + race + "! :^(");
 	}
 	else if(raceCount == 1){
-		addLogText("You have a predefined race! You're a true blooded patriot. Stat bonuses applied!");
+		addLogText("You have a predefined race! You're a true blooded " + race + "!");
+		addLogText("Stat bonuses have been applied! :^)");
 	}
 }
 
