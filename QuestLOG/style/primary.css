@@ -183,6 +183,11 @@ body{
 	background-color: #EBEBEB;
 }
 
+.questPost:hover{
+	cursor: pointer;
+	background-color: #DCDCDC;
+}
+
 .questHeader{
 	font-size: 1.2em;
 }

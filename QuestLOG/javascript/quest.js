@@ -7,6 +7,7 @@ class quest {
 		this.expiry = expiry;
 		this.reward = reward;
 		var monsterTable = []
+		var questId;
 	}
 
 	//Getters & Setters
@@ -69,6 +70,29 @@ class quest {
 			this.monsterTable[i] = randomMonster();
 		}
 	}
+
+	tickExpiry(){
+		var expTimer = this.expiry;
+		var id = this.questId;
+		var post = $("#" + id );
+		var selfInterval = setInterval(function(){
+			expTimer -= 1;
+			if(expTimer < 1){
+				clearInterval(selfInterval);
+				post.remove();
+			}
+			post.find("#questExpiryText").html(expTimer);
+		}, 1000);
+	}
+
+	createListener(){
+		var exp = this.expiry;
+		var id = this.questId;
+		var post = $("#" + id );
+		$(document).on('click', post, function(){
+			
+		});
+	}
 }
 
 //generateQuest(), generates a random quest and returns it
@@ -88,9 +112,10 @@ function generateQuest(){
 			levelHold = LV + 1;
 			typeHold = "Short";
 			rewardHold = "Nothing";
-			expiryHold = 60;
+			expiryHold = 45;
 			questHold = new quest(nameHold, levelHold, typeHold, expiryHold, rewardHold);
 			questHold.generateMonsterTable(1);
+			questHold.questId = Math.floor((Math.random() * 100000) + 1);
 			return questHold;
 			break;
 		case 2:
@@ -101,6 +126,7 @@ function generateQuest(){
 			expiryHold = 60;
 			questHold = new quest(nameHold, levelHold, typeHold, expiryHold, rewardHold);
 			questHold.generateMonsterTable(3);
+			questHold.questId = Math.floor((Math.random() * 100000) + 1);
 			return questHold;
 			break;
 		case 3:
@@ -108,11 +134,11 @@ function generateQuest(){
 			levelHold = LV + 2;
 			typeHold = "Boss";
 			rewardHold = "Nothing";
-			expiryHold = 60;
+			expiryHold = 90;
 			questHold = new quest(nameHold, levelHold, typeHold, expiryHold, rewardHold);
 			questHold.generateMonsterTable(1);
+			questHold.questId = Math.floor((Math.random() * 100000) + 1);
 			return questHold;
 			break;
 	}
-
 }
