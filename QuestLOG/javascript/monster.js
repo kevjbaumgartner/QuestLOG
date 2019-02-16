@@ -1,14 +1,17 @@
+//Monster class definition
 class monster{
-	constructor(name, level, HP, damage, speed, defense, loot){
+	constructor(name, level, HP, damage, speed, defense, XP){
 		this.name = name;
 		this.level = level;
 		this.HP = HP;
 		this.damage = damage;
 		this.speed = speed;
 		this.defense = defense;
-		this.loot = loot;
+		this.XP = XP;
+		var lootTable = [];
 	}
 
+	//Getters & Setters
 	getName(){
 		return this.name;
 	}
@@ -63,12 +66,50 @@ class monster{
 	}
 
 
-	getLoot(){
-		return this.loot;
+	getLootTable(){
+		return this.lootTable;
 	}
 
-	setLoot(val){
-		this.loot = val;
+	setLootTable(val){
+		this.lootTable = val;
 	}
 
+
+	getXP(){
+		return this.XP;
+	}
+
+	setXP(val){
+		this.XP = val;
+	}
+
+	//generateLootTable(), creates a predefined amount of loot that is affected by LUK
+	generateLootTable(){
+		var lootAmount = 2;
+		var roll = Math.floor((Math.random() * 100) + 1);
+		var reqChance = (10 * (1 + (LUK/100)));
+		if(roll <= reqChance){
+			lootAmount += 1;
+		}
+
+		this.lootTable = [];
+		for (var i = 0; i < lootAmount; i++){
+			this.lootTable[i] = generateLoot(this.name);
+		}
+	}
+
+	//handleDeath(), monster HP reaches 0; rewards granted
+	handleDeath(){
+
+	}
+}
+
+//randomMonster(), returns a random monster
+function randomMonster(){
+	var roll = Math.floor((Math.random() * 1) + 1);
+
+	switch(roll){
+		case 1:
+			return "Wolf";
+	}
 }

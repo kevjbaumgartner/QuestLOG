@@ -62,6 +62,11 @@ function handleSpecialRace(){
 	}
 }
 
+function addQuest(){
+	var questToBe = generateQuest();
+	$('#questPostings').prepend('<div class="questPost"> <h3 class="questHeader">Title: ' + questToBe.name + '</h3> <h3 class="questHeader">Level: ' + questToBe.level + '</h3> <h3 class="questHeader">Type: ' + questToBe.type + '</h3> <br> <h3 class="questHeader">Expiry: ' + questToBe.expiry + '</h3> <hr> <h3 class="questHeader">Monsters: ' + questToBe.monsterTable + '</h3> <hr> <h3 class="questHeader">Rewards: ' + questToBe.reward + '</h3> </div>');
+}
+
 window.onload = function(){
 
 	name = localStorage.getItem("crName");
@@ -86,4 +91,14 @@ window.onload = function(){
 	*/
 
 	intializeGame(name, race, STR, DEX, CON, WIS, LUK, maxHP, maxSP);
+
+	/*
+	var ivy = new monster("Wolf", 1, 1, 1, 1, 1, 1);
+	ivy.generateLootTable();
+	for(var i = 0; i < ivy.lootTable.length; i++){
+		console.log(ivy.lootTable[i]);
+	}
+	*/
+
+	addQuest();
 }
