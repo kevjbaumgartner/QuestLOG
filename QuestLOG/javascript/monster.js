@@ -106,10 +106,26 @@ class monster{
 
 //randomMonster(), returns a random monster
 function randomMonster(){
-	var roll = Math.floor((Math.random() * 1) + 1);
+	var roll = Math.floor((Math.random() * 9 + 1);
 
 	switch(roll){
 		case 1:
 			return "Wolf";
+		case 2:
+			return "Spider";
+		case 3:
+			return "Boar";
+		case 4:
+			return "Bear";
+		case 5:
+			return "Scorpion";
+		case 6:
+			return "Squid";
+		case 7:
+			return "Harpy";
+		case 8:
+			return "Werewolf";
+		case 9:
+			return "Lamia";
 	}
 }
