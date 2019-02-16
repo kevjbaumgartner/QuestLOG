@@ -108,7 +108,7 @@ function generateQuest(){
 			levelHold = LV + 2;
 			typeHold = "Boss";
 			rewardHold = "Nothing";
-			expiryHold = 90;
+			expiryHold = 60;
 			questHold = new quest(nameHold, levelHold, typeHold, expiryHold, rewardHold);
 			questHold.generateMonsterTable(1);
 			return questHold;
