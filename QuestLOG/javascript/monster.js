@@ -106,7 +106,7 @@ class monster{
 
 //randomMonster(), returns a random monster
 function randomMonster(){
-	var roll = Math.floor((Math.random() * 9 + 1);
+	var roll = Math.floor((Math.random() * 9 + 1));
 
 	switch(roll){
 		case 1:
