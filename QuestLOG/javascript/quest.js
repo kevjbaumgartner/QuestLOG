@@ -1,11 +1,11 @@
 //Quest class question
 class quest {
-	constructor(name, level, type, expiry, reward){
+	constructor(name, level, type, expiry){
 		this.name = name;
 		this.level = level;
 		this.type = type;
 		this.expiry = expiry;
-		this.reward = reward;
+		var reward;
 		var monsterTable = []
 		var questId;
 		var selfInterval;
@@ -73,6 +73,30 @@ class quest {
 		}
 	}
 
+	//monstersToString(), presents the table of monsters in a legible list
+	monstersToString(){
+		var temp = this.monsterTable.length;
+		var str = "";
+		for(var i = 0; i < temp; i++){
+			if(this.monsterTable[i+1] != null){
+				str = str + this.monsterTable[i] + ", ";
+			}
+			else{
+				str = str + this.monsterTable[i];
+			}
+		}
+		return str;
+	}
+
+	//generateLootTable(), fills the reward field with a random value based on type of dungeon and player level
+	generateLootTable(level, type){
+		var init = Math.floor((Math.random() * 1000) + 1);
+		var level = level;
+		var range = level + (Math.floor((Math.random() * 3) + 1));
+		var type = type;
+		this.reward = (init * range * type);
+	}
+
 	//tickExpiry(), creates, times down, and deletes a quest post based on the defined expiry value
 	tickExpiry(){
 		var expTimer = this.expiry;
@@ -120,33 +144,33 @@ function generateQuest(){
 			nameHold = "Short Quest";
 			levelHold = LV + 1;
 			typeHold = "Short";
-			rewardHold = "Nothing";
 			expiryHold = 45;
-			questHold = new quest(nameHold, levelHold, typeHold, expiryHold, rewardHold);
+			questHold = new quest(nameHold, levelHold, typeHold, expiryHold);
 			questHold.generateMonsterTable(1);
 			questHold.questId = generateUID();
+			questHold.generateLootTable(LV, typeRoll);
 			return questHold;
 			break;
 		case 2:
 			nameHold = "Dungeon Quest";
 			levelHold = LV + 1;
 			typeHold = "Dungeon";
-			rewardHold = "Nothing";
 			expiryHold = 60;
-			questHold = new quest(nameHold, levelHold, typeHold, expiryHold, rewardHold);
+			questHold = new quest(nameHold, levelHold, typeHold, expiryHold);
 			questHold.generateMonsterTable(3);
 			questHold.questId = generateUID();
+			questHold.generateLootTable(LV, typeRoll);
 			return questHold;
 			break;
 		case 3:
 			nameHold = "Boss Quest";
 			levelHold = LV + 2;
 			typeHold = "Boss";
-			rewardHold = "Nothing";
 			expiryHold = 75;
-			questHold = new quest(nameHold, levelHold, typeHold, expiryHold, rewardHold);
+			questHold = new quest(nameHold, levelHold, typeHold, expiryHold);
 			questHold.generateMonsterTable(1);
 			questHold.questId = generateUID();
+			questHold.generateLootTable(LV, typeRoll);
 			return questHold;
 			break;
 	}

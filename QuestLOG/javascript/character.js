@@ -413,3 +413,69 @@ function calculateMaxHP(){
 function calculateMaxSP(){
 	return maxSP + (DEX);
 }
+
+//Currency Functions
+function gainCurrency(val){
+	var gained = val;
+	var ccHold = 0;
+	var scHold = 0;
+	var gcHold = 0;
+	var pcHold = 0;
+	var str = "Gained: ";
+	ccHold = gained;
+	do{
+		if(ccHold >= 100){
+			scHold += 1;
+			ccHold -= 100;
+			if(scHold >= 100){
+				gcHold += 1;
+				scHold -= 100;
+				if(gcHold >= 100){
+					pcHold += 1;
+					gcHold -= 100;
+				}
+			}
+		}
+		else{
+			gained = 0;
+		}
+	} while(gained != 0);
+	if(ccHold > 0){
+		str = str + "(" + ccHold + " CC) ";
+	}
+	if(scHold > 0){
+		str = str + "(" + scHold + " SC) ";
+	}
+	if(gcHold > 0){
+		str = str + "(" + gcHold + " GC) ";
+	}
+	if(pcHold > 0){
+		str = str + "(" + pcHold + " PC)";
+	}
+
+	CC += ccHold;
+	if(CC >= 100){
+		scHold += 1;
+		CC -= 100;
+	}
+	updateCCText();
+	SC += scHold;
+	if(SC >= 100){
+		gcHold += 1;
+		SC -= 100;
+	}
+	updateSCText();
+	GC += gcHold;
+	if(GC >= 100){
+		pcHold += 1;
+		GC -= 100;
+	}
+	updateGCText();
+	PC += pcHold;
+	updatePCText();
+	addLogText(str);
+}
+
+function spendCurrency(val){
+	
+}

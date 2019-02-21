@@ -66,7 +66,7 @@ function handleSpecialRace(){
 //addQuest(), used to generate the html posting for a generated quest
 function addQuest(){
     var questToBe = generateQuest();
-	$('#questPostings').prepend('<div class="questPost" id="' + questToBe.questId + '"> <h3 class="questHeader">Title: ' + questToBe.name + '</h3> <h3 class="questHeader">Level: ' + questToBe.level + '</h3> <h3 class="questHeader">Type: ' + questToBe.type + '</h3> <br> <h3 class="questHeader">Expiry: <span id="questExpiryText">' + questToBe.expiry + '</span></h3> <hr> <h3 class="questHeader">Monsters: ' + questToBe.monsterTable + '</h3> <hr> <h3 class="questHeader">Rewards: ' + questToBe.reward + '</h3> </div>');
+	$('#questPostings').prepend('<div class="questPost" id="' + questToBe.questId + '"> <h3 class="questHeader">Title: ' + questToBe.name + '</h3> <h3 class="questHeader">Level: ' + questToBe.level + '</h3> <h3 class="questHeader">Type: ' + questToBe.type + '</h3> <br> <h3 class="questHeader">Expiry: <span id="questExpiryText">' + questToBe.expiry + '</span></h3> <hr> <h3 class="questHeader">Monsters: ' + questToBe.monstersToString() + '</h3> <hr> <h3 class="questHeader">Rewards: ' + questToBe.reward + ' CC</h3> </div>');
 	questToBe.tickExpiry();
 	questToBe.createListener();
 }
@@ -104,9 +104,12 @@ window.onload = function(){
 	LUK = Number(localStorage.getItem("crLUK"));
 	raceCount = Number(localStorage.getItem("raceCount"));
 
-	clearData();
+	//clearData();
 
 	intializeGame(name, race, STR, DEX, CON, WIS, LUK, maxHP, maxSP);
 	addQuest();
 	cycleQuests();
+
+	gainCurrency(100120);
+	gainCurrency(20000);
 }
