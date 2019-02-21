@@ -8,6 +8,7 @@ class quest {
 		this.reward = reward;
 		var monsterTable = []
 		var questId;
+		var selfInterval;
 	}
 
 	//Getters & Setters
@@ -64,6 +65,7 @@ class quest {
 		this.reward = reward;
 	}
 
+	//generateMonsterTable(), fills the local quest posting with a defined amount of monsters based on type of quest
 	generateMonsterTable(amount){
 		this.monsterTable = [];
 		for (var i = 0; i < amount; i++){
@@ -71,26 +73,33 @@ class quest {
 		}
 	}
 
+	//tickExpiry(), creates, times down, and deletes a quest post based on the defined expiry value
 	tickExpiry(){
 		var expTimer = this.expiry;
 		var id = this.questId;
 		var post = $("#" + id );
-		var selfInterval = setInterval(function(){
+		var int = this.selfInterval;
+		this.selfInterval = setInterval(() =>{
 			expTimer -= 1;
 			if(expTimer < 1){
-				clearInterval(selfInterval);
+				clearInterval(this.selfInterval);
+				console.log("QUID: '" + id + "' deleted. Expired.")
 				post.remove();
 			}
 			post.find("#questExpiryText").html(expTimer);
 		}, 1000);
 	}
 
+	//createListener(), appends a listener to the quest posting on creation to wait for a click event
 	createListener(){
-		var exp = this.expiry;
 		var id = this.questId;
+		var monsterTable = this.monsterTable;
 		var post = $("#" + id );
-		$(document).on('click', post, function(){
-			
+		var int = this.selfInterval;
+		$(post).on('click', post, function(){
+			clearInterval(int);
+			console.log("QUID: '" + id + "' deleted. Selected.")
+			post.remove();
 		});
 	}
 }
@@ -115,7 +124,7 @@ function generateQuest(){
 			expiryHold = 45;
 			questHold = new quest(nameHold, levelHold, typeHold, expiryHold, rewardHold);
 			questHold.generateMonsterTable(1);
-			questHold.questId = Math.floor((Math.random() * 100000) + 1);
+			questHold.questId = generateUID();
 			return questHold;
 			break;
 		case 2:
@@ -126,7 +135,7 @@ function generateQuest(){
 			expiryHold = 60;
 			questHold = new quest(nameHold, levelHold, typeHold, expiryHold, rewardHold);
 			questHold.generateMonsterTable(3);
-			questHold.questId = Math.floor((Math.random() * 100000) + 1);
+			questHold.questId = generateUID();
 			return questHold;
 			break;
 		case 3:
@@ -134,11 +143,16 @@ function generateQuest(){
 			levelHold = LV + 2;
 			typeHold = "Boss";
 			rewardHold = "Nothing";
-			expiryHold = 90;
+			expiryHold = 75;
 			questHold = new quest(nameHold, levelHold, typeHold, expiryHold, rewardHold);
 			questHold.generateMonsterTable(1);
-			questHold.questId = Math.floor((Math.random() * 100000) + 1);
+			questHold.questId = generateUID();
 			return questHold;
 			break;
+	}
+
+	//generateUID(), generates a unique ID for quests based on Math.random seeding algorithm
+	function generateUID(){
+		return Math.random().toString(36).substr(2, 10);
 	}
 }
