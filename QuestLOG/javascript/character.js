@@ -311,8 +311,9 @@ function checkUnspentPoints(){
 
 //Level Up Functions
 function gainXP(val){
-	var hold = (val * (1 + (WIS/100))).toFixed(1);
-	XP += hold
+	var hold = (val * (1 + (WIS/100)));
+	XP += hold;
+	XP = Math.round(XP * 100) / 100;
 	updateXPText();
 	addLogText("Gained (" + hold + ") XP!")
 

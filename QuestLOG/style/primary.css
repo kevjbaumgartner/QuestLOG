@@ -195,3 +195,12 @@ body{
 .questHeader{
 	font-size: 1.2em;
 }
+
+/* Queue Specific */
+.killPosting{
+	text-align: center;
+	padding: 1%;
+	margin: 2%;
+	outline: 1px solid #121212;
+	background-color: #EBEBEB
+}

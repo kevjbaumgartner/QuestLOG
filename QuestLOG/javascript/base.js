@@ -1,11 +1,13 @@
 //Variable Declarations
-var gameVer = "0.03a"
+var gameVer = "0.04a"
 var lvSTRButton = $('#lvSTRButton');
 var lvDEXButton = $('#lvDEXButton');
 var lvCONButton = $('#lvCONButton');
 var lvWISButton = $('#lvWISButton');
 var lvLUKButton = $('#lvLUKButton');
 var questTimer;
+
+var TTS_QUESTS = 15; //TIME TO SPAWN_QUESTS
 
 //initializeGame(), encorporates selected character preferences and stats to begin the game
 function intializeGame(characterName, characterRace, characterSTR, characterDEX, characterCON, characterWIS, characterLUK, characterMaxHP, characterMaxSP){
@@ -66,9 +68,24 @@ function handleSpecialRace(){
 //addQuest(), used to generate the html posting for a generated quest
 function addQuest(){
     var questToBe = generateQuest();
-	$('#questPostings').prepend('<div class="questPost" id="' + questToBe.questId + '"> <h3 class="questHeader">Title: ' + questToBe.name + '</h3> <h3 class="questHeader">Level: ' + questToBe.level + '</h3> <h3 class="questHeader">Type: ' + questToBe.type + '</h3> <br> <h3 class="questHeader">Expiry: <span id="questExpiryText">' + questToBe.expiry + '</span></h3> <hr> <h3 class="questHeader">Monsters: ' + questToBe.monstersToString() + '</h3> <hr> <h3 class="questHeader">Rewards: ' + questToBe.reward + ' CC</h3> </div>');
+    var typeToBe;
+    if(questToBe.type == 1){
+    	typeToBe = "Short";
+    }
+    else if(questToBe.type == 2){
+    	typeToBe = "Dungeon";
+    }
+    else if(questToBe.type == 3){
+    	typeToBe = "Boss";
+    }
+	$('#questPostings').prepend('<div class="questPost" id="' + questToBe.questId + '"> <h3 class="questHeader">Title: ' + questToBe.name + '</h3> <h3 class="questHeader">Level: ' + questToBe.level + '</h3> <h3 class="questHeader">Type: ' + typeToBe + '</h3> <br> <h3 class="questHeader">Expiry: <span id="questExpiryText">' + questToBe.expiry + '</span></h3> <hr> <h3 class="questHeader">Monsters: ' + questToBe.monstersToString() + '</h3> <hr> <h3 class="questHeader">Rewards: ' + questToBe.reward + ' CC</h3> </div>');
 	questToBe.tickExpiry();
 	questToBe.createListener();
+}
+
+//addKillPost(), used to generate a listing on the kill queue with a monster name
+function addKillPost(monsterName, monsterLevel){
+	$('#queuePostings').append('<div class="killPosting">LV ' + monsterLevel + " " + monsterName + '<br></div>');
 }
 
 //cycleQuests(), adds an additional quest to the postings at a defined time interval
@@ -77,7 +94,7 @@ function cycleQuests(){
 	questTimer = setTimeout(function () {
 		addQuest();
 		cycleQuests();
-    }, 30000);
+    }, (TTS_QUESTS * 1000));
 }
 
 //clearData(), sends the user back to user creation on page reload, refreshes local data as well

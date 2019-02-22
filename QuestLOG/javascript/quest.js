@@ -79,17 +79,17 @@ class quest {
 		var str = "";
 		for(var i = 0; i < temp; i++){
 			if(this.monsterTable[i+1] != null){
-				str = str + this.monsterTable[i] + ", ";
+				str = str + this.monsterTable[i].name + ", ";
 			}
 			else{
-				str = str + this.monsterTable[i];
+				str = str + this.monsterTable[i].name;
 			}
 		}
 		return str;
 	}
 
-	//generateLootTable(), fills the reward field with a random value based on type of dungeon and player level
-	generateLootTable(level, type){
+	//generateRewardTable(), fills the reward field with a random value based on type of dungeon and player level
+	generateRewardTable(level, type){
 		var init = Math.floor((Math.random() * 100) + 1);
 		var level = level;
 		var range = level + (Math.floor((Math.random() * 3) + 1));
@@ -116,13 +116,14 @@ class quest {
 
 	//createListener(), appends a listener to the quest posting on creation to wait for a click event
 	createListener(){
+		var title = this.name;
 		var id = this.questId;
 		var monsterTable = this.monsterTable;
 		var post = $("#" + id );
 		var int = this.selfInterval;
 		var reward = this.reward;
 		$(post).on('click', post, function(){
-			addToQueue(monsterTable, reward);
+			addToQueue(title, monsterTable, reward);
 			clearInterval(int);
 			console.log("QUID: '" + id + "' deleted. Selected.")
 			post.remove();
@@ -132,9 +133,8 @@ class quest {
 
 //generateQuest(), generates a random quest and returns it
 function generateQuest(){
-	var questHold;
 	var typeRoll = Math.floor((Math.random() * 3) + 1);
-
+	var questHold;
 	var nameHold;
 	var levelHold;
 	var typeHold;
@@ -144,35 +144,42 @@ function generateQuest(){
 	switch(typeRoll){
 		case 1:
 			nameHold = "Short Quest";
-			levelHold = LV + 1;
-			typeHold = "Short";
+			levelHold = 0;
+			typeHold = 1;
 			expiryHold = 30;
 			questHold = new quest(nameHold, levelHold, typeHold, expiryHold);
 			questHold.generateMonsterTable(1);
+			questHold.level = questHold.monsterTable[0].level;
 			questHold.questId = generateUID();
-			questHold.generateLootTable(LV, typeRoll);
+			questHold.generateRewardTable(questHold.level, typeRoll);
 			return questHold;
 			break;
 		case 2:
 			nameHold = "Dungeon Quest";
-			levelHold = LV + 1;
-			typeHold = "Dungeon";
+			levelHold = 0;
+			typeHold = 2;
 			expiryHold = 45;
 			questHold = new quest(nameHold, levelHold, typeHold, expiryHold);
 			questHold.generateMonsterTable(3);
+			for(var i = 0; i < questHold.monsterTable.length; i++){
+				questHold.level += questHold.monsterTable[0].level;
+			}
+			questHold.level = Math.floor(questHold.level / questHold.monsterTable.length);
 			questHold.questId = generateUID();
-			questHold.generateLootTable(LV, typeRoll);
+			questHold.generateRewardTable(questHold.level, typeRoll);
 			return questHold;
 			break;
 		case 3:
 			nameHold = "Boss Quest";
-			levelHold = LV + 2;
-			typeHold = "Boss";
+			levelHold = 0;
+			typeHold = 3;
 			expiryHold = 60;
 			questHold = new quest(nameHold, levelHold, typeHold, expiryHold);
 			questHold.generateMonsterTable(1);
+			questHold.monsterTable[0].level += 5;
+			questHold.level = questHold.monsterTable[0].level;
 			questHold.questId = generateUID();
-			questHold.generateLootTable(LV, typeRoll);
+			questHold.generateRewardTable(questHold.level, typeRoll);
 			return questHold;
 			break;
 	}
