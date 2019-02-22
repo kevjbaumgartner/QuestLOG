@@ -109,7 +109,4 @@ window.onload = function(){
 	intializeGame(name, race, STR, DEX, CON, WIS, LUK, maxHP, maxSP);
 	addQuest();
 	cycleQuests();
-
-	gainCurrency(100120);
-	gainCurrency(20000);
 }

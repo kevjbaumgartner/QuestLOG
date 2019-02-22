@@ -90,7 +90,7 @@ class quest {
 
 	//generateLootTable(), fills the reward field with a random value based on type of dungeon and player level
 	generateLootTable(level, type){
-		var init = Math.floor((Math.random() * 1000) + 1);
+		var init = Math.floor((Math.random() * 100) + 1);
 		var level = level;
 		var range = level + (Math.floor((Math.random() * 3) + 1));
 		var type = type;
@@ -120,7 +120,9 @@ class quest {
 		var monsterTable = this.monsterTable;
 		var post = $("#" + id );
 		var int = this.selfInterval;
+		var reward = this.reward;
 		$(post).on('click', post, function(){
+			addToQueue(monsterTable, reward);
 			clearInterval(int);
 			console.log("QUID: '" + id + "' deleted. Selected.")
 			post.remove();
@@ -144,7 +146,7 @@ function generateQuest(){
 			nameHold = "Short Quest";
 			levelHold = LV + 1;
 			typeHold = "Short";
-			expiryHold = 45;
+			expiryHold = 30;
 			questHold = new quest(nameHold, levelHold, typeHold, expiryHold);
 			questHold.generateMonsterTable(1);
 			questHold.questId = generateUID();
@@ -155,7 +157,7 @@ function generateQuest(){
 			nameHold = "Dungeon Quest";
 			levelHold = LV + 1;
 			typeHold = "Dungeon";
-			expiryHold = 60;
+			expiryHold = 45;
 			questHold = new quest(nameHold, levelHold, typeHold, expiryHold);
 			questHold.generateMonsterTable(3);
 			questHold.questId = generateUID();
@@ -166,7 +168,7 @@ function generateQuest(){
 			nameHold = "Boss Quest";
 			levelHold = LV + 2;
 			typeHold = "Boss";
-			expiryHold = 75;
+			expiryHold = 60;
 			questHold = new quest(nameHold, levelHold, typeHold, expiryHold);
 			questHold.generateMonsterTable(1);
 			questHold.questId = generateUID();
