@@ -24,7 +24,7 @@ function killTop(){
 		queueSize = 0;
 	}
 	else{
-		addLogText(monsterQueue[0].name + " killed!");
+		addLogText("<label class='logKill'>" + monsterQueue[0].name + " killed</label>!");
 		monsterQueue[0].handleDeath();
 		$('#queuePostings').find('div').first().remove();
 		queueSize -= 1;

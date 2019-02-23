@@ -20,7 +20,7 @@ class loot{
 		return this.rarity;
 	}
 
-	setName(val){
+	setRarity(val){
 		this.rarity = val;
 	}
 

@@ -1,5 +1,5 @@
 //Variable Declarations
-var gameVer = "0.04a"
+var gameVer = "0.05a"
 var lvSTRButton = $('#lvSTRButton');
 var lvDEXButton = $('#lvDEXButton');
 var lvCONButton = $('#lvCONButton');
@@ -45,11 +45,23 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 	document.title = "QuestLOG | " + name;
 	addLogText("Welcome " + name + " to QuestLOG version " + gameVer + "!")
 	handleSpecialRace();
+
+	var starterWeapon = new weapon;
+	starterWeapon.setName("Stick of Stickyness");
+	starterWeapon.setType(2);
+	starterWeapon.setRarity(6);
+	starterWeapon.setDamage(1);
+	starterWeapon.setSpeed(1);
+	starterWeapon.setCriticalChance(1);
+	starterWeapon.setCriticalDamage(50);
+
+	equipWeapon(starterWeapon);
+	addLogText("To begin your journey, you have been given the <label class='rarity" + currentWeapon.rarity + "'>" + currentWeapon.name + "</label>!");
 }
 
 //addText(), adds the parameter as a new entry to the top of the text log and removes bottom most entry
 function addLogText(text){
-	$('#textLog').prepend('<span>> <text>' + text + '</text><br></span>');
+	$('#textLog').prepend('<span>> ' + text + '<br></span>');
 	$('#textLog span').last().remove();
 }
 

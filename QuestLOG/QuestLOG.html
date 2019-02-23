@@ -18,7 +18,7 @@
 	</head>
 	<body>
 		<div id="gameHeader">
-			<h1>QuestLOG ver 0.04a</h1>
+			<h1>QuestLOG ver 0.05a</h1>
 		</div>
 		<div class="section" id="characterArea">
 			<h1 class="sectionHeader">Character</h1>
@@ -67,18 +67,14 @@
 		</div>
 		<div class="section" id="weaponArea">
 			<h1 class="sectionHeader">Weapon</h1>
-			<h2 class="sectionSubheader">Name: </h2>
-			<h2 class="sectionSubheader">Type: </h2>
-			<h2 class="sectionSubheader">Rarity: </h2>
+			<h2 class="sectionSubheader">Name: <label class="sectionDetail" id="weaponNameText"></label></h2>
 			<hr>
-			<h2 class="sectionSubheader">Damage: </h2>
-			<h2 class="sectionSubheader">Attack Speed: </h2>
-			<h2 class="sectionSubheader">Critical Chance: </h2>
-			<h2 class="sectionSubheader">Critical Damage Bonus: </h2>
+			<h2 class="sectionSubheader">Damage: <label class="sectionDetail" id="weaponDamageText"></label></h2>
+			<h2 class="sectionSubheader">Attack Speed: <label class="sectionDetail" id="weaponAttackSpeedText"></label></h2>
+			<h2 class="sectionSubheader">Critical Chance: <label class="sectionDetail" id="weaponCriticalChanceText"></label>%</h2>
+			<h2 class="sectionSubheader">Critical Damage Bonus: <label class="sectionDetail" id="weaponCriticalDamageText"></label>%</h2>
 			<br>
-			<h2 class="sectionSubheader">Estimated DPS: </h2>
-			<hr>
-			<h2 class="sectionSubheader">Quirks: </h2>
+			<h2 class="sectionSubheader">Estimated DPS: <label class="sectionDetail" id="weaponDPSText"></label></h2>
 		</div>
 		<div class="section" id="questArea">
 			<h1 class="sectionHeader">Quest Board</h1>
@@ -114,4 +110,6 @@
 	<script type="text/javascript" src="javascript/monster.js"></script>
 	<script type="text/javascript" src="javascript/loot.js"></script>
 	<script type="text/javascript" src="javascript/queue.js"></script>
+	<script type="text/javascript" src="javascript/weapon.js"></script>
+
 </html>

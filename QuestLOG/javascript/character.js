@@ -26,6 +26,8 @@ var PC;
 
 var unspentPoints;
 
+var currentWeapon;
+
 //Getters, Setters, & Updates
 function setName(val){
 	this.name = val;
@@ -205,7 +207,7 @@ function getXP(){
 }
 
 function updateXPText(){
-	$('#characterXPText').html(XP);
+	$('#characterXPText').html(Number(XP).toFixed(2));
 }
 
 
@@ -315,7 +317,7 @@ function gainXP(val){
 	XP += hold;
 	XP = Math.round(XP * 100) / 100;
 	updateXPText();
-	addLogText("Gained (" + hold + ") XP!")
+	addLogText("Gained: <label class='logXP'>" + Number(hold).toFixed(2) + "</label> XP!")
 
 	if(XP >= reqXP){
 		XP -= reqXP;
@@ -344,9 +346,9 @@ function levelUp(){
 	setSP(maxSP);
 	updateSPText();
 
-	var d = new Date();
-	var time = d.toLocaleTimeString();
-	addLogText("Congratulations, Level Up: " + LV + " achieved at " + time + "!" );
+	updateWeaponArea();
+
+	addLogText("Congratulations, Level Up: " + LV + "!" );
 	addLogText("(1) Stat Point Granted!")
 }
 
@@ -356,6 +358,8 @@ function lvSTR(){
 	updateUnspentPointsText();
 	checkUnspentPoints();
 	updateSTRText();
+
+	updateWeaponArea();
 }
 
 function lvDEX(){
@@ -367,6 +371,8 @@ function lvDEX(){
 
 	increaseMaxSP(1);
 	updateMaxSPText();
+
+	updateWeaponArea();
 }
 
 function lvCON(){
@@ -540,4 +546,30 @@ function spendCurrency(val){
     PC -= pcHold;
     updatePCText();
     addLogText(str);
+}
+
+//Weapon Functions
+function equipWeapon(weapon){
+	currentWeapon = weapon;
+	updateWeaponArea();
+}
+
+function exchangeWeapon(newWeapon){
+	if(confirm("Exchange your " + currentWeapon.name + "(Current DPS: " + Number(currentWeapon.dps).toFixed(2) + ") for " + newWeapon.name + " (New DPS: " + Number(newWeapon.dps).toFixed(2) + ")?")){
+		currentWeapon = newWeapon;
+		updateWeaponArea();
+	}
+	else{
+
+	}
+}
+
+function updateWeaponArea(){
+	$('#weaponNameText').html("<label class='rarity" + currentWeapon.rarity + "'>" + currentWeapon.name + "</label>");
+	$('#weaponDamageText').html(currentWeapon.damage);
+	$('#weaponAttackSpeedText').html(currentWeapon.speed);
+	$('#weaponCriticalChanceText').html(currentWeapon.cc);
+	$('#weaponCriticalDamageText').html(currentWeapon.cd);
+	currentWeapon.determineDPS();
+	$('#weaponDPSText').html(Number(currentWeapon.dps).toFixed(2));
 }
