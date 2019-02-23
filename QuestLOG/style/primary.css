@@ -38,7 +38,7 @@ body{
 	float: left;
 	text-align: left;
 	min-width: 200px;
-	min-height: 650px;
+	min-height: 700px;
 }
 
 .sectionHeader{
@@ -67,7 +67,45 @@ body{
 }
 
 #textLog text{
-	color: green;
+	color: #121212;
+}
+
+/* Rarity Specific */
+.rarity1{
+	color: #757575;
+}
+
+.rarity2{
+	color: #5aa524;
+}
+
+.rarity3{
+	color: #387bed;
+}
+
+.rarity4{
+	color: #a763e2;
+}
+
+.rarity5{
+	color: #dd9a3b;
+}
+
+.rarity6{
+	color: #cc244b;
+}
+
+/* Log Font Color Specific */
+.logKill{
+	color: #bf0000;
+}
+
+.logCurrency{
+	color: #ccbc14;
+}
+
+.logXP{
+	color: #2dbc83;
 }
 
 /* Creation Specific */
@@ -183,6 +221,24 @@ body{
 	background-color: #EBEBEB;
 }
 
+.questPost:hover{
+	cursor: pointer;
+	background-color: #DCDCDC;
+}
+
+.questPost:hover:active{
+	background-color: #CBCBCB;
+}
+
 .questHeader{
 	font-size: 1.2em;
+}
+
+/* Queue Specific */
+.killPosting{
+	text-align: center;
+	padding: 1%;
+	margin: 2%;
+	outline: 1px solid #121212;
+	background-color: #EBEBEB
 }

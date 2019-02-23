@@ -26,6 +26,8 @@ var PC;
 
 var unspentPoints;
 
+var currentWeapon;
+
 //Getters, Setters, & Updates
 function setName(val){
 	this.name = val;
@@ -205,7 +207,7 @@ function getXP(){
 }
 
 function updateXPText(){
-	$('#characterXPText').html(XP);
+	$('#characterXPText').html(Number(XP).toFixed(2));
 }
 
 
@@ -311,10 +313,11 @@ function checkUnspentPoints(){
 
 //Level Up Functions
 function gainXP(val){
-	var hold = (val * (1 + (WIS/100))).toFixed(1);
-	XP += hold
+	var hold = (val * (1 + (WIS/100)));
+	XP += hold;
+	XP = Math.round(XP * 100) / 100;
 	updateXPText();
-	addLogText("Gained (" + hold + ") XP!")
+	addLogText("Gained: <label class='logXP'>" + Number(hold).toFixed(2) + "</label> XP!")
 
 	if(XP >= reqXP){
 		XP -= reqXP;
@@ -343,9 +346,9 @@ function levelUp(){
 	setSP(maxSP);
 	updateSPText();
 
-	var d = new Date();
-	var time = d.toLocaleTimeString();
-	addLogText("Congratulations, Level Up: " + LV + " achieved at " + time + "!" );
+	updateWeaponArea();
+
+	addLogText("Congratulations, Level Up: " + LV + "!" );
 	addLogText("(1) Stat Point Granted!")
 }
 
@@ -355,6 +358,8 @@ function lvSTR(){
 	updateUnspentPointsText();
 	checkUnspentPoints();
 	updateSTRText();
+
+	updateWeaponArea();
 }
 
 function lvDEX(){
@@ -366,6 +371,8 @@ function lvDEX(){
 
 	increaseMaxSP(1);
 	updateMaxSPText();
+
+	updateWeaponArea();
 }
 
 function lvCON(){
@@ -412,4 +419,157 @@ function calculateMaxHP(){
 
 function calculateMaxSP(){
 	return maxSP + (DEX);
+}
+
+//Currency Functions
+function gainCurrency(val){
+	var gained = val;
+	var ccHold = 0;
+	var scHold = 0;
+	var gcHold = 0;
+	var pcHold = 0;
+	var str = "Gained: ";
+	ccHold = gained;
+	do{
+		if(ccHold >= 100){
+			scHold += 1;
+			ccHold -= 100;
+			if(scHold >= 100){
+				gcHold += 1;
+				scHold -= 100;
+				if(gcHold >= 100){
+					pcHold += 1;
+					gcHold -= 100;
+				}
+			}
+		}
+		else{
+			gained = 0;
+		}
+	} while(gained != 0);
+	if(ccHold > 0){
+		str = str + "(" + ccHold + " CC) ";
+	}
+	if(scHold > 0){
+		str = str + "(" + scHold + " SC) ";
+	}
+	if(gcHold > 0){
+		str = str + "(" + gcHold + " GC) ";
+	}
+	if(pcHold > 0){
+		str = str + "(" + pcHold + " PC)";
+	}
+	CC += ccHold;
+	if(CC >= 100){
+		scHold += 1;
+		CC -= 100;
+	}
+	updateCCText();
+	SC += scHold;
+	if(SC >= 100){
+		gcHold += 1;
+		SC -= 100;
+	}
+	updateSCText();
+	GC += gcHold;
+	if(GC >= 100){
+		pcHold += 1;
+		GC -= 100;
+	}
+	updateGCText();
+	PC += pcHold;
+	updatePCText();
+	addLogText(str);
+}
+
+function spendCurrency(val){
+    var spent = val;
+    var ccHold = 0;
+    var scHold = 0;
+    var gcHold = 0;
+    var pcHold = 0;
+    var pcTemp = PC; 
+    var str = "Spent: ";
+    ccHold = spent;
+    do{
+        if(ccHold >= 100){
+            scHold += 1;
+            ccHold -= 100;
+            if(scHold >= 100){
+                gcHold += 1;
+                scHold -= 100;
+                if(gcHold >= 100){
+                    pcHold += 1;
+                    gcHold -= 100;
+                }
+            }
+        }
+        else{
+            spent = 0;
+        }
+    } while(spent != 0);
+
+    if((pcTemp - pcHold) < 0){
+        alert("Not enough currency!!");
+        return;
+    }
+    if(ccHold > 0){
+        str = str + "(" + ccHold + " CC) ";
+    }
+    if(scHold > 0){
+        str = str + "(" + scHold + " SC) ";
+    }
+    if(gcHold > 0){
+        str = str + "(" + gcHold + " GC) ";
+    }
+    if(pcHold > 0){
+        str = str + "(" + pcHold + " PC) ";
+    }
+    CC -= ccHold;
+    if(CC < 0){
+        SC -= 1;
+        CC += 100;
+    }
+    updateCCText();
+    SC -= scHold;
+    if(SC < 0){
+        GC -= 1;
+        SC += 100;
+    }
+    updateSCText();
+    GC -= gcHold;
+    if(GC < 0){
+        PC -= 1;
+        GC += 100;
+    }
+    updateGCText();
+    PC -= pcHold;
+    updatePCText();
+    addLogText(str);
+}
+
+//Weapon Functions
+function equipWeapon(weapon){
+	currentWeapon = weapon;
+	updateWeaponArea();
+}
+
+function exchangeWeapon(newWeapon){
+	if(confirm("Exchange your " + currentWeapon.name + "(Current DPS: " + Number(currentWeapon.dps).toFixed(2) + ") for " + newWeapon.name + " (New DPS: " + Number(newWeapon.dps).toFixed(2) + ")?")){
+		currentWeapon = newWeapon;
+		updateWeaponArea();
+	}
+	else{
+
+	}
+}
+
+function updateWeaponArea(){
+	$('#weaponNameText').html("<label class='rarity" + currentWeapon.rarity + "'>" + currentWeapon.name + "</label>");
+	$('#weaponDamageText').html(currentWeapon.damage);
+	$('#weaponAttackSpeedText').html(currentWeapon.speed);
+	$('#weaponCriticalChanceText').html(currentWeapon.cc);
+	$('#weaponCriticalDamageText').html(currentWeapon.cd);
+	currentWeapon.determineDPS();
+	$('#weaponDPSText').html(Number(currentWeapon.dps).toFixed(2));
 }

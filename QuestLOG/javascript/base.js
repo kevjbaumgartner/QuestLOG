@@ -1,11 +1,13 @@
 //Variable Declarations
-var gameVer = "0.02a"
+var gameVer = "0.05a"
 var lvSTRButton = $('#lvSTRButton');
 var lvDEXButton = $('#lvDEXButton');
 var lvCONButton = $('#lvCONButton');
 var lvWISButton = $('#lvWISButton');
 var lvLUKButton = $('#lvLUKButton');
 var questTimer;
+
+var TTS_QUESTS = 15; //TIME TO SPAWN_QUESTS
 
 //initializeGame(), encorporates selected character preferences and stats to begin the game
 function intializeGame(characterName, characterRace, characterSTR, characterDEX, characterCON, characterWIS, characterLUK, characterMaxHP, characterMaxSP){
@@ -44,12 +46,22 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 	addLogText("Welcome " + name + " to QuestLOG version " + gameVer + "!")
 	handleSpecialRace();
 
+	var starterWeapon = new weapon;
+	starterWeapon.setName("Stick of Stickyness");
+	starterWeapon.setType(2);
+	starterWeapon.setRarity(6);
+	starterWeapon.setDamage(1);
+	starterWeapon.setSpeed(1);
+	starterWeapon.setCriticalChance(1);
+	starterWeapon.setCriticalDamage(50);
 
+	equipWeapon(starterWeapon);
+	addLogText("To begin your journey, you have been given the <label class='rarity" + currentWeapon.rarity + "'>" + currentWeapon.name + "</label>!");
 }
 
 //addText(), adds the parameter as a new entry to the top of the text log and removes bottom most entry
 function addLogText(text){
-	$('#textLog').prepend('<span>> <text>' + text + '</text><br></span>');
+	$('#textLog').prepend('<span>> ' + text + '<br></span>');
 	$('#textLog span').last().remove();
 }
 
@@ -65,17 +77,49 @@ function handleSpecialRace(){
 	}
 }
 
+//addQuest(), used to generate the html posting for a generated quest
 function addQuest(){
     var questToBe = generateQuest();
-	$('#questPostings').prepend('<div class="questPost"> <h3 class="questHeader">Title: ' + questToBe.name + '</h3> <h3 class="questHeader">Level: ' + questToBe.level + '</h3> <h3 class="questHeader">Type: ' + questToBe.type + '</h3> <br> <h3 class="questHeader">Expiry: ' + questToBe.expiry + '</h3> <hr> <h3 class="questHeader">Monsters: ' + questToBe.monsterTable + '</h3> <hr> <h3 class="questHeader">Rewards: ' + questToBe.reward + '</h3> </div>');
+    var typeToBe;
+    if(questToBe.type == 1){
+    	typeToBe = "Short";
+    }
+    else if(questToBe.type == 2){
+    	typeToBe = "Dungeon";
+    }
+    else if(questToBe.type == 3){
+    	typeToBe = "Boss";
+    }
+	$('#questPostings').prepend('<div class="questPost" id="' + questToBe.questId + '"> <h3 class="questHeader">Title: ' + questToBe.name + '</h3> <h3 class="questHeader">Level: ' + questToBe.level + '</h3> <h3 class="questHeader">Type: ' + typeToBe + '</h3> <br> <h3 class="questHeader">Expiry: <span id="questExpiryText">' + questToBe.expiry + '</span></h3> <hr> <h3 class="questHeader">Monsters: ' + questToBe.monstersToString() + '</h3> <hr> <h3 class="questHeader">Rewards: ' + questToBe.reward + ' CC</h3> </div>');
+	questToBe.tickExpiry();
+	questToBe.createListener();
 }
 
+//addKillPost(), used to generate a listing on the kill queue with a monster name
+function addKillPost(monsterName, monsterLevel){
+	$('#queuePostings').append('<div class="killPosting">LV ' + monsterLevel + " " + monsterName + '<br></div>');
+}
+
+//cycleQuests(), adds an additional quest to the postings at a defined time interval
 function cycleQuests(){
 	clearTimeout(questTimer);
 	questTimer = setTimeout(function () {
 		addQuest();
 		cycleQuests();
-    }, 30000);
+    }, (TTS_QUESTS * 1000));
+}
+
+//clearData(), sends the user back to user creation on page reload, refreshes local data as well
+function clearData(){
+	if(window.performance && performance.navigation.type == 1){
+		window.location.replace("CharacterCreation.html");
+	}
+	else if(STR == null || DEX == null || CON == null || WIS == null || LUK == null){
+		alert("Fatal Error. Variable Stat returned as NULL.")
+		window.location.replace("CharacterCreation.html");
+	}
+
+	localStorage.clear();
 }
 
 window.onload = function(){
@@ -89,29 +133,9 @@ window.onload = function(){
 	LUK = Number(localStorage.getItem("crLUK"));
 	raceCount = Number(localStorage.getItem("raceCount"));
 
-	/*
-	if(window.performance && performance.navigation.type == 1){
-		window.location.replace("CharacterCreation.html");
-	}
-	else if(STR == null || DEX == null || CON == null || WIS == null || LUK == null){
-		alert("Fatal Error. Variable Stat returned as NULL.")
-		window.location.replace("CharacterCreation.html");
-	}
-
-	localStorage.clear();
-	*/
+	//clearData();
 
 	intializeGame(name, race, STR, DEX, CON, WIS, LUK, maxHP, maxSP);
 	addQuest();
 	cycleQuests();
-
-	/*
-	var ivy = new monster("Wolf", 1, 1, 1, 1, 1, 1);
-	ivy.generateLootTable();
-	for(var i = 0; i < ivy.lootTable.length; i++){
-		console.log(ivy.lootTable[i]);
-	}
-	*/
-
-
 }
