@@ -137,13 +137,13 @@ class quest {
 	//generateQuestName(), generates a random quest name depending on the type and monsters included
 	generateQuestName(){
 		var str;
-		var shortPre = ["Fend Off", "Avert", "Rebut", "Repel", "Drive Back", "Remove"];
-		var shortSuf = ["Annoying", "Unsettling", "Irritating", "Troublesome", "Disturbing", "Bothersome"];
-		var dungPre = ["Traverse", "Roam", "Delve", "Tread" , "Wander", "YEET"];
-		var dungAff = ["Smelly", "Stinky", "Dark", "Burning", "Horrid", "Decrepit", "Cryptic", "Ugly", "Maddening", "Magical", "Abandoned", "Overgrown", "Overrun", "Captured"];
-		var dungSuf = ["Crypt", "Pit", "Forest", "Cave", "Temple", "Graveyard", "Field", "Ruins"];
-		var bossPre = ["Slay", "Vanquish", "Execute", "Eliminate", "Destroy"];
-		var bossSuf = ["Evil", "Destructive", "Heinous", "Hideous", "Ugly", "Vicious", "Vile", "Wicked" , "Atrocious", "Rabid"];
+		var shortPre = ["Fend Off", "Avert", "Rebut", "Repel", "Drive Back", "Remove", "Stop", "Investigate", "Ward Off", "Dismiss", "Oust", "Abolish"];
+        var shortSuf = ["Annoying", "Unsettling", "Irritating", "Troublesome", "Disturbing", "Bothersome", "Tiresome", "Unsavoury"];
+        var dungPre = ["Traverse", "Roam", "Delve", "Tread" , "Wander", "YEET", "Explore"];
+        var dungAff = ["Smelly", "Stinky", "Dark", "Burning", "Horrid", "Decrepit", "Cryptic", "Ugly", "Maddening", "Magical", "Abandoned", "Overgrown", "Overrun", "Squishy"];
+        var dungSuf = ["Crypt", "Pit", "Forest", "Cave", "Temple", "Graveyard", "Field", "Ruins", "Wastelands", "Marsh", "Swamp"];
+        var bossPre = ["Slay", "Vanquish", "Execute", "Eliminate", "Destroy", "Assassinate", "Butcher", "Annihilate"];
+        var bossSuf = ["Evil", "Destructive", "Heinous", "Hideous", "Ugly", "Vicious", "Vile", "Wicked" , "Atrocious", "Rabid", "Revolting", "Corrupted", "Nasty", "Repulsive"]; 
 
 		if(this.type == 1){
 			var randomPre = Math.floor((Math.random() * shortPre.length) + 1);
