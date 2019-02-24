@@ -112,13 +112,26 @@ class monster{
 		}
 
 		var roll = Math.floor((Math.random() * 100) + 1);
-		var reqChance = (1 * (1 + (LUK/100)));
+		var equipmentRoll = Math.floor((Math.random() * 2) + 1);
+		var reqChance = (3 * (1 + (LUK/100)));
 		if(roll <= reqChance){
-			var weaponHold = randomWeapon();
-			addLogText("You found a <label class='rarity" + weaponHold.rarity + "'>" + weaponHold.name + "</label>!");
-			exchangeWeapon(weaponHold);
+			switch(equipmentRoll){
+				case 1:
+					var weaponHold = randomWeapon();
+					addLogText("You found a <label class='rarity" + weaponHold.rarity + "'>" + weaponHold.name + "</label>!");
+					exchangeWeapon(weaponHold);
+					break;
+				case 2:
+					var accessoryHold = randomAccessory();
+					addLogText("You found a <label class='rarity" + accessoryHold.rarity + "'>" + accessoryHold.name + "</label>!");
+					exchangeAccessory(accessoryHold);
+					break;
+				case 3:
+					break;
+				default:
+					break;
+			}
 		}
-
 		gainXP(this.XP);
 	}
 }

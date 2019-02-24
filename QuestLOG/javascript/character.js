@@ -426,7 +426,7 @@ function increaseMaxSP(val){
 }
 
 function decreaseMaxSP(val){
-	maxSP += val;
+	maxSP -= val;
 	updateMaxSPText();
 }
 
