@@ -191,6 +191,9 @@ function generateQuest(){
 			questHold.level = questHold.monsterTable[0].level;
 			questHold.questId = generateUID();
 			questHold.generateRewardTable(questHold.level, typeRoll);
+			for(var i = 0; i < questHold.monsterTable.length; i++){
+				questHold.monsterTable[i].scaleMonster();
+			}
 			return questHold;
 			break;
 		case 3:
@@ -207,6 +210,9 @@ function generateQuest(){
 			questHold.level = Math.floor(questHold.level / questHold.monsterTable.length);
 			questHold.questId = generateUID();
 			questHold.generateRewardTable(questHold.level, typeRoll);
+			for(var i = 0; i < questHold.monsterTable.length; i++){
+				questHold.monsterTable[i].scaleMonster();
+			}
 			return questHold;
 			break;
 		case 5:
@@ -216,11 +222,14 @@ function generateQuest(){
 			questHold.generateBoss();
 			questHold.generateQuestName();
 			questHold.monsterTable[0].level += 5;
-			questHold.monsterTable[0].generateXP();
-			questHold.monsterTable[0].XP += (1 + (1 * (2 * (LV/10))));
 			questHold.level = questHold.monsterTable[0].level;
 			questHold.questId = generateUID();
 			questHold.generateRewardTable(questHold.level, typeRoll);
+			for(var i = 0; i < questHold.monsterTable.length; i++){
+				questHold.monsterTable[i].scaleMonster();
+				questHold.monsterTable[i].generateXP();
+			questHold.monsterTable[0].XP += ((questHold.monsterTable[0].level) + (1 * (2 * (LV/10))));
+			}
 			return questHold;
 			break;
 	}

@@ -24,7 +24,7 @@ body{
 /* Game Header Specific */
 #gameHeader{
 	font-size: 1.5em;
-	margin: 1% 0%;
+	margin: 1.5% 0% 1%;
 }
 
 /* Section Class Specific */
@@ -32,7 +32,7 @@ body{
 	outline: 2px solid #121212;
 	width: 22%;
 	padding: 0% 1% 1% 1%;
-	margin: 0% 0.5%;
+	margin: 0.5% 0.5%;
 	background-color: #FAFAFA;
 	color: #121212;
 	float: left;
@@ -59,8 +59,9 @@ body{
 .sectionFull{
 	width: 100%;
 	bottom: 0px;
-	position: absolute;
+	position: fixed;
 	z-index: 9999;
+	outline: 2px solid #121212;
 }
 
 .sectionFullHeader{
@@ -69,9 +70,12 @@ body{
 	margin: 1% 0%;
 }
 
+#sectionArea{
+    height: 91vw;
+}
+
 /* Text Log Specific */
 #textLog{
-	outline: 2px solid #121212;
 	text-align: left;
 	padding: 1%;
 	margin: 0% auto;
@@ -124,6 +128,20 @@ body{
 
 .logXP{
 	color: #2dbc83;
+}
+
+.logDamage{
+	color: #e87006;
+}
+
+.logMonsterDamage{
+	color: #8612e5;
+}
+
+.logCrit{
+	font-weight: bold;
+	color: red;
+	text-transform: uppercase;
 }
 
 /* Creation Specific */
@@ -264,9 +282,10 @@ body{
 
 /* Queue Specific */
 .killPosting{
+	font-size: 0.9em;
 	text-align: center;
-	padding: 1%;
-	margin: 2% auto;
+	padding: 1% 0%;
+	margin: 1.5% auto;
 	outline: 0px solid #121212;
 	background-color: #EBEBEB;
 	width: 50%;

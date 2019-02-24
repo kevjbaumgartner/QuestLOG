@@ -79,31 +79,31 @@ class weapon{
 		switch(this.rarity){
 			case 1:
 				this.damage = Math.floor((Math.random() * ((LV/2) + 1)) + ((LV/4) + 1));
-				this.speed = Math.floor((Math.random() * ((LV/2) + 1)) + ((LV/4) + 1));
+				this.speed = (Math.random() * (0.10 - 1.00 + 1.00) + 1.00).toFixed(2);
 				this.cc = Math.floor((Math.random() * ((LV/2) + 1)) + ((LV/4) + 1));
 				this.cd = Math.floor((Math.random() * ((LV/2) + 9)) + ((LV/4) + 41));
 				break;
 			case 2:
 				this.damage = Math.floor((Math.random() * ((LV/2) + 2)) + ((LV/4) + 2));
-				this.speed = Math.floor((Math.random() * ((LV/2) + 2)) + ((LV/4) + 2));
+				this.speed = (Math.random() * (0.20 - 1.00 + 1.00) + 1.00).toFixed(2);
 				this.cc = Math.floor((Math.random() * ((LV/2) + 2)) + ((LV/4) + 2));
 				this.cd = Math.floor((Math.random() * ((LV/2) + 9)) + ((LV/4) + 51));
 				break;
 			case 3:
 				this.damage = Math.floor((Math.random() * ((LV/2) + 3)) + ((LV/4) + 3));
-				this.speed = Math.floor((Math.random() * ((LV/2) + 3)) + ((LV/4) + 3));
+				this.speed = (Math.random() * (0.30 - 1.00 + 1.00) + 1.00).toFixed(2);
 				this.cc = Math.floor((Math.random() * ((LV/2) + 3)) + ((LV/4) + 3));
 				this.cd = Math.floor((Math.random() * ((LV/2) + 9)) + ((LV/4) + 61));
 				break;
 			case 4:
 				this.damage = Math.floor((Math.random() * ((LV/2) + 4)) + ((LV/4) + 4));
-				this.speed = Math.floor((Math.random() * ((LV/2) + 4)) + ((LV/4) + 4));
+				this.speed = (Math.random() * (0.40 - 1.00 + 1.00) + 1.00).toFixed(2);
 				this.cc = Math.floor((Math.random() * ((LV/2) + 4)) + ((LV/4) + 4));
 				this.cd = Math.floor((Math.random() * ((LV/2) + 14)) + ((LV/4) + 71));
 				break;
 			case 5:
 				this.damage = Math.floor((Math.random() * ((LV/2) + 5)) + ((LV/4) + 5));
-				this.speed = Math.floor((Math.random() * ((LV/2) + 5)) + ((LV/4) + 5));
+				this.speed = (Math.random() * (0.50 - 1.00 + 1.00) + 1.00).toFixed(2);
 				this.cc = Math.floor((Math.random() * ((LV/2) + 5)) + ((LV/4) + 5));
 				this.cd = Math.floor((Math.random() * ((LV/2) + 14)) + ((LV/4) + 86));
 				break;
@@ -116,9 +116,9 @@ class weapon{
 		var as;
 		var critDamage;
 
-		as = 1 * (this.speed * (1 + (DEX/100)));
+		as = 1 * (this.speed * (1 + (DEX/1000)));
 		critDamage =  (this.cc/100) * (1 * (this.cd/100));
-		dpsHold = (((this.damage * (1 + (1 * critDamage))) * (1 + (STR/100)))) * as;
+		dpsHold = (((this.damage * (1 + (1 * critDamage))) * (1 + (STR/200)))) * as;
 		this.dps = dpsHold;
 	}
 

@@ -1,5 +1,5 @@
 //Variable Declarations
-var gameVer = "0.05a"
+var gameVer = "0.10a"
 var lvSTRButton = $('#lvSTRButton');
 var lvDEXButton = $('#lvDEXButton');
 var lvCONButton = $('#lvCONButton');
@@ -55,8 +55,8 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 	starterWeapon.setRarity(6);
 	starterWeapon.setDamage(1);
 	starterWeapon.setSpeed(1);
-	starterWeapon.setCriticalChance(1);
-	starterWeapon.setCriticalDamage(50);
+	starterWeapon.setCriticalChance(10);
+	starterWeapon.setCriticalDamage(100);
 	equipWeapon(starterWeapon);
 
 	var starterAmulet = new accessory;
@@ -106,7 +106,7 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 	starterHelmet.setType(1);
 	starterHelmet.setRarity(6);
 	starterHelmet.setMaterial(1);
-	starterHelmet.setDefense(0);
+	starterHelmet.setDefense(1);
 	equipArmour(starterHelmet);
 
 	var starterChest = new armour;
@@ -114,7 +114,7 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 	starterChest.setType(2);
 	starterChest.setRarity(6);
 	starterChest.setMaterial(1);
-	starterChest.setDefense(0);
+	starterChest.setDefense(1);
 	equipArmour(starterChest);
 
 	var starterGloves = new armour;
@@ -122,7 +122,7 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 	starterGloves.setType(3);
 	starterGloves.setRarity(6);
 	starterGloves.setMaterial(1);
-	starterGloves.setDefense(0);
+	starterGloves.setDefense(1);
 	equipArmour(starterGloves);
 
 	var starterPants = new armour;
@@ -130,7 +130,7 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 	starterPants.setType(4);
 	starterPants.setRarity(6);
 	starterPants.setMaterial(1);
-	starterPants.setDefense(0);
+	starterPants.setDefense(1);
 	equipArmour(starterPants);
 
 	var starterShoes = new armour;
@@ -138,7 +138,7 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 	starterShoes.setType(5);
 	starterShoes.setRarity(6);
 	starterShoes.setMaterial(1);
-	starterShoes.setDefense(0);
+	starterShoes.setDefense(1);
 	equipArmour(starterShoes);
 
 	updateArmourArea();
@@ -173,14 +173,16 @@ function addQuest(){
 	    var typeToBe;
 	    if(questToBe.type == 1){
 	    	typeToBe = "Short";
+	    	$('#questPostings').prepend('<div class="questPost" id="' + questToBe.questId + '"> <h3 class="questHeader">Title: ' + questToBe.name + '</h3> <h3 class="questHeader">Type: ' + typeToBe + ' LV ' + questToBe.level + '</h3><h3 class="questHeader">Expiry: <span id="questExpiryText">' + questToBe.expiry + '</span></h3><hr><h3 class="questHeader">Monsters: ' + questToBe.monstersToString() + '</h3><h3 class="questHeader">Rewards: ' + questToBe.reward + ' CC</h3> </div>');
 	    }
 	    else if(questToBe.type == 2){
 	    	typeToBe = "Dungeon";
+	    	$('#questPostings').prepend('<div class="questPost" id="' + questToBe.questId + '"> <h3 class="questHeader">Title: ' + questToBe.name + '</h3> <h3 class="questHeader">Type: ' + typeToBe + ' LV ' + questToBe.level + '</h3><h3 class="questHeader">Expiry: <span id="questExpiryText">' + questToBe.expiry + '</span></h3><hr><h3 class="questHeader">Monsters: ' + questToBe.monstersToString() + '</h3><h3 class="questHeader">Rewards: ' + questToBe.reward + ' CC</h3> </div>');
 	    }
 	    else if(questToBe.type == 3){
 	    	typeToBe = "Boss";
+	    	$('#questPostings').prepend('<div class="questPost" id="' + questToBe.questId + '"> <h3 class="questHeader">Title: ' + questToBe.name + '</h3> <h3 class="questHeader">Type: ' + typeToBe + ' LV ' + questToBe.level + '</h3><h3 class="questHeader">Expiry: <span id="questExpiryText">' + questToBe.expiry + '</span></h3><hr><h3 class="questHeader">Monsters: ' + questToBe.monstersToString() + '</h3><h3 class="questHeader">Rewards: ' + questToBe.reward + ' Coins</h3><h3 class="questHeader">Bonus: (1) Random Piece of Gear</h3></div>');
 	    }
-		$('#questPostings').prepend('<div class="questPost" id="' + questToBe.questId + '"> <h3 class="questHeader">Title: ' + questToBe.name + '</h3> <h3 class="questHeader">Type: ' + typeToBe + ' LV ' + questToBe.level + '</h3><h3 class="questHeader">Expiry: <span id="questExpiryText">' + questToBe.expiry + '</span></h3><hr><h3 class="questHeader">Monsters: ' + questToBe.monstersToString() + '</h3><h3 class="questHeader">Rewards: ' + questToBe.reward + ' CC</h3> </div>');
 		questToBe.tickExpiry();
 		questToBe.createListener();
 	}
@@ -270,4 +272,5 @@ window.onload = function(){
 	addQuest();
 	cycleQuests();
 	noQueuesCheck();
+	resetCombat();
 }

@@ -151,7 +151,7 @@ function getHP(){
 }
 
 function updateHPText(){
-	$('#characterHPText').html(HP);
+	$('#characterHPText').html(Number(HP).toFixed(2));
 }
 
 
@@ -165,7 +165,7 @@ function getMaxHP(){
 }
 
 function updateMaxHPText(){
-	$('#characterMaxHPText').html(maxHP);
+	$('#characterMaxHPText').html(Number(maxHP).toFixed(2));
 }
 
 
@@ -591,7 +591,7 @@ function exchangeWeapon(newWeapon){
 function updateWeaponArea(){
 	$('#weaponNameText').html("<label class='rarity" + currentWeapon.rarity + "'>" + currentWeapon.name + "</label>");
 	$('#weaponDamageText').html(currentWeapon.damage);
-	$('#weaponAttackSpeedText').html(currentWeapon.speed);
+	$('#weaponAttackSpeedText').html(Number(currentWeapon.speed).toFixed(2));
 	$('#weaponCriticalChanceText').html(currentWeapon.cc);
 	$('#weaponCriticalDamageText').html(currentWeapon.cd);
 	currentWeapon.determineDPS();
