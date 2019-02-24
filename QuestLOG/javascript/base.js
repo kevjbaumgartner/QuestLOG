@@ -57,13 +57,48 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 	equipWeapon(starterWeapon);
 
 	var starterAmulet = new accessory;
-	starterAmulet.setName("Nothing");
-	starterAmulet.setStatType("Nothing");
+	starterAmulet.setName("Ugly Locket");
+	starterAmulet.setType(1);
+	starterAmulet.setStatType(1);
 	starterAmulet.setStat(0);
-	starterAmulet.setRarity(1);
+	starterAmulet.setRarity(6);
 	equipAccessory(starterAmulet);
 
-	addLogText("To begin your journey, you have been given the <label class='rarity" + currentWeapon.rarity + "'>" + currentWeapon.name + "</label>!");
+	var starterEarrings = new accessory;
+	starterEarrings.setName("Rusted Nails");
+	starterEarrings.setType(2);
+	starterEarrings.setStatType(2);
+	starterEarrings.setStat(0);
+	starterEarrings.setRarity(6);
+	equipAccessory(starterEarrings);
+
+	var starterRing = new accessory;
+	starterRing.setName("Cracked Copper Ring");
+	starterRing.setType(3);
+	starterRing.setStatType(3);
+	starterRing.setStat(0);
+	starterRing.setRarity(6);
+	equipAccessory(starterRing);
+
+	var starterBelt = new accessory;
+	starterBelt.setName("Moldy Rope");
+	starterBelt.setType(4);
+	starterBelt.setStatType(4);
+	starterBelt.setStat(0);
+	starterBelt.setRarity(6);
+	equipAccessory(starterBelt);
+
+	var starterCape = new accessory;
+	starterCape.setName("Stained House Cloth");
+	starterCape.setType(5);
+	starterCape.setStatType(5);
+	starterCape.setStat(0);
+	starterCape.setRarity(6);
+	equipAccessory(starterCape);
+
+	updateAccessoryArea();
+
+	addLogText("To begin your journey, you have been given the <label class='rarity" + currentWeapon.rarity + "'>" + currentWeapon.name + "</label> and the finest set of armour and accessories from a nearby inn's garbage.");
 }
 
 //addText(), adds the parameter as a new entry to the top of the text log and removes bottom most entry
