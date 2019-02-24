@@ -18,76 +18,115 @@
 	</head>
 	<body>
 		<div id="gameHeader">
-			<h1>QuestLOG ver 0.05a</h1>
+			<h1>QuestLOG ver 0.10a</h1>
 		</div>
-		<div class="section" id="characterArea">
-			<h1 class="sectionHeader">Character</h1>
-			<h2 class="sectionSubheader" id="characterName">Name: <label class="sectionDetail" id="characterNameText"></label></h2>
-			<h2 class="sectionSubheader" id="characterRace">Race: <label class="sectionDetail" id="characterRaceText"></label></h2>
-			<h2 class="sectionSubheader" id="characterStats">Stats: </h2>
-			<ul id="characterStatsList">
-				<li id="characterSTR">STR: <label class="sectionDetail" id="characterSTRText"></label></li>
-				<li id="characterDEX">DEX: <label class="sectionDetail" id="characterDEXText"></label></li>
-				<li id="characterCON">CON: <label class="sectionDetail" id="characterCONText"></label></li>
-				<li id="characterWIS">WIS: <label class="sectionDetail" id="characterWISText"></label></li>
-				<li id="characterWIS">LUK: <label class="sectionDetail" id="characterLUKText"></label></li>
-			</ul>
-			<h2 class="sectionSubheader" id="characterUnpsentPoints">Unspent Points: <label class="sectionDetail"id="characterUnspentPointsText"></label></h2>
-			<button class="levelStatButton" id="lvSTRButton" onclick="lvSTR()">+1 STR</button><button class="levelStatButton" id="lvDEXButton" onclick="lvDEX()">+1 DEX</button><button class="levelStatButton" id="lvCONButton" onclick="lvCON()">+1 CON</button><button class="levelStatButton" id="lvWISButton" onclick="lvWIS()">+1 WIS</button><button class="levelStatButton" id="lvLUKButton" onclick="lvLUK()">+1 LUK</button>
-			<hr>
-			<h1 class="sectionHeader">Health & Stamina</h1>
-			<h2 class="sectionSubheader" id="characterHP">HP: <label class="sectionDetail" id="characterHPText"></label> / <label class="sectionDetail" id="characterMaxHPText"></label></h2>
-			<h2 class="sectionSubheader" id="characterSP">SP: <label class="sectionDetail" id="characterSPText"></label> / <label class="sectionDetail" id="characterMaxSPText"></label></h2>
-			<hr>
-			<h1 class="sectionHeader">Experience</h1>
-			<h2 class="sectionSubheader" id="characterLV">Level: <label class="sectionDetail" id="characterLVText"></label></h2>
-			<h2 class="sectionSubheader" id="characterXP">XP: <label class="sectionDetail" id="characterXPText"></label> / <label class="sectionDetail" id="characterReqXPText"></label></h2>
-			<hr>
-			<h1 class="sectionHeader">Currency</h1>
-			<h2 class="sectionSubheader" id="characterCC">CC: <label class="sectionDetail" id="characterCCText"></label></h2>
-			<h2 class="sectionSubheader" id="characterSC">SC: <label class="sectionDetail" id="characterSCText"></label></h2>
-			<h2 class="sectionSubheader" id="characterGC">GC: <label class="sectionDetail" id="characterGCText"></label></h2>
-			<h2 class="sectionSubheader" id="characterPC">PC: <label class="sectionDetail" id="characterPCText"></label></h2>
-		</div>
-		<div class="section" id="armourArea">
-			<button onclick="killTop()">kill top</button>
-			<h1 class="sectionHeader">Armour</h1>
-			<h2 class="sectionSubheader">Helmet: </h2>
-			<h2 class="sectionSubheader">Chest: </h2>
-			<h2 class="sectionSubheader">Gloves: </h2>
-			<h2 class="sectionSubheader">Pants: </h2>
-			<h2 class="sectionSubheader">Shoes: </h2>
-			<hr>
-			<h1 class="sectionHeader">Accessories</h1>
-			<h2 class="sectionSubheader">Amulet: <label class="sectionDetail" id="amuletNameText"></label></h2>
-			<h2 class="sectionSubheader">Earrings: <label class="sectionDetail" id="earringsNameText"></label></h2>
-			<h2 class="sectionSubheader">Ring: <label class="sectionDetail" id="ringNameText"></label></h2>
-			<h2 class="sectionSubheader">Belt: <label class="sectionDetail" id="beltNameText"></label></h2>
-			<h2 class="sectionSubheader">Cape: <label class="sectionDetail" id="capeNameText"></label></h2>
-		</div>
-		<div class="section" id="weaponArea">
-			<h1 class="sectionHeader">Weapon</h1>
-			<h2 class="sectionSubheader">Name: <label class="sectionDetail" id="weaponNameText"></label></h2>
-			<hr>
-			<h2 class="sectionSubheader">Damage: <label class="sectionDetail" id="weaponDamageText"></label></h2>
-			<h2 class="sectionSubheader">Attack Speed: <label class="sectionDetail" id="weaponAttackSpeedText"></label></h2>
-			<h2 class="sectionSubheader">Critical Chance: <label class="sectionDetail" id="weaponCriticalChanceText"></label>%</h2>
-			<h2 class="sectionSubheader">Critical Damage Bonus: <label class="sectionDetail" id="weaponCriticalDamageText"></label>%</h2>
-			<br>
-			<h2 class="sectionSubheader">Estimated DPS: <label class="sectionDetail" id="weaponDPSText"></label></h2>
-		</div>
-		<div class="section" id="questArea">
-			<h1 class="sectionHeader">Quest Board</h1>
-			<div id="questPostings">
+		<div id="sectionArea">
+			<div class="section" id="characterArea">
+				<h1 class="sectionHeader">Character</h1>
+				<h2 class="sectionSubheader" id="characterName">Name: <label class="sectionDetail" id="characterNameText"></label></h2>
+				<h2 class="sectionSubheader" id="characterRace">Race: <label class="sectionDetail" id="characterRaceText"></label></h2>
+				<h2 class="sectionSubheader" id="characterStats">Stats: </h2>
+				<ul id="characterStatsList">
+					<li id="characterSTR">STR: <label class="sectionDetail" id="characterSTRText"></label></li>
+					<li id="characterDEX">DEX: <label class="sectionDetail" id="characterDEXText"></label></li>
+					<li id="characterCON">CON: <label class="sectionDetail" id="characterCONText"></label></li>
+					<li id="characterWIS">WIS: <label class="sectionDetail" id="characterWISText"></label></li>
+					<li id="characterWIS">LUK: <label class="sectionDetail" id="characterLUKText"></label></li>
+				</ul>
+				<h2 class="sectionSubheader" id="characterUnpsentPoints">Unspent Points: <label class="sectionDetail"id="characterUnspentPointsText"></label></h2>
+				<button class="levelStatButton" id="lvSTRButton" onclick="lvSTR()">+1 STR</button><button class="levelStatButton" id="lvDEXButton" onclick="lvDEX()">+1 DEX</button><button class="levelStatButton" id="lvCONButton" onclick="lvCON()">+1 CON</button><button class="levelStatButton" id="lvWISButton" onclick="lvWIS()">+1 WIS</button><button class="levelStatButton" id="lvLUKButton" onclick="lvLUK()">+1 LUK</button>
+				<hr>
+				<h1 class="sectionHeader">Health & Stamina</h1>
+				<h2 class="sectionSubheader" id="characterHP">HP: <label class="sectionDetail" id="characterHPText"></label> / <label class="sectionDetail" id="characterMaxHPText"></label></h2>
+				<h2 class="sectionSubheader" id="characterSP">SP: <label class="sectionDetail" id="characterSPText"></label> / <label class="sectionDetail" id="characterMaxSPText"></label></h2>
+				<h2 class="sectionSubheader" id="characterRMR">DEF: <label class="sectionDetail" id="characterRMRText"></label></h2>
+				<hr>
+				<h1 class="sectionHeader">Experience</h1>
+				<h2 class="sectionSubheader" id="characterLV">Level: <label class="sectionDetail" id="characterLVText"></label></h2>
+				<h2 class="sectionSubheader" id="characterXP">XP: <label class="sectionDetail" id="characterXPText"></label> / <label class="sectionDetail" id="characterReqXPText"></label></h2>
+				<hr>
+				<h1 class="sectionHeader">Currency</h1>
+				<h2 class="sectionSubheader" id="characterCC">CC: <label class="sectionDetail" id="characterCCText"></label></h2>
+				<h2 class="sectionSubheader" id="characterSC">SC: <label class="sectionDetail" id="characterSCText"></label></h2>
+				<h2 class="sectionSubheader" id="characterGC">GC: <label class="sectionDetail" id="characterGCText"></label></h2>
+				<h2 class="sectionSubheader" id="characterPC">PC: <label class="sectionDetail" id="characterPCText"></label></h2>
+			</div>
+			<div class="section" id="inventoryArea">
+				<h1 class="sectionHeader">Armour</h1>
+				<h2 class="sectionSubheader">Helmet: <label class="sectionDetail" id="helmetNameText"></label></h2>
+				<h2 class="sectionSubheader">Chest: <label class="sectionDetail" id="chestNameText"></label></h2>
+				<h2 class="sectionSubheader">Gloves: <label class="sectionDetail" id="glovesNameText"></label></h2>
+				<h2 class="sectionSubheader">Pants: <label class="sectionDetail" id="pantsNameText"></label></h2>
+				<h2 class="sectionSubheader">Shoes: <label class="sectionDetail" id="shoesNameText"></label></h2>
+				<hr>
+				<h1 class="sectionHeader">Accessories</h1>
+				<h2 class="sectionSubheader">Amulet: <label class="sectionDetail" id="amuletNameText"></label></h2>
+				<h2 class="sectionSubheader">Earrings: <label class="sectionDetail" id="earringsNameText"></label></h2>
+				<h2 class="sectionSubheader">Ring: <label class="sectionDetail" id="ringNameText"></label></h2>
+				<h2 class="sectionSubheader">Belt: <label class="sectionDetail" id="beltNameText"></label></h2>
+				<h2 class="sectionSubheader">Cape: <label class="sectionDetail" id="capeNameText"></label></h2>
+				<hr>
+				<h1 class="sectionHeader">Weapon</h1>
+				<h2 class="sectionSubheader">Name: <label class="sectionDetail" id="weaponNameText"></label></h2>
+				<h2 class="sectionSubheader">Damage: <label class="sectionDetail" id="weaponDamageText"></label></h2>
+				<h2 class="sectionSubheader">Attack Speed: <label class="sectionDetail" id="weaponAttackSpeedText"></label></h2>
+				<h2 class="sectionSubheader">Critical Chance: <label class="sectionDetail" id="weaponCriticalChanceText"></label>%</h2>
+				<h2 class="sectionSubheader">Critical Damage Bonus: <label class="sectionDetail" id="weaponCriticalDamageText"></label>%</h2>
+				<br>
+				<h2 class="sectionSubheader">Estimated DPS: <label class="sectionDetail" id="weaponDPSText"></label></h2>
+			</div>
+			<div class="section" id="questArea">
+				<h1 class="sectionHeader">Quest Board</h1>
+				<h4 id="questBoardEmpty" class="qbeHide">No Postings Yet!</h4>
+				<div id="questPostings">
+				</div>
+				<br>
+				<hr>
+				<h1 class="sectionHeader">Your Hit List</h1>
+				<h4 id="killBoardEmpty" class="kbeHide">No Monsters Yet!</h4>
+				<div id="queuePostings">
+				</div>
+			</div>
+			<div class="section" id="combatArea">
+				<h1 class="sectionHeader">Combat</h1>
+				<h2 class="sectionSubheader">Monster Name: <label class="sectionDetail" id="monsterNameText"></label></h2>
+				<h2 class="sectionSubheader">Level: <label class="sectionDetail" id="monsterLevelText"></label></h2>
+				<hr>
+				<h2 class="sectionSubheader">HP: <label class="sectionDetail" id="monsterHPText"></label> / <label class="sectionDetail" id="monsterMaxHPText"></label></h2>
+				<div id="monsterHPProgressArea">
+					<div id="monsterHPProgressBar"></div>
+				</div>
+				<h2 class="sectionSubheader">Damage: <label class="sectionDetail" id="monsterDamageText"></label></h2>
+				<h2 class="sectionSubheader">Attack Speed: <label class="sectionDetail" id="monsterAttackSpeedText"></label></h2>
+				<div id="monsterASProgressArea">
+					<div id="monsterASProgressBar"></div>
+				</div>
+				<h2 class="sectionSubheader">Defense: <label class="sectionDetail" id="monsterDefenseText"></label></h2>
+				<br>
+				<h1 class="sectionHeader">VS.</h1>
+				<br>
+				<h2 class="sectionSubheader">Player Name: <label class="sectionDetail" id="playerNameText"></label></h2>
+				<h2 class="sectionSubheader">Level: <label class="sectionDetail" id="playerLevelText"></label></h2>
+				<hr>
+				<h2 class="sectionSubheader">HP: <label class="sectionDetail" id="playerHPText"></label> / <label class="sectionDetail" id="playerMaxHPText"></label></h2>
+				<div id="playerHPProgressArea">
+					<div id="playerHPProgressBar"></div>
+				</div>
+				<h2 class="sectionSubheader">Damage: <label class="sectionDetail" id="playerDamageText"></label></h2>
+				<h2 class="sectionSubheader">Attack Speed: <label class="sectionDetail" id="playerAttackSpeedText"></label></h2>
+				<h2 class="sectionSubheader">Critical Chance: <label class="sectionDetail" id="playerCriticalChanceText"></label></h2>
+				<h2 class="sectionSubheader">Critical Damage: <label class="sectionDetail" id="playerCriticalDamageText"></label></h2>
+				<div id="playerASProgressArea">
+					<div id="playerASProgressBar"></div>
+				</div>
+				<h2 class="sectionSubheader">Defense: <label class="sectionDetail" id="playerDefenseText"></label></h2>
+			</div>
+			<div class="section" id="blacksmithArea">
+				<h1 class="sectionHeader">Blacksmith</h1>
 			</div>
 		</div>
-		<div class="section" id="queueArea">
-			<h1 class="sectionHeader">Kill Queue</h1>
-			<div id="queuePostings">
-			</div>
-		</div>
-		<div class="section" id="textArea">
-			<h1 class="sectionHeader">Log</h1>
+		<div class="sectionFull" id="textArea">
+			<!--h1 class="sectionFullHeader">Log</h1-->
 			<div id="textLog">
 				<span>> <text></text><br></span>
 				<span>> <text></text><br></span>
@@ -111,5 +150,7 @@
 	<script type="text/javascript" src="javascript/loot.js"></script>
 	<script type="text/javascript" src="javascript/queue.js"></script>
 	<script type="text/javascript" src="javascript/weapon.js"></script>
-	<script type="text/javascript" src="javascript/Accessories.js"></script>
+	<script type="text/javascript" src="javascript/accessories.js"></script>
+	<script type="text/javascript" src="javascript/armour.js"></script>
+	<script type="text/javascript" src="javascript/combat.js"></script>
 </html>
