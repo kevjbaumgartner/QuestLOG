@@ -143,6 +143,24 @@ class accessory{
 	}
 }
 
+//parseStatType(), returns a string format version depending on the stat type of an accessory
+function parseStatType(accessory){
+	switch(accessory.statType){
+		case 1:
+			return "STR";
+		case 2:
+			return "DEX";
+		case 3:
+			return "CON";
+		case 4:
+			return "WIS";
+		case 5:
+			return "LUK";
+		default:
+			return "N/A";
+	}
+}
+
 //randomAccesory(), returns a random accessory
 function randomAccessory(){
 	var typeRoll = Math.floor((Math.random() * 5) + 1);
@@ -154,7 +172,6 @@ function randomAccessory(){
 
 	switch(typeRoll){
 		case 1:
-			name = "Amulet";
 			typeHold = 1;
 			rarityHold = determineRarity(rarityRoll);
 			accessoryHold = new accessory();
@@ -165,7 +182,6 @@ function randomAccessory(){
 			accessoryHold.generateAccessoryName();
 			return accessoryHold;
 		case 2:
-			name = "Earrings";
 			typeHold = 2;
 			rarityHold = determineRarity(rarityRoll);
 			accessoryHold = new accessory();
@@ -176,7 +192,6 @@ function randomAccessory(){
 			accessoryHold.generateAccessoryName();
 			return accessoryHold;
 		case 3:
-			name = "Ring";
 			typeHold = 3;
 			rarityHold = determineRarity(rarityRoll);
 			accessoryHold = new accessory();
@@ -187,7 +202,6 @@ function randomAccessory(){
 			accessoryHold.generateAccessoryName();
 			return accessoryHold;
 		case 4:
-			name = "Belt";
 			typeHold = 4;
 			rarityHold = determineRarity(rarityRoll);
 			accessoryHold = new accessory();
@@ -198,7 +212,6 @@ function randomAccessory(){
 			accessoryHold.generateAccessoryName();
 			return accessoryHold;
 		case 5:
-			name = "Cape";
 			typeHold = 5;
 			rarityHold = determineRarity(rarityRoll);
 			accessoryHold = new accessory();

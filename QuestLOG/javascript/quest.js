@@ -112,6 +112,8 @@ class quest {
 		this.selfInterval = setInterval(() =>{
 			expTimer -= 1;
 			if(expTimer < 1){
+				questCounter -= 1;
+				noPostingsCheck();
 				clearInterval(this.selfInterval);
 				post.remove();
 			}
@@ -129,6 +131,8 @@ class quest {
 		var reward = this.reward;
 		$(post).on('click', post, function(){
 			addToQueue(title, monsterTable, reward);
+			questCounter -= 1;
+			noPostingsCheck();
 			clearInterval(int);
 			post.remove();
 		});
@@ -180,7 +184,7 @@ function generateQuest(){
 		case 2:
 			nameHold = "Short Quest";
 			typeHold = 1;
-			expiryHold = 30;
+			expiryHold = Math.floor((Math.random() * 10) + 25);
 			questHold = new quest(typeHold, expiryHold);
 			questHold.generateMonsterTable(1);
 			questHold.generateQuestName();
@@ -192,7 +196,7 @@ function generateQuest(){
 		case 3:
 		case 4:
 			typeHold = 2;
-			expiryHold = 45;
+			expiryHold = Math.floor((Math.random() * 10) + 35);
 			questHold = new quest(typeHold, expiryHold);
 			questHold.generateMonsterTable(3);
 			questHold.generateQuestName();
@@ -207,7 +211,7 @@ function generateQuest(){
 			break;
 		case 5:
 			typeHold = 3;
-			expiryHold = 60;
+			expiryHold = Math.floor((Math.random() * 10) + 45);
 			questHold = new quest(typeHold, expiryHold);
 			questHold.generateBoss();
 			questHold.generateQuestName();

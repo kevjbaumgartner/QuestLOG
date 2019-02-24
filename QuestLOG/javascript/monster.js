@@ -112,21 +112,24 @@ class monster{
 		}
 
 		var roll = Math.floor((Math.random() * 100) + 1);
-		var equipmentRoll = Math.floor((Math.random() * 2) + 1);
+		var equipmentRoll = Math.floor((Math.random() * 3) + 1);
 		var reqChance = (3 * (1 + (LUK/100)));
 		if(roll <= reqChance){
 			switch(equipmentRoll){
 				case 1:
 					var weaponHold = randomWeapon();
-					addLogText("You found a <label class='rarity" + weaponHold.rarity + "'>" + weaponHold.name + "</label>!");
+					addLogText("You found: <label class='rarity" + weaponHold.rarity + "'>" + weaponHold.name + "</label>!");
 					exchangeWeapon(weaponHold);
 					break;
 				case 2:
 					var accessoryHold = randomAccessory();
-					addLogText("You found a <label class='rarity" + accessoryHold.rarity + "'>" + accessoryHold.name + "</label>!");
+					addLogText("You found: <label class='rarity" + accessoryHold.rarity + "'>" + accessoryHold.name + "</label>!");
 					exchangeAccessory(accessoryHold);
 					break;
 				case 3:
+					var armourHold = randomArmour();
+					addLogText("You found: <label class='rarity" + armourHold.rarity + "'>" + armourHold.name + "</label>!");
+					exchangeArmour(armourHold);
 					break;
 				default:
 					break;
@@ -154,7 +157,7 @@ function randomMonster(){
 			levelHold = LV + Math.floor((Math.random() * 2 + 1));
 			hpHold = 10;
 			damageHold = 2;
-			speedHold = 1;
+			speedHold = 8;
 			defenseHold = 0;
 			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
 			monsterHold.generateLootTable();
@@ -165,7 +168,7 @@ function randomMonster(){
 			levelHold = LV + Math.floor((Math.random() * 2 + 1));
 			hpHold = 10;
 			damageHold = 2;
-			speedHold = 1;
+			speedHold = 8;
 			defenseHold = 0;
 			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
 			monsterHold.generateLootTable();
@@ -176,7 +179,7 @@ function randomMonster(){
 			levelHold = LV + Math.floor((Math.random() * 2 + 1));
 			hpHold = 10;
 			damageHold = 2;
-			speedHold = 1;
+			speedHold = 8;
 			defenseHold = 0;
 			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
 			monsterHold.generateLootTable();
@@ -187,7 +190,7 @@ function randomMonster(){
 			levelHold = LV + Math.floor((Math.random() * 2 + 1));
 			hpHold = 10;
 			damageHold = 2;
-			speedHold = 1;
+			speedHold = 8;
 			defenseHold = 0;
 			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
 			monsterHold.generateLootTable();
@@ -198,7 +201,7 @@ function randomMonster(){
 			levelHold = LV + Math.floor((Math.random() * 2 + 1));
 			hpHold = 10;
 			damageHold = 2;
-			speedHold = 1;
+			speedHold = 8;
 			defenseHold = 0;
 			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
 			monsterHold.generateLootTable();
@@ -209,7 +212,7 @@ function randomMonster(){
 			levelHold = LV + Math.floor((Math.random() * 2 + 1));
 			hpHold = 10;
 			damageHold = 2;
-			speedHold = 1;
+			speedHold = 8;
 			defenseHold = 0;
 			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
 			monsterHold.generateLootTable();
@@ -220,7 +223,7 @@ function randomMonster(){
 			levelHold = LV + Math.floor((Math.random() * 2 + 1));
 			hpHold = 10;
 			damageHold = 2;
-			speedHold = 1;
+			speedHold = 8;
 			defenseHold = 0;
 			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
 			monsterHold.generateLootTable();
@@ -247,7 +250,7 @@ function randomBoss(){
 			levelHold = LV + Math.floor((Math.random() * 2 + 1));
 			hpHold = 10;
 			damageHold = 2;
-			speedHold = 1;
+			speedHold = 8;
 			defenseHold = 0;
 			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
 			monsterHold.generateLootTable();
@@ -258,7 +261,7 @@ function randomBoss(){
 			levelHold = LV + Math.floor((Math.random() * 2 + 1));
 			hpHold = 10;
 			damageHold = 2;
-			speedHold = 1;
+			speedHold = 8;
 			defenseHold = 0;
 			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
 			monsterHold.generateLootTable();
