@@ -24,6 +24,8 @@ var SC;
 var GC;
 var PC;
 
+var RMR;
+
 var unspentPoints;
 
 var currentWeapon;
