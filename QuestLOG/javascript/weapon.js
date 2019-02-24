@@ -129,8 +129,8 @@ class weapon{
 		var t = this.type;
 		var nameHold;
 		var rarityHold;
-		var weaponSuf = ["Killing", "Crushing", "Slamming", "Squishing", "Spanking", "Slicing", "Destroying", "Stabbing", "Cutting", "Piercing", "Penetrating", "Obliterating", "Cleansing"];
-
+		var weaponSuf = ["Killing", "Crushing", "Slamming", "Squishing", "Spanking", "Slicing", "Destroying", "Stabbing", "Cutting", "Piercing", "Penetrating", "Obliterating", "Cleansing", "Melting", "Petrifying", "Tormenting", "Smiting", "Oppressing", "Chomping", "Pulverizing", "Carving", "Shaving", "Ravaging", "Corroding", "Scorching", "Rioting", "Corrupting", "Splintering", "Lacerating", "Crippling", "Hemorrhaging", "Thrusting", "Thwacking", "Thumping", "Manhandling", "Dismembering", "Mangling", "Curb Stomping", "Poking", "Persecuting", "Crucifying", "Whipping", "Bruising", "Injuring"]; 
+		
 		switch(r){
 			case 1:
 				rarityHold = "Common";
@@ -185,25 +185,6 @@ class weapon{
 		var suf = Math.floor((Math.random() * weaponSuf.length) + 1);
 		str = rarityHold + " " + nameHold + " of " + weaponSuf[suf-1];
 		this.name = str;
-	}
-}
-
-//determineRarity(), based off of a 1-10000 scale to determine the rarity based on roll
-function determineRarity(roll){
-	if(roll <= (100 + LUK)){
-		return 5;
-	}
-	else if(roll <= (1000 + LUK )){
-		return 4;
-	}
-	else if(roll <= (3000 + LUK)){
-		return 3;
-	}
-	else if(roll <= (5000 + LUK)){
-		return 2;
-	}
-	else{
-		return 1;
 	}
 }
 

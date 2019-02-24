@@ -28,6 +28,12 @@ var unspentPoints;
 
 var currentWeapon;
 
+var currentAmulet;
+var currentEarrings;
+var currentRing;
+var currentBelt;
+var currentCape;
+
 //Getters, Setters, & Updates
 function setName(val){
 	this.name = val;
@@ -572,4 +578,146 @@ function updateWeaponArea(){
 	$('#weaponCriticalDamageText').html(currentWeapon.cd);
 	currentWeapon.determineDPS();
 	$('#weaponDPSText').html(Number(currentWeapon.dps).toFixed(2));
+}
+
+//Accessory Functions
+function equipAccessory(accessory){
+	switch(accessory.type){
+		case 1:
+			currentAmulet = accessory;
+			incStat();
+			break;
+		case 2:
+			currentEarrings = accessory;
+			incStat();
+			break;
+		case 3:
+			currentRing = accessory;
+			incStat();
+			break;
+		case 4:
+			currentBelt = accessory;
+			incStat();
+			break;
+		case 5:
+			currentCape = accessory;
+			incStat();
+			break;
+	}
+
+	function incStat(){
+		switch(accessory.statType){
+			case 1:
+				STR += accessory.stat;
+				updateSTRText();
+				break;
+			case 2:
+				DEX += accessory.stat;
+				updateDEXText();
+				break;
+			case 3:
+				CON += accessory.stat;
+				updateCONText();
+				break;
+			case 4:
+				WIS += accessory.stat;
+				updateWISText();
+				break;
+			case 5:
+				LUK += accessory.stat;
+				updateLUKText();
+				break;
+		}
+	}
+	updateAccessoryArea();
+}
+
+function unequipAccessory(accessory){
+	switch(accessory.type){
+		case 1:
+			currentAmulet = accessory;
+			decStat();
+			break;
+		case 2:
+			currentEarrings = accessory;
+			decStat();
+			break;
+		case 3:
+			currentRing = accessory;
+			decStat();
+			break;
+		case 4:
+			currentBelt = accessory;
+			decStat();
+			break;
+		case 5:
+			currentCape = accessory;
+			decStat();
+			break;
+	}
+
+	function decStat(){
+		switch(accessory.statType){
+			case 1:
+				STR -= accessory.stat;
+				updateSTRText();
+				break;
+			case 2:
+				DEX -= accessory.stat;
+				updateDEXText();
+				break;
+			case 3:
+				CON -= accessory.stat;
+				updateCONText();
+				break;
+			case 4:
+				WIS -= accessory.stat;
+				updateWISText();
+				break;
+			case 5:
+				LUK -= accessory.stat;
+				updateLUKText();
+				break;
+		}
+	}
+	updateAccessoryArea();
+}
+
+function exchangeAccessory(newAccessory){
+	switch(accessory.type){
+		case 1:
+			if(confirm("Exchange your " + currentAmulet.name + " (Stat Bonus: " + currentAmulet.statType + " +" + currentAmulet.stat + ") for " + newAccessory.name + " (Stat Bonus: " + newAccessory.statType + " +" + newAccessory.stat + ")")){
+				unequipAccessory(currentAmulet);
+				equipAccessory(newAccessory);
+			}else{}
+		case 2:
+			if(confirm("Exchange your " + currentEarrings.name + " (Stat Bonus: " + currentEarrings.statType + " +" + currentEarrings.stat + ") for " + newAccessory.name + " (Stat Bonus: " + newAccessory.statType + " +" + newAccessory.stat + ")")){
+				unequipAccessory(currentEarrings);
+				equipAccessory(newAccessory);
+			}else{}
+		case 3:
+			if(confirm("Exchange your " + currentRing.name + " (Stat Bonus: " + currentRing.statType + " +" + currentRing.stat + ") for " + newAccessory.name + " (Stat Bonus: " + newAccessory.statType + " +" + newAccessory.stat + ")")){
+				unequipAccessory(currentRing);
+				equipAccessory(newAccessory);
+			}else{}
+		case 4:
+			if(confirm("Exchange your " + currentBelt.name + " (Stat Bonus: " + currentBelt.statType + " +" + currentBelt.stat + ") for " + newAccessory.name + " (Stat Bonus: " + newAccessory.statType + " +" + newAccessory.stat + ")")){
+				unequipAccessory(currentBelt);
+				equipAccessory(newAccessory);
+			}else{}
+		case 5:
+			if(confirm("Exchange your " + currentCape.name + " (Stat Bonus: " + currentCape.statType + " +" + currentCape.stat + ") for " + newAccessory.name + " (Stat Bonus: " + newAccessory.statType + " +" + newAccessory.stat + ")")){
+				unequipAccessory(currentCape);
+				equipAccessory(newAccessory);
+			}else{}
+	}
+	updateAccessoryArea();
+}
+
+function updateAccessoryArea(){
+	$('#amuletNameText').html("<label class='rarity" + currentAmulet.rarity + "'>" + currentAmulet.name + "</label>");
+	$('#earringsNameText').html("<label class='rarity" + currentEarrings.rarity + "'>" + currentEarrings.name + "</label>");
+	$('#ringNameText').html("<label class='rarity" + currentRing.rarity + "'>" + currentRing.name + "</label>");
+	$('#beltNameText').html("<label class='rarity" + currentBelt.rarity + "'>" + currentBelt.name + "</label>");
+	$('#capeNameText').html("<label class='rarity" + currentCape.rarity + "'>" + currentCape.name + "</label>");
 }

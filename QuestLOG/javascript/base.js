@@ -54,8 +54,15 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 	starterWeapon.setSpeed(1);
 	starterWeapon.setCriticalChance(1);
 	starterWeapon.setCriticalDamage(50);
-
 	equipWeapon(starterWeapon);
+
+	var starterAmulet = new accessory;
+	starterAmulet.setName("Nothing");
+	starterAmulet.setStatType("Nothing");
+	starterAmulet.setStat(0);
+	starterAmulet.setRarity(1);
+	equipAccessory(starterAmulet);
+
 	addLogText("To begin your journey, you have been given the <label class='rarity" + currentWeapon.rarity + "'>" + currentWeapon.name + "</label>!");
 }
 
@@ -120,6 +127,25 @@ function clearData(){
 	}
 
 	localStorage.clear();
+}
+
+//determineRarity(), based off of a 1-10000 scale to determine the rarity based on roll
+function determineRarity(roll){
+	if(roll <= (100 + LUK)){
+		return 5;
+	}
+	else if(roll <= (1000 + LUK )){
+		return 4;
+	}
+	else if(roll <= (3000 + LUK)){
+		return 3;
+	}
+	else if(roll <= (5000 + LUK)){
+		return 2;
+	}
+	else{
+		return 1;
+	}
 }
 
 window.onload = function(){
