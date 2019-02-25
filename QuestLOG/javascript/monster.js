@@ -176,8 +176,8 @@ function randomMonster(){
 			nameHold = "Wolf";
 			levelHold = LV + Math.floor((Math.random() * 2 + 0));
 			hpHold = 8;
-			damageHold = 3;
-			speedHold = 6;
+			damageHold = 5;
+			speedHold = 4;
 			defenseHold = 1.5;
 			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
 			monsterHold.generateLootTable();
@@ -187,7 +187,7 @@ function randomMonster(){
 			nameHold = "Spider";
 			levelHold = LV + Math.floor((Math.random() * 2 + 0));
 			hpHold = 3;
-			damageHold = 6;
+			damageHold = 8;
 			speedHold = 4;
 			defenseHold = 1;
 			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
@@ -197,7 +197,7 @@ function randomMonster(){
 		case 3:
 			nameHold = "Boar";
 			levelHold = LV + Math.floor((Math.random() * 2 + 0));
-			hpHold = 12;
+			hpHold = 10;
 			damageHold = 4;
 			speedHold = 8;
 			defenseHold = 1;
@@ -209,8 +209,8 @@ function randomMonster(){
 			nameHold = "Bear";
 			levelHold = LV + Math.floor((Math.random() * 2 + 0));
 			hpHold = 12;
-			damageHold = 12;
-			speedHold = 12;
+			damageHold = 20;
+			speedHold = 16;
 			defenseHold = 1.2;
 			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
 			monsterHold.generateLootTable();
@@ -220,7 +220,7 @@ function randomMonster(){
 			nameHold = "Scorpion";
 			levelHold = LV + Math.floor((Math.random() * 2 + 0));
 			hpHold = 6;
-			damageHold = 6;
+			damageHold = 7;
 			speedHold = 4;
 			defenseHold = 1;
 			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
@@ -230,9 +230,9 @@ function randomMonster(){
 		case 6:
 			nameHold = "Squid";
 			levelHold = LV + Math.floor((Math.random() * 2 + 0));
-			hpHold = 3;
-			damageHold = 3;
-			speedHold = 3;
+			hpHold = 4;
+			damageHold = 4;
+			speedHold = 4;
 			defenseHold = 1;
 			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
 			monsterHold.generateLootTable();
@@ -241,9 +241,9 @@ function randomMonster(){
 		case 7:
 			nameHold = "Harpy";
 			levelHold = LV + Math.floor((Math.random() * 2 + 0));
-			hpHold = 10;
-			damageHold = 2;
-			speedHold = 2.5;
+			hpHold = 8;
+			damageHold = 3;
+			speedHold = 2;
 			defenseHold = 1;
 			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
 			monsterHold.generateLootTable();

@@ -255,6 +255,10 @@ function determineRarity(roll){
 	}
 }
 
+function getRarityStr(val){
+	return {1:"Common", 2:"Uncommon", 3:"Rare", 4:"Epic", 5:"Legendary"}[val];
+}
+
 window.onload = function(){
 
 	name = localStorage.getItem("crName");

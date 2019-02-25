@@ -275,7 +275,6 @@ function initializePlayerHPProgressBar(){
     		clearInterval(pHPP);
     	}
     	else{
-    		console.log("d");
     		width++; 
 	   		bar.style.width = width + '%';
 	   	}
@@ -304,7 +303,6 @@ function updatePlayerHPProgressBar(){
 function initializePlayerASProgressBar(){
 	var bar = document.getElementById("playerASProgressBar"); 
   	var width = 1;
-  	console.log(combatPAS);
   	pASP = setInterval(frame, (10 / (1 * combatPAS)));
   	function frame() {
     	if (width >= 100){
