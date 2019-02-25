@@ -117,8 +117,8 @@ class weapon{
 		var critDamage;
 
 		as = 1 * (this.speed * (1 + (DEX/1000)));
-		critDamage =  (this.cc/100) * (1 * (this.cd/100));
-		dpsHold = (((this.damage * (1 + (1 * critDamage))) * (1 + (STR/200)))) * as;
+		critDamage =  ((this.cc/100)*(1 + (LUK/100))) * (1 * (this.cd/100));
+		dpsHold = (((this.damage * (1 + (1 * critDamage))) * (1 + (STR/100)))) * as;
 		this.dps = dpsHold;
 	}
 

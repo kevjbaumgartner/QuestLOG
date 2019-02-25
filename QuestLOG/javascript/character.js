@@ -295,6 +295,20 @@ function updatePCText(){
 }
 
 
+function setRMR(val){
+	this.RMR = val;
+	updateRMRText();
+}
+
+function getRMR(){
+	return this.RMR;
+}
+
+function updateRMRText(){
+	$('#characterRMRText').html(RMR);
+}
+
+
 function setUnspentPoints(val){
 	this.unspentPoints = val;
 	updateUnspentPointsText();
@@ -398,6 +412,8 @@ function lvCON(){
 
 	increaseMaxHP(3);
 	updateMaxHPText();
+
+	updateArmourArea();
 }
 
 function lvWIS(){
@@ -738,7 +754,7 @@ function exchangeAccessory(newAccessory){
 		case 2:
 			currentStatTypeHold = parseStatType(currentEarrings);
 			newStatTypeHold = parseStatType(newAccessory);
-			if(confirm("Exchange your " + currentEarrings.name + " (Stat Bonus: +" + currentAmulet.stat + " " + currentStatTypeHold + ") for " + newAccessory.name + " (Stat Bonus: +" + newAccessory.stat + " " + newStatTypeHold + ")?")){
+			if(confirm("Exchange your " + currentEarrings.name + " (Stat Bonus: +" + currentEarrings.stat + " " + currentStatTypeHold + ") for " + newAccessory.name + " (Stat Bonus: +" + newAccessory.stat + " " + newStatTypeHold + ")?")){
 				unequipAccessory(currentEarrings);
 				equipAccessory(newAccessory);
 			}else{}
@@ -746,7 +762,7 @@ function exchangeAccessory(newAccessory){
 		case 3:
 			currentStatTypeHold = parseStatType(currentRing);
 			newStatTypeHold = parseStatType(newAccessory);
-			if(confirm("Exchange your " + currentRing.name + " (Stat Bonus: +" + currentAmulet.stat + " " + currentStatTypeHold + ") for " + newAccessory.name + " (Stat Bonus: +" + newAccessory.stat + " " + newStatTypeHold + ")?")){
+			if(confirm("Exchange your " + currentRing.name + " (Stat Bonus: +" + currentRing.stat + " " + currentStatTypeHold + ") for " + newAccessory.name + " (Stat Bonus: +" + newAccessory.stat + " " + newStatTypeHold + ")?")){
 				unequipAccessory(currentRing);
 				equipAccessory(newAccessory);
 			}else{}
@@ -754,7 +770,7 @@ function exchangeAccessory(newAccessory){
 		case 4:
 			currentStatTypeHold = parseStatType(currentBelt);
 			newStatTypeHold = parseStatType(newAccessory);
-			if(confirm("Exchange your " + currentBelt.name + " (Stat Bonus: +" + currentAmulet.stat + " " + currentStatTypeHold + ") for " + newAccessory.name + " (Stat Bonus: +" + newAccessory.stat + " " + newStatTypeHold + ")?")){
+			if(confirm("Exchange your " + currentBelt.name + " (Stat Bonus: +" + currentBelt.stat + " " + currentStatTypeHold + ") for " + newAccessory.name + " (Stat Bonus: +" + newAccessory.stat + " " + newStatTypeHold + ")?")){
 				unequipAccessory(currentBelt);
 				equipAccessory(newAccessory);
 			}else{}
@@ -762,7 +778,7 @@ function exchangeAccessory(newAccessory){
 		case 5:
 			currentStatTypeHold = parseStatType(currentCape);
 			newStatTypeHold = parseStatType(newAccessory);
-			if(confirm("Exchange your " + currentCape.name + " (Stat Bonus: +" + currentEarrings.stat + " " + currentStatTypeHold + ") for " + newAccessory.name + " (Stat Bonus: +" + newAccessory.stat + " " + newStatTypeHold + ")?")){
+			if(confirm("Exchange your " + currentCape.name + " (Stat Bonus: +" + currentCape.stat + " " + currentStatTypeHold + ") for " + newAccessory.name + " (Stat Bonus: +" + newAccessory.stat + " " + newStatTypeHold + ")?")){
 				unequipAccessory(currentCape);
 				equipAccessory(newAccessory);
 			}else{}
@@ -883,5 +899,5 @@ function updateArmourArea(){
 	$('#glovesNameText').html("<label class='rarity" + currentGloves.rarity + "'>" + currentGloves.name + "</label> (+" + currentGloves.defense + " DEF)");
 	$('#pantsNameText').html("<label class='rarity" + currentPants.rarity + "'>" + currentPants.name + "</label> (+" + currentPants.defense + " DEF)");
 	$('#shoesNameText').html("<label class='rarity" + currentShoes.rarity + "'>" + currentShoes.name + "</label> (+" + currentShoes.defense + " DEF)");
-	$('#characterRMRText').html(RMR);
+	$('#characterRMRText').html(Number(RMR * (1 + (CON/200))).toFixed(2));
 }
