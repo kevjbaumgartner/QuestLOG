@@ -122,7 +122,7 @@ class weapon{
 		var as;
 		var critDamage;
 		as = 1 * (this.getSpeed() * (1 + (DEX/1000)));
-		critDamage =  ((this.getCriticalChance()/100)*(1 + (LUK/100))) * (1 * (this.getCriticalDamage()/100));
+		critDamage =  ((this.getCriticalChance()/100) * (1 + (LUK/100))) * (1 * (this.getCriticalDamage()/100));
 		dpsHold = (((this.getDamage() * (1 + (1 * critDamage))) * (1 + (STR/100)))) * as;
 		this.setDPS(dpsHold);
 	}

@@ -1,86 +1,71 @@
 //Monster class definition
 class monster{
-	constructor(name, level, HP, damage, speed, defense){
-		this.name = name;
-		this.level = level;
-		this.HP = HP;
-		this.damage = damage;
-		this.speed = speed;
-		this.defense = defense;
+	constructor(){
+		var name;
+		var level;
+		var HP;
+		var damage;
+		var speed;
+		var defense;
 		var XP;
-		var lootTable = [];
+		var lootTable;
+		var type;
 	}
 
 	//Getters & Setters
 	getName(){
 		return this.name;
 	}
-
 	setName(val){
 		this.name = val;
 	}
-
-
 	getLevel(){
 		return this.level;
 	}
-
 	setLevel(val){
 		this.level = val;
 	}
-
-
 	getHP(){
 		return this.HP;
 	}
-
 	setHP(val){
 		this.HP = val;
 	}
-
-
 	getDamage(){
 		return this.damage;
 	}
-
 	setDamage(val){
-		this.damage = damage;
+		this.damage = val;
 	}
-
-
 	getSpeed(){
 		return this.speed;
 	}
-
 	setSpeed(val){
-		this.speed = speed;
+		this.speed = val;
 	}
-
-
 	getDefense(){
 		return this.defense;
 	}
-
 	setDefense(val){
 		this.defense = val;
 	}
-
-
-	getLootTable(){
-		return this.lootTable;
-	}
-
-	setLootTable(val){
-		this.lootTable = val;
-	}
-
-
 	getXP(){
 		return this.XP;
 	}
-
 	setXP(val){
-		this.val;
+		this.XP = val;
+	}
+	getLootTable(){
+		return this.lootTable;
+	}
+	setLootTable(val){
+		this.lootTable = val;
+	}
+	getType(){
+		return this.type;
+	}
+	setType(val){
+		this.type = val;
 	}
 
 	//generateLootTable(), creates a predefined amount of loot that is affected by LUK
@@ -91,40 +76,34 @@ class monster{
 		if(roll <= reqChance){
 			lootAmount += 1;
 		}
-
 		this.lootTable = [];
 		for (var i = 0; i < lootAmount; i++){
-			this.lootTable[i] = generateLoot(this.name);
+			this.lootTable[i] = generateLoot(this);
 		}
 	}
 
 	//generateXP(), defines the XP that the monster will give when slain
 	generateXP(){
 		var xpRoll = Number(((Math.random() * 150 + 75))/100).toFixed(2);
-		this.XP = Math.round((xpRoll * (1 + (this.level/100))) * 10) / 10;
-		this.XP += this.level;
+		var xpHold = ((Math.round((xpRoll * (1 + (this.level/100))) * 10) / 10) + this.level);
+		this.setXP(xpHold);
 	}
 
-	//handleDeath(), monster HP reaches 0; rewards granted
+	//handleDeath(), once a monster HP reaches 0 its rewards are granted
 	handleDeath(){
 		for(var i = 0; i < this.lootTable.length; i++){
-			addLogText("<label class='rarity" + this.lootTable[i].rarity + "'>" + this.lootTable[i].name + "</label> acquired, sold for: <label class='logCurrency'>" + this.lootTable[i].value + "</label>!");
-			gainCurrency(this.lootTable[i].value);
+			addLogText("<label class='rarity" + this.lootTable[i].getRarity() + "'>" + this.lootTable[i].getName() + "</label> found, sold for: <label class='logCurrency'>" + this.lootTable[i].getValue() + "</label>!");
+			gainCurrency(this.lootTable[i].getValue());
 		}
-
 		var roll = Math.floor((Math.random() * 100) + 1);
-		var equipmentRoll = Math.floor((Math.random() * 3) + 1);
 		var reqChance = (3 * (1 + (LUK/100)));
 
-		switch(this.name){
-			case "Werewolf":
-				roll = 0;
-				break;
-			case "Lamia":
-				roll = 0;
-				break;
+		//If the monster was a Boss type then it will guarantee a random gear drop
+		if(this.type == 3){
+			roll = 0;
 		}
 		if(roll <= reqChance){
+			var equipmentRoll = Math.floor((Math.random() * 3) + 1);
 			switch(equipmentRoll){
 				case 1:
 					var weaponHold = randomWeapon();
@@ -145,7 +124,6 @@ class monster{
 					break;
 			}
 		}
-
 		gainXP(this.XP);
 	}
 
@@ -161,131 +139,34 @@ class monster{
 
 //randomMonster(), returns a random monster
 function randomMonster(){
-	var typeRoll = Math.floor((Math.random() * 7 + 1));
-	var monsterHold;
-
-	var nameHold;
-	var levelHold;
-	var hpHold;
-	var damageHold;
-	var speedHold;
-	var defenseHold;
-
-	switch(typeRoll){
-		case 1:
-			nameHold = "Wolf";
-			levelHold = LV + Math.floor((Math.random() * 2 + 0));
-			hpHold = 8;
-			damageHold = 5;
-			speedHold = 4;
-			defenseHold = 1.5;
-			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
-			monsterHold.generateLootTable();
-			monsterHold.generateXP();
-			return monsterHold;
-		case 2:
-			nameHold = "Spider";
-			levelHold = LV + Math.floor((Math.random() * 2 + 0));
-			hpHold = 3;
-			damageHold = 8;
-			speedHold = 4;
-			defenseHold = 1;
-			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
-			monsterHold.generateLootTable();
-			monsterHold.generateXP();
-			return monsterHold;
-		case 3:
-			nameHold = "Boar";
-			levelHold = LV + Math.floor((Math.random() * 2 + 0));
-			hpHold = 10;
-			damageHold = 4;
-			speedHold = 8;
-			defenseHold = 1;
-			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
-			monsterHold.generateLootTable();
-			monsterHold.generateXP();
-			return monsterHold;
-		case 4:
-			nameHold = "Bear";
-			levelHold = LV + Math.floor((Math.random() * 2 + 0));
-			hpHold = 12;
-			damageHold = 20;
-			speedHold = 16;
-			defenseHold = 1.2;
-			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
-			monsterHold.generateLootTable();
-			monsterHold.generateXP();
-			return monsterHold;
-		case 5:
-			nameHold = "Scorpion";
-			levelHold = LV + Math.floor((Math.random() * 2 + 0));
-			hpHold = 6;
-			damageHold = 7;
-			speedHold = 4;
-			defenseHold = 1;
-			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
-			monsterHold.generateLootTable();
-			monsterHold.generateXP();
-			return monsterHold;
-		case 6:
-			nameHold = "Squid";
-			levelHold = LV + Math.floor((Math.random() * 2 + 0));
-			hpHold = 4;
-			damageHold = 4;
-			speedHold = 4;
-			defenseHold = 1;
-			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
-			monsterHold.generateLootTable();
-			monsterHold.generateXP();
-			return monsterHold;
-		case 7:
-			nameHold = "Harpy";
-			levelHold = LV + Math.floor((Math.random() * 2 + 0));
-			hpHold = 8;
-			damageHold = 3;
-			speedHold = 2;
-			defenseHold = 1;
-			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
-			monsterHold.generateLootTable();
-			monsterHold.generateXP();
-			return monsterHold;
-	}
+	var len = monsterDataList.length;
+	var roll = Math.floor((Math.random() * len) + 0);
+	var monsterHold = new monster;
+	monsterHold.setName(monsterDataList[roll][0]);
+	monsterHold.setLevel(LV + Math.floor((Math.random() * 2 + 0)));
+	monsterHold.setHP(monsterDataList[roll][1]);
+	monsterHold.setDamage(monsterDataList[roll][2]);
+	monsterHold.setSpeed(monsterDataList[roll][3]);
+	monsterHold.setDefense(monsterDataList[roll][4]);
+	monsterHold.generateXP();
+	monsterHold.generateLootTable();
+	monsterHold.setType(monsterDataList[roll][5]);
+	return monsterHold;
 }
 
-//randomBoss(), returns a random boss monster
+//randomBoss(), returns a random boss
 function randomBoss(){
-	var typeRoll = Math.floor((Math.random() * 2 + 1));
-	var monsterHold;
-
-	var nameHold;
-	var levelHold;
-	var hpHold;
-	var damageHold;
-	var speedHold;
-	var defenseHold;
-
-	switch(typeRoll){
-		case 1:
-			nameHold = "Werewolf";
-			levelHold = LV + Math.floor((Math.random() * 2 + 0));
-			hpHold = 20;
-			damageHold = 6;
-			speedHold = 5;
-			defenseHold = 1.5;
-			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
-			monsterHold.generateLootTable();
-			monsterHold.generateXP();
-			return monsterHold;
-		case 2:
-			nameHold = "Lamia";
-			levelHold = LV + Math.floor((Math.random() * 2 + 0));
-			hpHold = 15;
-			damageHold = 7;
-			speedHold = 4;
-			defenseHold = 1;
-			monsterHold = new monster(nameHold, levelHold, hpHold, damageHold, speedHold, defenseHold);
-			monsterHold.generateLootTable();
-			monsterHold.generateXP();
-			return monsterHold;
-	}
+	var len = bossDataList.length;
+	var roll = Math.floor((Math.random() * len) + 0);
+	var monsterHold = new monster;
+	monsterHold.setName(bossDataList[roll][0]);
+	monsterHold.setLevel(LV + Math.floor((Math.random() * 2 + 0)));
+	monsterHold.setHP(bossDataList[roll][1]);
+	monsterHold.setDamage(bossDataList[roll][2]);
+	monsterHold.setSpeed(bossDataList[roll][3]);
+	monsterHold.setDefense(bossDataList[roll][4]);
+	monsterHold.generateXP();
+	monsterHold.generateLootTable();
+	monsterHold.setType(bossDataList[roll][5]);
+	return monsterHold;
 }

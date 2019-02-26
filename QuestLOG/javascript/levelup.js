@@ -122,6 +122,7 @@ function lvLUK(){
 	updateUnspentPointsText();
 	checkUnspentPoints();
 	updateLUKText();
+	updateWeaponArea();
 }
 
 //maxHP & maxSP Increase Functions
