@@ -39,6 +39,11 @@ function killTop(){
 	}
 }
 
+//
+function failTop(){
+	
+}
+
 //bumpQueue(), shift everything to the left by 1 and pop the remaining duplicate
 function bumpQueue(){
 	for(var i = 0; i < queueSize; i++){
