@@ -10,45 +10,20 @@ class loot{
 	getName(){
 		return this.name;
 	}
-
 	setName(val){
 		this.name = val;
 	}
-
-
 	getRarity(){
 		return this.rarity;
 	}
-
 	setRarity(val){
 		this.rarity = val;
 	}
-
-
 	getValue(){
 		return this.value;
 	}
-
 	setValue(val){
 		this.value = val;
-	}
-
-
-	getAmount(){
-		return this.amount;
-	}
-
-	setAmount(val){
-		this.amount = val;
-	}
-
-
-	getChance(){
-		return this.chance;
-	}
-
-	setChance(val){
-		this.chance = chance;
 	}
 }
 

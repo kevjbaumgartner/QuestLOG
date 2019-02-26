@@ -114,11 +114,11 @@ function prepUser(){
 		combatPlayerLevel = LV;
 		combatPlayerHP = HP;
 		combatPlayerMaxHP = maxHP;
-		combatPlayerDamage = (currentWeapon.damage * (1 + (STR/200)));
+		combatPlayerDamage = (currentWeapon.damage * (1 + (STR/100)));
 		combatPlayerAttackSpeed = currentWeapon.speed;
-		combatPlayerCriticalChance = currentWeapon.cc;
+		combatPlayerCriticalChance = (currentWeapon.cc * (1 + (LUK/100)));
 		combatPlayerCriticalDamage = currentWeapon.cd;
-		combatPlayerDefense = RMR;
+		combatPlayerDefense = (RMR * (1 + (CON/200)));
 		combatPAS = 1 * (combatPlayerAttackSpeed * (1 + (DEX/1000)))
 		initializePlayerHPProgressBar();
 		initializePlayerASProgressBar();
@@ -156,7 +156,7 @@ function monsterTakeDamage(val){
 
 //
 function playerTakeDamage(val){
-	var hold = (val / (1 * (1 * RMR)));
+	var hold = (val / (1 * (1 * combatPlayerDefense)));
 	if(hold > 0){
 		combatPlayerPrevHP = combatPlayerHP;
 		combatPlayerHP -= hold;
@@ -206,8 +206,8 @@ function updateCombatPlayerArea(){
 	else{
 		$('#playerAttackSpeedText').html(Number(combatPlayerAttackSpeed).toFixed(2));
 	}
-	$('#playerCriticalChanceText').html(Number(combatPlayerCriticalChance).toFixed(2));
-	$('#playerCriticalDamageText').html(Number(combatPlayerCriticalDamage).toFixed(2));
+	$('#playerCriticalChanceText').html(Number(combatPlayerCriticalChance).toFixed(2) + "%");
+	$('#playerCriticalDamageText').html(Number(combatPlayerCriticalDamage).toFixed(2) + "%");
 	$('#playerDefenseText').html(Number(combatPlayerDefense).toFixed(2));
 	updatePlayerHPProgressBar();
 }
@@ -275,7 +275,6 @@ function initializePlayerHPProgressBar(){
     		clearInterval(pHPP);
     	}
     	else{
-    		console.log("d");
     		width++; 
 	   		bar.style.width = width + '%';
 	   	}
@@ -304,7 +303,6 @@ function updatePlayerHPProgressBar(){
 function initializePlayerASProgressBar(){
 	var bar = document.getElementById("playerASProgressBar"); 
   	var width = 1;
-  	console.log(combatPAS);
   	pASP = setInterval(frame, (10 / (1 * combatPAS)));
   	function frame() {
     	if (width >= 100){
