@@ -83,31 +83,31 @@ class weapon{
 		switch(this.rarity){
 			case 1:
 				this.setDamage(Math.floor((Math.random() * ((LV/2) + 5)) + ((LV/4) + 5)));
-				this.setSpeed((Math.random() * (0.10 - 1.00 + 1.00) + 1.00).toFixed(2));
+				this.setSpeed((Math.random() * (0.10 - 1.00 + 1.00) + 0.90).toFixed(2));
 				this.setCriticalChance(Math.floor((Math.random() * ((LV/2) + 2)) + ((LV/4) + 2)));
 				this.setCriticalDamage(Math.floor((Math.random() * ((LV/2) + 9)) + ((LV/4) + 100)));
 				break;
 			case 2:
 				this.setDamage(Math.floor((Math.random() * ((LV/2) + 6)) + ((LV/4) + 6)));
-				this.setSpeed((Math.random() * (0.20 - 1.00 + 1.00) + 1.00).toFixed(2));
+				this.setSpeed((Math.random() * (0.20 - 1.00 + 1.00) + 0.90).toFixed(2));
 				this.setCriticalChance(Math.floor((Math.random() * ((LV/2) + 4)) + ((LV/4) + 4)));
 				this.setCriticalDamage(Math.floor((Math.random() * ((LV/2) + 9)) + ((LV/4) + 110)));
 				break;
 			case 3:
 				this.setDamage(Math.floor((Math.random() * ((LV/2) + 7)) + ((LV/4) + 7)));
-				this.setSpeed((Math.random() * (0.30 - 1.00 + 1.00) + 1.00).toFixed(2));
+				this.setSpeed((Math.random() * (0.30 - 1.00 + 1.00) + 0.90).toFixed(2));
 				this.setCriticalChance(Math.floor((Math.random() * ((LV/2) + 6)) + ((LV/4) + 6)));
 				this.setCriticalDamage(Math.floor((Math.random() * ((LV/2) + 9)) + ((LV/4) + 120)));
 				break;
 			case 4:
 				this.setDamage(Math.floor((Math.random() * ((LV/2) + 8)) + ((LV/4) + 8)));
-				this.setSpeed((Math.random() * (0.40 - 1.00 + 1.00) + 1.00).toFixed(2));
+				this.setSpeed((Math.random() * (0.40 - 1.00 + 1.00) + 0.90).toFixed(2));
 				this.setCriticalChance(Math.floor((Math.random() * ((LV/2) + 8)) + ((LV/4) + 8)));
 				this.setCriticalDamage(Math.floor((Math.random() * ((LV/2) + 9)) + ((LV/4) + 130)));
 				break;
 			case 5:
 				this.setDamage(Math.floor((Math.random() * ((LV/2) + 9)) + ((LV/4) + 9)));
-				this.setSpeed((Math.random() * (0.50 - 1.00 + 1.00) + 1.00).toFixed(2));
+				this.setSpeed((Math.random() * (0.50 - 1.00 + 1.00) + 0.90).toFixed(2));
 				this.setCriticalChance(Math.floor((Math.random() * ((LV/2) + 10)) + ((LV/4) + 10)));
 				this.setCriticalDamage(Math.floor((Math.random() * ((LV/2) + 9)) + ((LV/4) + 140)));
 				break;

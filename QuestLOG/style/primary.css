@@ -249,6 +249,20 @@ body{
 	pointer-events: none;
 }
 
+#characterXPProgressArea{
+	margin: 2%;
+	padding: 0;
+	background-color: #CACACA;
+}
+
+#characterXPProgressBar{
+	margin: 0;
+	padding: 0;
+	width: 0%;
+	height: 1em;
+	background-color: #2dbc83;
+}
+
 /* Quest Specific */
 .questPost{
 	padding: 2%;

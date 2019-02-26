@@ -6,16 +6,16 @@ var rewardQueue = [];
 var nameQueue = [];
 
 //addToQueue(), adds monster(s) into the queue system to be thrown into the combat system with accompanied reward
-function addToQueue(title, monsterTable, reward){
-	for(var i = queueSize; i < (monsterTable.length + queueSize); i++){
-		monsterQueue[i] = monsterTable[init];
+function addToQueue(quest){
+	for(var i = queueSize; i < (quest.monsterTable.length + queueSize); i++){
+		monsterQueue[i] = quest.monsterTable[init];
 		init += 1;
-		addKillPost(monsterQueue[i].name, monsterQueue[i].level);
+		addKillPost(monsterQueue[i].getName(), monsterQueue[i].getLevel());
 		queueCounter += 1;
 	}
 	queueSize = monsterQueue.length;
-	rewardQueue[queueSize - 1] = reward;
-	nameQueue[queueSize - 1] = title;
+	rewardQueue[queueSize - 1] = quest.getReward();
+	nameQueue[queueSize - 1] = quest.getName();
 	init = 0;
 	noQueuesCheck();
 	if(combatInProgress == 0){
@@ -37,11 +37,6 @@ function killTop(){
 		queueCounter -= 1;
 		bumpQueue();
 	}
-}
-
-//
-function failTop(){
-	
 }
 
 //bumpQueue(), shift everything to the left by 1 and pop the remaining duplicate

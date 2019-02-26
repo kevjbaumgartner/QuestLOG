@@ -7,9 +7,7 @@ var DEX;
 var CON;
 var WIS;
 var LUK;
-var HP;
 var maxHP = 50;
-var SP;
 var maxSP = 20;
 var LV;
 var XP;
@@ -54,7 +52,6 @@ function setDEX(val){
 function getDEX(){
 	return this.DEX;
 }
-
 function updateDEXText(){
 	$('#characterDEXText').html(DEX);
 }
@@ -88,16 +85,6 @@ function getLUK(){
 function updateLUKText(){
 	$('#characterLUKText').html(LUK);
 }
-function setHP(val){
-	this.HP = val;
-	updateHPText();
-}
-function getHP(){
-	return this.HP;
-}
-function updateHPText(){
-	$('#characterHPText').html(Number(HP).toFixed(2));
-}
 function setMaxHP(val){
 	this.maxHP = val;
 	updateMaxHPText();
@@ -108,16 +95,6 @@ function getMaxHP(){
 function updateMaxHPText(){
 	$('#characterMaxHPText').html(Number(maxHP).toFixed(2));
 }
-function setSP(val){
-	this.SP = val;
-	updateSPText();
-}
-function getSP(){
-	return this.SP;
-}
-function updateSPText(){
-	$('#characterSPText').html(SP);
-}
 function setMaxSP(val){
 	this.maxSP = val;
 	updateMaxSPText();
@@ -126,5 +103,5 @@ function getMaxSP(){
 	return this.maxSP;
 }
 function updateMaxSPText(){
-	$('#characterMaxSPText').html(maxSP);
+	$('#characterMaxSPText').html(Number(maxSP).toFixed(2));
 }

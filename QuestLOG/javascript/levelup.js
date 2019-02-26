@@ -46,12 +46,13 @@ function gainXP(val){
 	XP += hold;
 	XP = Math.round(XP * 100) / 100;
 	updateXPText();
+	updateXPBar();
 	addLogText("Gained: <label class='logXP'>" + Number(hold).toFixed(2) + "</label> XP!")
-
 	if(XP >= reqXP){
 		XP -= reqXP;
 		levelUp();
 	}
+	
 }
 
 //levelUp(), handles all functions that are to occur when the user levels up
@@ -59,25 +60,25 @@ function levelUp(){
 	LV += 1;
 	updateLVText();
 	updateXPText();
+	updateXPBar();
 
 	reqXP = reqXP + (reqXP/2);
 	updateReqXPText();
-	unspentPoints += 3;
+	unspentPoints += 5;
 	updateUnspentPointsText();
 	checkUnspentPoints();
 
 	increaseMaxHP(3);
-	setHP(maxHP);
-	updateHPText();
-
 	increaseMaxSP(1);
-	setSP(maxSP);
-	updateSPText();
 
 	updateWeaponArea();
 
-	addLogText("Congratulations, Level Up: " + LV + "!" );
-	addLogText("(3) Stat Points Granted!")
+	addLogText("<label class='logXP'>Congratulations, Level Up: " + LV + "</label>!" );
+	addLogText("(<label class='logXP'>5</label>) Stat Points Granted!")
+}
+
+function updateXPBar(){
+	document.getElementById("characterXPProgressBar").style.width = (Number((XP/reqXP)*100) + "%");
 }
 
 //Stat Button Functions

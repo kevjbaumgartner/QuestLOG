@@ -84,7 +84,7 @@ class monster{
 
 	//generateXP(), defines the XP that the monster will give when slain
 	generateXP(){
-		var xpRoll = Number(((Math.random() * 150 + 75))/100).toFixed(2);
+		var xpRoll = Number(((Math.random() * 150) + 75)/100).toFixed(2);
 		var xpHold = ((Math.round((xpRoll * (1 + (this.level/100))) * 10) / 10) + this.level);
 		this.setXP(xpHold);
 	}
@@ -143,7 +143,7 @@ function randomMonster(){
 	var roll = Math.floor((Math.random() * len) + 0);
 	var monsterHold = new monster;
 	monsterHold.setName(monsterDataList[roll][0]);
-	monsterHold.setLevel(LV + Math.floor((Math.random() * 2 + 0)));
+	monsterHold.setLevel(LV + Math.floor((Math.random() * 2) + 0));
 	monsterHold.setHP(monsterDataList[roll][1]);
 	monsterHold.setDamage(monsterDataList[roll][2]);
 	monsterHold.setSpeed(monsterDataList[roll][3]);
@@ -151,6 +151,7 @@ function randomMonster(){
 	monsterHold.generateXP();
 	monsterHold.generateLootTable();
 	monsterHold.setType(monsterDataList[roll][5]);
+	monsterHold.scaleMonster();
 	return monsterHold;
 }
 
@@ -160,7 +161,7 @@ function randomBoss(){
 	var roll = Math.floor((Math.random() * len) + 0);
 	var monsterHold = new monster;
 	monsterHold.setName(bossDataList[roll][0]);
-	monsterHold.setLevel(LV + Math.floor((Math.random() * 2 + 0)));
+	monsterHold.setLevel(LV + Math.floor((Math.random() * 3) + 3));
 	monsterHold.setHP(bossDataList[roll][1]);
 	monsterHold.setDamage(bossDataList[roll][2]);
 	monsterHold.setSpeed(bossDataList[roll][3]);
@@ -168,5 +169,6 @@ function randomBoss(){
 	monsterHold.generateXP();
 	monsterHold.generateLootTable();
 	monsterHold.setType(bossDataList[roll][5]);
+	monsterHold.scaleMonster();
 	return monsterHold;
 }

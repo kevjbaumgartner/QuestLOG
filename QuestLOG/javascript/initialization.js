@@ -14,10 +14,10 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 	//Set Character HP & SP
 	setMaxHP(characterMaxHP);
 	setMaxHP(calculateMaxHP());
-	setHP(maxHP);
+	//setHP(maxHP);
 	setMaxSP(characterMaxSP);
 	setMaxSP(calculateMaxSP());
-	setSP(maxSP);
+	//setSP(maxSP);
 
 	//Set Character LV & XP
 	setLV(1);
