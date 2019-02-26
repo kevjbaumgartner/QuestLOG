@@ -100,7 +100,7 @@ class monster{
 
 	//generateXP(), defines the XP that the monster will give when slain
 	generateXP(){
-		var xpRoll = Number(((Math.random() * 250 + 75))/100).toFixed(2);
+		var xpRoll = Number(((Math.random() * 150 + 75))/100).toFixed(2);
 		this.XP = Math.round((xpRoll * (1 + (this.level/100))) * 10) / 10;
 		this.XP += this.level;
 	}
@@ -152,10 +152,10 @@ class monster{
 	//scaleMonster(), scales the stats of the monster based on its level
 	scaleMonster(){
 		var lv = this.getLevel();
-		this.HP = (this.HP + (this.HP * (lv / 2)));
-		this.damage = (this.damage + (this.damage * (lv / 4)));
-		this.speed = (this.speed - (1 * (lv / 6)));
-		this.defense = (this.defense + (this.defense * (lv / 8)));
+		this.HP = (this.HP + (this.HP * (lv / 4)));
+		this.damage = (this.damage + (this.damage * (lv / 6)));
+		this.speed = (this.speed - (1 * (lv / 12)));
+		this.defense = (this.defense + (this.defense * (lv / 10)));
 	}
 }
 

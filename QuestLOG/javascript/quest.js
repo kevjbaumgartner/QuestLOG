@@ -15,54 +15,44 @@ class quest {
 	getName(){
 		return this.name;
 	}
-
 	setName(val){
 		this.name = val;
 	}
-
-
 	getLevel(){
 		return this.level;
 	}
-
 	setLevel(val){
 		this.level = val;
 	}
-
-
 	getType(){
 		return this.type;
 	}
-
 	setType(val){
 		this.type = val;
 	}
-
-
-	getMonsters(){
-		return this.monsters;
-	}
-
-	setMonsters(val){
-		this.monsters = val;
-	}
-
-
 	getExpiry(){
 		return this.expiry;
 	}
-
 	setExpiry(val){
 		this.expiry = val;
 	}
-
-
 	getReward(){
 		return this.reward;
 	}
-
 	setReward(val){
 		this.reward = reward;
+	}
+	getQuestId(){
+		return this.questId;
+	}
+	setQuestId(val){
+		this.questId = questId;
+	}
+	getSelfInterval(){
+		return this.selfInterval;
+	}
+	setSelfInterval(val){
+		this.selfInterval = val;
 	}
 
 	//generateMonsterTable(), fills the local quest posting with a defined amount of monsters based on type of quest

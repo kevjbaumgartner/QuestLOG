@@ -7,14 +7,12 @@ var crDEX;
 var crCON;
 var crWIS;
 var crLUK;
-
 var raceCount;
 
 //characterCreate(), parses all collected preferential character data and stores it locally to pass to the main game page
 function characterCreate(){
 	crName = creationName.value;
 	crRace = creationRace.value;
-
 	if((crName.trim() != "") && (crRace.trim() != "") && (totalPoints < 1)){
 		if(confirm("Ready to begin as " + crName + "?")){
 			checkSpecialRace();
@@ -28,9 +26,10 @@ function characterCreate(){
 			localStorage.setItem("raceCount", raceCount);
 			window.location.href = "QuestLOG.html";
 		}
-		else{
-
-		}
+		else{}
+	}
+	else{
+		alert("Please fill out both Name and Race fields, as well as spending all 40 points.");
 	}
 }
 
@@ -78,19 +77,17 @@ function checkSpecialRace(){
 	}
 	if(crRace.includes("Goblin") || crRace.includes("goblin")){
 		raceCount += 1;
-		crLUK += 5;
+		crLUK += 2;
 	}
 	if(crRace.includes("Giant") || crRace.includes("giant")){
 		raceCount += 1;
-		crSTR += 5;
-		crCON += 5;
-		crWIS = 1
+		crSTR += 1;
+		crCON += 1;
 	}
 	if(crRace.includes("Ogre") || crRace.includes("ogre")){
 		raceCount += 1;
-		crSTR += 5;
-		crCON += 5;
-		crLUK = 1;
+		crSTR += 1;
+		crCON += 1;
 	}
 }
 
@@ -103,19 +100,16 @@ function randomizeStats(){
 		var hold4 = Math.floor((Math.random() * 40) + 1);
 		var hold5 = Math.floor((Math.random() * 40) + 1);
 	} while((hold1 + hold2 + hold3 + hold4 + hold5) != 40);
-
 	crSTR = hold1;
 	crDEX = hold2;
 	crCON = hold3;
 	crWIS = hold4;
 	crLUK = hold5;
-
 	$('#creationSTR').html(crSTR);
 	$('#creationDEX').html(crDEX);
 	$('#creationCON').html(crCON);
 	$('#creationWIS').html(crWIS);
 	$('#creationLUK').html(crLUK);
-
 	totalPoints = 0;
 	$('#creationUnallotedPoints').html(totalPoints);
 }
@@ -131,7 +125,6 @@ function restartCreate(){
 	crWIS = 0;
 	crLUK = 0;
 	raceCount = 0;
-
 	$('#creationName').val(crName);
 	$('#creationRace').val(crRace);
 	$('#creationUnallotedPoints').html(totalPoints);
@@ -140,7 +133,6 @@ function restartCreate(){
 	$('#creationCON').html(crCON);
 	$('#creationWIS').html(crWIS);
 	$('#creationLUK').html(crLUK);
-
 	localStorage.clear();
 }
 
@@ -152,11 +144,8 @@ function incSTR(){
 		totalPoints -= 1;
 		$('#creationUnallotedPoints').html(totalPoints);
 	}
-	else{
-
-	}
+	else{}
 }
-
 function decSTR(){
 	if(totalPoints < 40 && crSTR != 0){
 		crSTR -= 1;
@@ -165,7 +154,6 @@ function decSTR(){
 		$('#creationUnallotedPoints').html(totalPoints);
 	}
 }
-
 function incDEX(){
 	if(totalPoints > 0){
 		crDEX += 1;
@@ -173,11 +161,8 @@ function incDEX(){
 		totalPoints -= 1;
 		$('#creationUnallotedPoints').html(totalPoints);
 	}
-	else{
-
-	}
+	else{}
 }
-
 function decDEX(){
 	if(totalPoints < 40 && crDEX != 0){
 		crDEX -= 1;
@@ -186,7 +171,6 @@ function decDEX(){
 		$('#creationUnallotedPoints').html(totalPoints);
 	}
 }
-
 function incCON(){
 	if(totalPoints > 0){
 		crCON += 1;
@@ -194,11 +178,8 @@ function incCON(){
 		totalPoints -= 1;
 		$('#creationUnallotedPoints').html(totalPoints);
 	}
-	else{
-
-	}
+	else{}
 }
-
 function decCON(){
 	if(totalPoints < 40 && crCON != 0){
 		crCON -= 1;
@@ -207,7 +188,6 @@ function decCON(){
 		$('#creationUnallotedPoints').html(totalPoints);
 	}
 }
-
 function incWIS(){
 	if(totalPoints > 0){
 		crWIS += 1;
@@ -215,11 +195,8 @@ function incWIS(){
 		totalPoints -= 1;
 		$('#creationUnallotedPoints').html(totalPoints);
 	}
-	else{
-
-	}
+	else{}
 }
-
 function decWIS(){
 	if(totalPoints < 40 && crWIS != 0){
 		crWIS -= 1;
@@ -228,7 +205,6 @@ function decWIS(){
 		$('#creationUnallotedPoints').html(totalPoints);
 	}
 }
-
 function incLUK(){
 	if(totalPoints > 0){
 		crLUK += 1;
@@ -236,11 +212,8 @@ function incLUK(){
 		totalPoints -= 1;
 		$('#creationUnallotedPoints').html(totalPoints);
 	}
-	else{
-
-	}
+	else{}
 }
-
 function decLUK(){
 	if(totalPoints < 40 && crLUK != 0){
 		crLUK -= 1;
@@ -250,6 +223,7 @@ function decLUK(){
 	}
 }
 
+//Onload, refresh all fields
 window.onload = function(){
 	restartCreate()
 }

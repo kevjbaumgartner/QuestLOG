@@ -43,14 +43,12 @@ class accessory{
 	//generateAccessoryName(), generates an accessory name based on the type and rarity
 	generateAccessoryName(){
 		var str;
-		var r = this.getRarity();
-		str = getRarityStr(r) + " " + getAccessoryTypeStr(this) + " of " + getAccessoryStatTypeStr(this);
+		str = getRarityStr(this) + " " + getAccessoryTypeStr(this) + " of " + getAccessoryStatTypeStr(this);
 		this.setName(str);
 	}
 
 	//determineStats(), generates the stat value for the accessory based on user level
 	determineStats(){
-		var statHold;
 		switch(this.getRarity()){
 			case 1:
 				this.setStat(Math.floor((Math.random() * 2) + (LV/6 + 1)));
@@ -112,7 +110,7 @@ function equipAccessory(accessory){
 
 	//incStat(), increases character stat amount based on accessory stat amount
 	function incStat(){
-		switch(accessory.statType){
+		switch(accessory.getStatType()){
 			case 1:
 				STR += accessory.getStat();
 				updateSTRText();
@@ -148,11 +146,12 @@ function equipAccessory(accessory){
 				break;
 		}
 	}
+	updateAccessoryArea();
 }
 
 //unequipAccessory(), removes stat type bonuses accordingly dependant on accessory type
 function unequipAccessory(accessory){
-	switch(accessory.type){
+	switch(accessory.getType()){
 		case 1:
 			decStat();
 			break;
@@ -174,15 +173,15 @@ function unequipAccessory(accessory){
 
 	//decStat(), decreases character stat amount based on accessory stat amount
 	function decStat(){
-		switch(accessory.statType){
+		switch(accessory.getStatType()){
 			case 1:
-				STR -= accessory.stat;
+				STR -= accessory.getStat();
 				updateSTRText();
 				updateWeaponArea();
 				break;
 			case 2:
-				DEX -= accessory.stat;
-				for(var i = 0; i < accessory.stat; i++){
+				DEX -= accessory.getStat();
+				for(var i = 0; i < accessory.getStat(); i++){
 					decreaseMaxSP(1);
 				}
 				updateMaxSPText();
@@ -190,8 +189,8 @@ function unequipAccessory(accessory){
 				updateWeaponArea();
 				break;
 			case 3:
-				CON -= accessory.stat;
-				for(var i = 0; i < accessory.stat; i++){
+				CON -= accessory.getStat();
+				for(var i = 0; i < accessory.getStat(); i++){
 					decreaseMaxHP(3);
 				}
 				updateMaxHPText();
@@ -199,20 +198,21 @@ function unequipAccessory(accessory){
 				updateArmourArea();
 				break;
 			case 4:
-				WIS -= accessory.stat;
+				WIS -= accessory.getStat();
 				updateWISText();
 				break;
 			case 5:
-				LUK -= accessory.stat;
+				LUK -= accessory.getStat();
 				updateLUKText();
 				break;
 			default:
 				break;
 		}
 	}
+	updateAccessoryArea();
 }
 
-//exchangeAccessory(), performs a confirm dialogue to switch out existing accessories for incoming ones
+//exchangeAccessory(), performs a confirm dialogue to switch out existing accessories
 function exchangeAccessory(newAccessory){
 	var currentStatTypeHold;
 	var newStatTypeHold;
@@ -220,7 +220,7 @@ function exchangeAccessory(newAccessory){
 		case 1:
 			currentStatTypeHold = getAccessoryStatTypeStr(currentAmulet);
 			newStatTypeHold = getAccessoryStatTypeStr(newAccessory);
-			if(confirm("Exchange your " + currentAmulet.name + " (Stat Bonus: +" + currentAmulet.stat + " " + currentStatTypeHold + ") for " + newAccessory.name + " (Stat Bonus: +" + newAccessory.stat + " " + newStatTypeHold + ")?")){
+			if(confirm("Exchange your " + currentAmulet.getName() + " (Stat Bonus: +" + currentAmulet.getStat() + " " + currentStatTypeHold + ") for " + newAccessory.getName() + " (Stat Bonus: +" + newAccessory.getStat() + " " + newStatTypeHold + ")?")){
 				unequipAccessory(currentAmulet);
 				equipAccessory(newAccessory);
 			}else{}
@@ -228,7 +228,7 @@ function exchangeAccessory(newAccessory){
 		case 2:
 			currentStatTypeHold = getAccessoryStatTypeStr(currentEarrings);
 			newStatTypeHold = getAccessoryStatTypeStr(newAccessory);
-			if(confirm("Exchange your " + currentEarrings.name + " (Stat Bonus: +" + currentEarrings.stat + " " + currentStatTypeHold + ") for " + newAccessory.name + " (Stat Bonus: +" + newAccessory.stat + " " + newStatTypeHold + ")?")){
+			if(confirm("Exchange your " + currentEarrings.getName() + " (Stat Bonus: +" + currentEarrings.getStat() + " " + currentStatTypeHold + ") for " + newAccessory.getName() + " (Stat Bonus: +" + newAccessory.getStat() + " " + newStatTypeHold + ")?")){
 				unequipAccessory(currentEarrings);
 				equipAccessory(newAccessory);
 			}else{}
@@ -236,7 +236,7 @@ function exchangeAccessory(newAccessory){
 		case 3:
 			currentStatTypeHold = getAccessoryStatTypeStr(currentRing);
 			newStatTypeHold = getAccessoryStatTypeStr(newAccessory);
-			if(confirm("Exchange your " + currentRing.name + " (Stat Bonus: +" + currentRing.stat + " " + currentStatTypeHold + ") for " + newAccessory.name + " (Stat Bonus: +" + newAccessory.stat + " " + newStatTypeHold + ")?")){
+			if(confirm("Exchange your " + currentRing.getName() + " (Stat Bonus: +" + currentRing.getStat() + " " + currentStatTypeHold + ") for " + newAccessory.getName() + " (Stat Bonus: +" + newAccessory.getStat() + " " + newStatTypeHold + ")?")){
 				unequipAccessory(currentRing);
 				equipAccessory(newAccessory);
 			}else{}
@@ -244,7 +244,7 @@ function exchangeAccessory(newAccessory){
 		case 4:
 			currentStatTypeHold = getAccessoryStatTypeStr(currentBelt);
 			newStatTypeHold = getAccessoryStatTypeStr(newAccessory);
-			if(confirm("Exchange your " + currentBelt.name + " (Stat Bonus: +" + currentBelt.stat + " " + currentStatTypeHold + ") for " + newAccessory.name + " (Stat Bonus: +" + newAccessory.stat + " " + newStatTypeHold + ")?")){
+			if(confirm("Exchange your " + currentBelt.getName() + " (Stat Bonus: +" + currentBelt.getStat() + " " + currentStatTypeHold + ") for " + newAccessory.getName() + " (Stat Bonus: +" + newAccessory.getStat() + " " + newStatTypeHold + ")?")){
 				unequipAccessory(currentBelt);
 				equipAccessory(newAccessory);
 			}else{}
@@ -252,7 +252,7 @@ function exchangeAccessory(newAccessory){
 		case 5:
 			currentStatTypeHold = getAccessoryStatTypeStr(currentCape);
 			newStatTypeHold = getAccessoryStatTypeStr(newAccessory);
-			if(confirm("Exchange your " + currentCape.name + " (Stat Bonus: +" + currentCape.stat + " " + currentStatTypeHold + ") for " + newAccessory.name + " (Stat Bonus: +" + newAccessory.stat + " " + newStatTypeHold + ")?")){
+			if(confirm("Exchange your " + currentCape.getName() + " (Stat Bonus: +" + currentCape.getStat() + " " + currentStatTypeHold + ") for " + newAccessory.getName() + " (Stat Bonus: +" + newAccessory.getStat() + " " + newStatTypeHold + ")?")){
 				unequipAccessory(currentCape);
 				equipAccessory(newAccessory);
 			}else{}
@@ -265,11 +265,21 @@ function exchangeAccessory(newAccessory){
 
 //updateAccessoryArea(), updates all relevant text areas
 function updateAccessoryArea(){
-	$('#amuletNameText').html("<label class='rarity" + currentAmulet.rarity + "'>" + currentAmulet.name + "</label> (+" + currentAmulet.stat + " " + getAccessoryStatTypeStr(currentAmulet) + ")");
-	$('#earringsNameText').html("<label class='rarity" + currentEarrings.rarity + "'>" + currentEarrings.name + "</label> (+" + currentEarrings.stat + " " + getAccessoryStatTypeStr(currentEarrings) + ")");
-	$('#ringNameText').html("<label class='rarity" + currentRing.rarity + "'>" + currentRing.name + "</label> (+" + currentRing.stat + " " + getAccessoryStatTypeStr(currentRing) + ")");
-	$('#beltNameText').html("<label class='rarity" + currentBelt.rarity + "'>" + currentBelt.name + "</label> (+" + currentBelt.stat + " " + getAccessoryStatTypeStr(currentBelt) + ")");
-	$('#capeNameText').html("<label class='rarity" + currentCape.rarity + "'>" + currentCape.name + "</label> (+" + currentCape.stat + " " + getAccessoryStatTypeStr(currentCape) + ")");
+	if(currentAmulet != null){
+		$('#amuletNameText').html("<label class='rarity" + currentAmulet.getRarity() + "'>" + currentAmulet.getName() + "</label> (+" + currentAmulet.getStat() + " " + getAccessoryStatTypeStr(currentAmulet) + ")");
+	}
+	if(currentEarrings != null){
+		$('#earringsNameText').html("<label class='rarity" + currentEarrings.getRarity() + "'>" + currentEarrings.getName() + "</label> (+" + currentEarrings.getStat() + " " + getAccessoryStatTypeStr(currentEarrings) + ")");
+	}
+	if(currentRing != null){
+		$('#ringNameText').html("<label class='rarity" + currentRing.getRarity() + "'>" + currentRing.getName() + "</label> (+" + currentRing.getStat() + " " + getAccessoryStatTypeStr(currentRing) + ")");
+	}
+	if(currentBelt != null){
+		$('#beltNameText').html("<label class='rarity" + currentBelt.getRarity() + "'>" + currentBelt.getName() + "</label> (+" + currentBelt.getStat() + " " + getAccessoryStatTypeStr(currentBelt) + ")");
+	}
+	if(currentCape != null){
+		$('#capeNameText').html("<label class='rarity" + currentCape.getRarity() + "'>" + currentCape.getName() + "</label> (+" + currentCape.getStat() + " " + getAccessoryStatTypeStr(currentCape) + ")");
+	}
 }
 
 //randomAccesory(), returns a random accessory

@@ -116,7 +116,7 @@ function prepUser(){
 		combatPlayerMaxHP = maxHP;
 		combatPlayerDamage = (currentWeapon.damage * (1 + (STR/100)));
 		combatPlayerAttackSpeed = currentWeapon.speed;
-		combatPlayerCriticalChance = (currentWeapon.cc * (1 + (LUK/1000)));
+		combatPlayerCriticalChance = (currentWeapon.cc * (1 + (LUK/100)));
 		combatPlayerCriticalDamage = currentWeapon.cd;
 		combatPlayerDefense = (RMR * (1 + (CON/200)));
 		combatPAS = 1 * (combatPlayerAttackSpeed * (1 + (DEX/1000)))
