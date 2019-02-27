@@ -261,6 +261,7 @@ body{
 	width: 0%;
 	height: 1em;
 	background-color: #2dbc83;
+	transition: all 0.2s ease-in-out;
 }
 
 /* Quest Specific */
@@ -327,6 +328,7 @@ body{
 	width: 0%;
 	height: 1em;
 	background-color: #bf0000;
+	transition: all 0.2s ease-in-out;
 }
 
 #monsterASProgressArea{
@@ -355,6 +357,7 @@ body{
 	width: 0%;
 	height: 1em;
 	background-color: #bf0000;
+	transition: all 0.2s ease-in-out;
 }
 
 #playerASProgressArea{

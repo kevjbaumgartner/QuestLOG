@@ -7,12 +7,9 @@ var combatMonsterName;
 var combatMonsterLevel;
 var combatMonsterHP;
 var combatMonsterMaxHP;
-var combatMonsterPrevHP;
 var combatMonsterDamage;
 var combatMonsterAttackSpeed;
 var combatMonsterDefense;
-var mHPP;
-var muHPP;
 var mASP;
 
 //Player Combat Declarations
@@ -20,15 +17,12 @@ var combatPlayerName;
 var combatPlayerLevel;
 var combatPlayerHP;
 var combatPlayerMaxHP;
-var combatPlayerPrevHP;
 var combatPlayerDamage;
 var combatPlayerAttackSpeed;
 var combatPlayerCriticalChance;
 var combatPlayerCriticalDamage;
 var combatPlayerDefense;
 var combatPAS; //Player Attacks per Second
-var pHPP;
-var puHPP;
 var pASP;
 
 //initializeCombat(),
@@ -41,14 +35,9 @@ function initializeCombat(){
 
 //resetCombat(), nullifies all relevant data and resets the display
 function resetCombat(){
-	clearInterval(mHPP);
-	clearInterval(muHPP);
-	mHPP = null;
-	muHPP = null;
 	var bar = document.getElementById("monsterHPProgressBar"); 
 	bar.style.width = "0%";
 	clearInterval(mASP);
-	mASP = null;
 	var bar = document.getElementById("monsterASProgressBar"); 
 	bar.style.width = "0%";
 	combatMonster = null;
@@ -56,29 +45,25 @@ function resetCombat(){
 	combatMonsterLevel = null;
 	combatMonsterHP = null;
 	combatMonsterMaxHP = null;
-	combatMonsterPrevHP = null;
 	combatMonsterDamage = null;
 	combatMonsterAttackSpeed = null;
 	combatMonsterDefense = null;
-	clearInterval(pHPP);
-	clearInterval(puHPP);
-	pHPP = null;
+
 	var bar = document.getElementById("playerHPProgressBar"); 
 	bar.style.width = "0%";
 	clearInterval(pASP);
-	pASP = null;
 	var bar = document.getElementById("playerASProgressBar"); 
 	bar.style.width = "0%";
 	combatPlayerName = null;
 	combatPlayerLevel = null;
 	combatPlayerHP = null;
 	combatPlayerMaxHP = null;
-	combatPlayerPrevHP = null;
 	combatPlayerDamage = null;
 	combatPlayerAttackSpeed = null;
 	combatPlayerCriticalChance = null;
 	combatPlayerCriticalDamage = null;
 	combatPlayerDefense = null;
+
 	updateCombatArea();
 	combatInProgress = 0;
 	if(queueSize != 0 && combatInProgress != 1){
@@ -97,8 +82,7 @@ function prepMonster(monster){
 		combatMonsterDamage = monsterQueue[0].getDamage();
 		combatMonsterAttackSpeed = monsterQueue[0].getSpeed();
 		combatMonsterDefense = monsterQueue[0].getDefense();
-		initializeMonsterHPProgressBar();
-		initializeMonsterASProgressBar();
+		updateMonsterASProgressBar();
 	}
 	else{
 		combatInProgress = 0;
@@ -118,8 +102,7 @@ function prepUser(){
 		combatPlayerCriticalDamage = currentWeapon.getCriticalDamage();
 		combatPlayerDefense = (getLiveRMR());
 		combatPAS = 1 * (combatPlayerAttackSpeed * (1 + (DEX/1000)))
-		initializePlayerHPProgressBar();
-		initializePlayerASProgressBar();
+		updatePlayerASProgressBar();
 	}
 	else{
 		combatInProgress = 0;
@@ -148,8 +131,6 @@ function monsterTakeDamage(val){
 			hold = val;
 			addLogText("You hit the " + combatMonsterName + " for <label class='logDamage'>" + Number(hold).toFixed(2) + "</label> damage!");
 		}
-		
-		combatMonsterPrevHP = combatMonsterHP;
 		combatMonsterHP -= hold;
 	}
 }
@@ -158,7 +139,6 @@ function monsterTakeDamage(val){
 function playerTakeDamage(val){
 	var hold = (val / (1 * (1 * combatPlayerDefense)));
 	if(hold > 0){
-		combatPlayerPrevHP = combatPlayerHP;
 		combatPlayerHP -= hold;
 		addLogText(combatMonsterName + " hits you for <label class='logMonsterDamage'>" + Number(hold).toFixed(2) + "</label> damage!");
 	}
@@ -209,62 +189,24 @@ function updateCombatPlayerArea(){
 }
 
 //Monster HP & Attack Speed Progress Bars
-function initializeMonsterHPProgressBar(){
-	var bar = document.getElementById("monsterHPProgressBar"); 
-  	var width = 0;
-  	mHPP = setInterval(frame, 1);
-  	function frame(){
-    	if (width >= ((combatMonsterHP/combatMonsterMaxHP)*100)) {
-    		//console.log("m11");
-    	}
-    	else if(combatMonsterHP == null){
-    		//console.log("m12");
-    		clearInterval(mHPP);
-    	}
-    	else{
-    		//console.log("m13");
-    		width++; 
-	   		bar.style.width = width + '%';
-	   	}
-	}
-}
 function updateMonsterHPProgressBar(){
   	var bar = document.getElementById("monsterHPProgressBar"); 
-  	var width = Math.floor((combatMonsterPrevHP/combatMonsterMaxHP)*100);
-  	muHPP = setInterval(frame, 10);
-  	var correction = muHPP;
-  	function frame(){
-    	if (width <= ((combatMonsterHP/combatMonsterMaxHP)*100)) {
-    		//console.log("m21");
-    	}
-    	else if(combatMonsterHP == null){
-    		//console.log("m22");
-    		width = 0;
-    		clearInterval(correction);
-    	}
-    	else{
-    		//console.log("m23");
-    		width -= 1; 
-	   		bar.style.width = width + '%';
-	   	}
-	}
+  	var width = Math.floor((combatMonsterHP/combatMonsterMaxHP) * 100);
+  	bar.style.width = width + "%";
 }
-function initializeMonsterASProgressBar(){
+function updateMonsterASProgressBar(){
 	var bar = document.getElementById("monsterASProgressBar"); 
   	var width = 1;
   	mASP = setInterval(frame, (10 * (combatMonsterAttackSpeed)));
   	function frame() {
     	if (width >= 100){
-    		//console.log("m31");
     		width = 0;
     		playerTakeDamage(combatMonsterDamage);
     	}
     	else if(combatMonsterAttackSpeed == null){
-    		//console.log("m32");
     		clearInterval(mASP);
     	}
     	else{
-    		//console.log("m33");
     		width++;
 	   		bar.style.width = width + '%';
 	   	}
@@ -272,62 +214,24 @@ function initializeMonsterASProgressBar(){
 }
 
 //Player HP & Attack Speed Progress Bars
-function initializePlayerHPProgressBar(){
-	var bar = document.getElementById("playerHPProgressBar"); 
-  	var width = 0;
-  	pHPP = setInterval(frame, 1);
-  	function frame(){
-    	if (width >= ((combatPlayerHP/combatPlayerMaxHP)*100)) {
-    		//console.log("p11");
-    	}
-    	else if(combatPlayerHP == null){
-    		//console.log("p12");
-    		clearInterval(pHPP);
-    	}
-    	else{
-    		//console.log("p13");
-    		width++; 
-	   		bar.style.width = width + '%';
-	   	}
-	}
-}
 function updatePlayerHPProgressBar(){
   	var bar = document.getElementById("playerHPProgressBar"); 
-  	var width = Math.floor((combatPlayerHP/combatPlayerMaxHP)*100);
-  	puHPP = setInterval(frame, 10);
-  	var correction = puHPP;
-  	function frame(){
-    	if (width <= ((combatPlayerHP/combatPlayerMaxHP)*100)) {
-    		//console.log("p21");
-    	}
-    	else if(combatPlayerHP == null){
-    		//console.log("p22");
-    		width = 0;
-    		clearInterval(correction);
-    	}
-    	else{
-    		//console.log("p23");
-    		width -= 1; 
-	   		bar.style.width = width + '%';
-	   	}
-	}
+  	var width = Math.floor((combatPlayerHP/combatPlayerMaxHP) * 100);
+  	bar.style.width = width + "%";
 }
-function initializePlayerASProgressBar(){
+function updatePlayerASProgressBar(){
 	var bar = document.getElementById("playerASProgressBar"); 
   	var width = 1;
   	pASP = setInterval(frame, (10 / (1 * combatPAS)));
   	function frame() {
     	if (width >= 100){
-    		//console.log("p31");
     		width = 0;
     		monsterTakeDamage(combatPlayerDamage);
     	}
     	else if(combatPAS == null){
-    		//console.log("p32");
     		clearInterval(pASP);
     	}
     	else{
-    		//console.log("p33");
     		width++;
 	   		bar.style.width = width + '%';
 	   	}
