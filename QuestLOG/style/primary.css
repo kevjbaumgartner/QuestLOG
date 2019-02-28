@@ -345,6 +345,21 @@ body{
 	background-color: #f4b042;
 }
 
+#monsterRMProgressArea{
+	margin: 2%;
+	padding: 0;
+	background-color: #CACACA;
+}
+
+#monsterRMProgressBar{
+	margin: 0;
+	padding: 0;
+	width: 0%;
+	height: 1em;
+	background-color: #98a8d6;
+	transition: all 0.2s ease-in-out;
+}
+
 #playerHPProgressArea{
 	margin: 2%;
 	padding: 0;
@@ -372,4 +387,19 @@ body{
 	width: 0%;
 	height: 1em;
 	background-color: #f4b042;
+}
+
+#playerRMProgressArea{
+	margin: 2%;
+	padding: 0;
+	background-color: #CACACA;
+}
+
+#playerRMProgressBar{
+	margin: 0;
+	padding: 0;
+	width: 0%;
+	height: 1em;
+	background-color: #98a8d6;
+	transition: all 0.2s ease-in-out;
 }

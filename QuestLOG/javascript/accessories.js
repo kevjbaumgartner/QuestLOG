@@ -128,7 +128,7 @@ function equipAccessory(accessory){
 			case 3:
 				CON += accessory.getStat();
 				for(var i = 0; i < accessory.getStat(); i++){
-					increaseMaxHP(3);
+					increaseMaxHP(1);
 				}
 				updateMaxHPText();
 				updateCONText();
@@ -191,7 +191,7 @@ function unequipAccessory(accessory){
 			case 3:
 				CON -= accessory.getStat();
 				for(var i = 0; i < accessory.getStat(); i++){
-					decreaseMaxHP(3);
+					decreaseMaxHP(1);
 				}
 				updateMaxHPText();
 				updateCONText();

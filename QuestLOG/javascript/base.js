@@ -100,5 +100,5 @@ function getRarityStr(val){
 //On document loading, gather localStorage stored information from the CharacterCreation.html form 
 window.onload = function(){
 	getData();
-	intializeGame(name, race, STR, DEX, CON, WIS, LUK, maxHP, maxSP);
+	intializeGame(name, race, STR, DEX, CON, WIS, LUK);
 }

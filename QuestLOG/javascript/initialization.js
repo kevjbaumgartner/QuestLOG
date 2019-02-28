@@ -1,5 +1,5 @@
 //initializeGame(), encorporates selected character preferences and stats to begin the game
-function intializeGame(characterName, characterRace, characterSTR, characterDEX, characterCON, characterWIS, characterLUK, characterMaxHP, characterMaxSP){
+function intializeGame(characterName, characterRace, characterSTR, characterDEX, characterCON, characterWIS, characterLUK){
 	//Set Character Name & Race
 	setName(characterName);
 	setRace(characterRace);
@@ -12,12 +12,8 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 	setLUK(characterLUK);
 
 	//Set Character HP & SP
-	setMaxHP(characterMaxHP);
-	setMaxHP(calculateMaxHP());
-	//setHP(maxHP);
-	setMaxSP(characterMaxSP);
-	setMaxSP(calculateMaxSP());
-	//setSP(maxSP);
+	calculateMaxHP();
+	calculateMaxSP();
 
 	//Set Character LV & XP
 	setLV(1);
@@ -44,7 +40,7 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 
 	//Introductory Gear Assignment
 	giveStarterGear();
-	addLogText("To begin your journey, you have been given the <label class='rarity" + currentWeapon.rarity + "'>" + currentWeapon.name + "</label> and the finest set of armour and accessories from a nearby inn's garbage.");
+	addLogText("To begin your journey, you have been given the finest set of armour and accessories from a nearby inn's garbage.");
 	
 	//Begin Cycling Quests
 	addQuest();
@@ -56,10 +52,14 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 
 	//HP & SP Calculation Functions
 	function calculateMaxHP(){
-		return maxHP + (CON * 3);
+		for(var i = 0; i < characterCON; i++){
+			increaseMaxHP(1);
+		}
 	}
 	function calculateMaxSP(){
-		return maxSP + (DEX);
+		for(var i = 0; i < DEX; i++){
+			increaseMaxSP(1);
+		}
 	}
 
 	//handleSpecialRace(), checks to see if the user has entered a special race and displays a dialogue response
@@ -77,14 +77,7 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 
 //giveStarterGear(),
 function giveStarterGear(){
-	var starterWeapon = new weapon;
-	starterWeapon.setName("Stick of Stickyness");
-	starterWeapon.setRarity(6);
-	starterWeapon.setDamage(1);
-	starterWeapon.setSpeed(1);
-	starterWeapon.setCriticalChance(10);
-	starterWeapon.setCriticalDamage(100);
-	equipWeapon(starterWeapon);
+	equipWeapon(uqFists);
 	var starterAmulet = new accessory;
 	starterAmulet.setName("Ugly Locket");
 	starterAmulet.setType(1);

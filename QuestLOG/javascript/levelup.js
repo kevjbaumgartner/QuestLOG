@@ -106,7 +106,7 @@ function lvCON(){
 	updateUnspentPointsText();
 	checkUnspentPoints();
 	updateCONText();
-	increaseMaxHP(3);
+	increaseMaxHP(1);
 	updateMaxHPText();
 	updateArmourArea();
 }

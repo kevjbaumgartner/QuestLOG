@@ -179,3 +179,12 @@ function randomWeapon(){
 	weaponHold.generateWeaponName();
 	return weaponHold;
 }
+
+//Unique Weapons Temporary Declarations
+var uqFists = new weapon;
+uqFists.setName("Fists");
+uqFists.setRarity(6);
+uqFists.setDamage(2);
+uqFists.setSpeed(1);
+uqFists.setCriticalChance(1);
+uqFists.setCriticalDamage(100);
