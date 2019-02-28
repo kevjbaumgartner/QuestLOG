@@ -11,6 +11,8 @@ var combatMonsterDamage;
 var combatMonsterAttackSpeed;
 var combatMonsterDefense;
 var mASP;
+var mHPBar = document.getElementById("monsterHPProgressBar");
+var mASBar = document.getElementById("monsterASProgressBar"); 
 
 //Player Combat Declarations
 var combatPlayerName;
@@ -24,6 +26,8 @@ var combatPlayerCriticalDamage;
 var combatPlayerDefense;
 var combatPAS; //Player Attacks per Second
 var pASP;
+var pHPBar = document.getElementById("playerHPProgressBar");
+var pASBar = document.getElementById("playerASProgressBar"); 
 
 //initializeCombat(),
 function initializeCombat(){
@@ -35,11 +39,13 @@ function initializeCombat(){
 
 //resetCombat(), nullifies all relevant data and resets the display
 function resetCombat(){
-	var bar = document.getElementById("monsterHPProgressBar"); 
-	bar.style.width = "0%";
 	clearInterval(mASP);
-	var bar = document.getElementById("monsterASProgressBar"); 
-	bar.style.width = "0%";
+	clearInterval(pASP);
+	mHPBar.style.width = "0%";
+	mASBar.style.width = "0%";
+	pHPBar.style.width = "0%";
+	pASBar.style.width = "0%";
+	
 	combatMonster = null;
 	combatMonsterName = null;
 	combatMonsterLevel = null;
@@ -49,11 +55,6 @@ function resetCombat(){
 	combatMonsterAttackSpeed = null;
 	combatMonsterDefense = null;
 
-	var bar = document.getElementById("playerHPProgressBar"); 
-	bar.style.width = "0%";
-	clearInterval(pASP);
-	var bar = document.getElementById("playerASProgressBar"); 
-	bar.style.width = "0%";
 	combatPlayerName = null;
 	combatPlayerLevel = null;
 	combatPlayerHP = null;
@@ -190,50 +191,42 @@ function updateCombatPlayerArea(){
 
 //Monster HP & Attack Speed Progress Bars
 function updateMonsterHPProgressBar(){
-  	var bar = document.getElementById("monsterHPProgressBar"); 
   	var width = Math.floor((combatMonsterHP/combatMonsterMaxHP) * 100);
-  	bar.style.width = width + "%";
+  	mHPBar.style.width = width + "%";
 }
 function updateMonsterASProgressBar(){
-	var bar = document.getElementById("monsterASProgressBar"); 
-  	var width = 1;
-  	mASP = setInterval(frame, (10 * (combatMonsterAttackSpeed)));
+  	var width = 0;
+  	mASP = setInterval(frame, (100 * (combatMonsterAttackSpeed)));
   	function frame() {
     	if (width >= 100){
-    		width = 0;
+    		width = 10;
+    		mASBar.style.width = width + '%';
     		playerTakeDamage(combatMonsterDamage);
     	}
-    	else if(combatMonsterAttackSpeed == null){
-    		clearInterval(mASP);
-    	}
     	else{
-    		width++;
-	   		bar.style.width = width + '%';
+    		width += 10;
+	   		mASBar.style.width = width + '%';
 	   	}
 	}
 }
 
 //Player HP & Attack Speed Progress Bars
 function updatePlayerHPProgressBar(){
-  	var bar = document.getElementById("playerHPProgressBar"); 
   	var width = Math.floor((combatPlayerHP/combatPlayerMaxHP) * 100);
-  	bar.style.width = width + "%";
+  	pHPBar.style.width = width + "%";
 }
 function updatePlayerASProgressBar(){
-	var bar = document.getElementById("playerASProgressBar"); 
-  	var width = 1;
-  	pASP = setInterval(frame, (10 / (1 * combatPAS)));
+  	var width = 0;
+  	pASP = setInterval(frame, (100 / (1 * combatPAS)));
   	function frame() {
     	if (width >= 100){
-    		width = 0;
+    		width = 10;
+    		pASBar.style.width = width + '%';
     		monsterTakeDamage(combatPlayerDamage);
     	}
-    	else if(combatPAS == null){
-    		clearInterval(pASP);
-    	}
     	else{
-    		width++;
-	   		bar.style.width = width + '%';
+    		width += 10;
+	   		pASBar.style.width = width + '%';
 	   	}
 	}
 }
