@@ -403,3 +403,31 @@ body{
 	background-color: #98a8d6;
 	transition: all 0.2s ease-in-out;
 }
+
+#combatButtons{
+	text-align: center;
+}
+
+#fleeButton{
+	font-family: 'Quicksand', sans-serif;
+	font-size: 1em;
+	border: none;
+	background-color: #bf0000;
+	color: #FAFAFA;
+	padding: 1% 5%;
+	cursor: pointer;
+}
+
+#fleeButton:hover{
+	background-color: #a00000;
+}
+
+#fleeButton:hover:active{
+	background-color: #7f0000;
+}
+
+#fleeButton:disabled{
+	color: #B1B1B1;
+	background-color: #DBDBDB;
+	pointer-events: none;
+}

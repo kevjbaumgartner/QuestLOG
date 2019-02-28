@@ -36,6 +36,7 @@ var pRMBar = document.getElementById("playerRMProgressBar");
 //initializeCombat(),
 function initializeCombat(){
 	combatInProgress = 1;
+	checkFlee();
 	prepMonster();
 	prepUser();
 	updateCombatArea();
@@ -75,6 +76,7 @@ function resetCombat(){
 
 	updateCombatArea();
 	combatInProgress = 0;
+	checkFlee();
 	if(queueSize != 0 && combatInProgress != 1){
 		initializeCombat();
 	}
@@ -178,13 +180,17 @@ function playerTakeDamage(val){
 	}
 	else{
 		combatPlayerHP -= damageHold;
-		if(combatPlayerHP <= 0){
-			alert("You have died. You will be returned to the Character Creation Screen.");
-			clearData();
-		}
 	}
+	
 	addLogText(combatMonsterName + " hits you for <label class='logMonsterDamage'>" + Number(damageHold).toFixed(2) + "</label> damage!");
 	updateCombatPlayerArea();
+
+	if(combatPlayerHP <= 0){
+		addLogText("<label class='logKill'>" + monsterQueue[0].getName() + " has killed you</label>!");
+		combatPlayerHP = 0;
+		failTop();
+		resetCombat();
+	}
 }
 
 //updateCombatArea(), updates both the monster and player relevant text fields
@@ -280,5 +286,15 @@ function updatePlayerASProgressBar(){
     		width += 10;
 	   		pASBar.style.width = width + '%';
 	   	}
+	}
+}
+
+//checkFlee(), toggles the flee button depending on the situation
+function checkFlee(){
+	if(combatInProgress != 1){
+		$('#fleeButton').prop('disabled', true);
+	}
+	else{
+		$('#fleeButton').prop('disabled', false);
 	}
 }

@@ -5,10 +5,46 @@ var init = 0;
 var rewardQueue = [];
 var nameQueue = [];
 
+//fleeCombat(), cancels current combat and abandons the entire quest
+function fleeCombat(){
+	if(combatInProgress != 0){
+		addLogText("<label class='logKill'>You flee like a peasant</label>!");
+		failTop()
+		resetCombat();
+	}
+}
+
+//failTop(), if you fail a combat for any reason, all relevant monsters to the current quest are removed and no rewards are granted 
+function failTop(){
+	if(queueSize < 1){
+		queueSize = 0;
+	}
+	else{
+		var len = monsterQueue.length;
+		var amount = 0;
+		for(var i = 0; i < len; i++){
+			if(monsterQueue[i].getQUID() == monsterQueue[0].getQUID()){
+				amount++;
+			}
+		}
+		for(var i = 0; i < amount; i++){
+			if(typeof nameQueue[0] !== 'undefined' && nameQueue[0] !== null){
+				addLogText("Quest Failed: " + nameQueue[0] + "!");
+			}
+			else{}
+			$('#queuePostings').find('div').first().remove();
+			queueSize -= 1;
+			queueCounter -= 1;
+			bumpQueue();
+		}
+	}
+}
+
 //addToQueue(), adds monster(s) into the queue system to be thrown into the combat system with accompanied reward
 function addToQueue(quest){
 	for(var i = queueSize; i < (quest.monsterTable.length + queueSize); i++){
 		monsterQueue[i] = quest.monsterTable[init];
+		monsterQueue[i].setQUID(quest.getQuestId());
 		init += 1;
 		addKillPost(monsterQueue[i].getName(), monsterQueue[i].getLevel());
 		queueCounter += 1;
@@ -29,7 +65,7 @@ function killTop(){
 		queueSize = 0;
 	}
 	else{
-		addLogText("<label class='logKill'>" + monsterQueue[0].name + " killed</label>!");
+		addLogText("<label class='logKill'>" + monsterQueue[0].getName() + " killed</label>!");
 		monsterQueue[0].handleDeath();
 		$('#queuePostings').find('div').first().remove();
 		queueSize -= 1;
@@ -56,6 +92,5 @@ function checkQueueReward(){
 		addLogText("Quest Complete: " + nameQueue[0] + "!");
 		gainCurrency(rewardQueue[0]);
 	}
-	else{
-	}
+	else{}
 }

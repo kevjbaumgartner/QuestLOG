@@ -10,6 +10,7 @@ class monster{
 		var XP;
 		var lootTable;
 		var type;
+		var QUID; //Quest UID that this monster belongs to
 	}
 
 	//Getters & Setters
@@ -66,6 +67,12 @@ class monster{
 	}
 	setType(val){
 		this.type = val;
+	}
+	getQUID(){
+		return this.QUID;
+	}
+	setQUID(val){
+		this.QUID = val;
 	}
 
 	//generateLootTable(), creates a predefined amount of loot that is affected by LUK
