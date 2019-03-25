@@ -21,10 +21,7 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 	setXP(0);
 
 	//Set Character Currency
-	setCC(0);
-	setSC(0);
-	setGC(0);
-	setPC(0);
+	setGC(10000000);
 
 	//Set Character Stat Points
 	setUnspentPoints(0);
@@ -49,6 +46,9 @@ function intializeGame(characterName, characterRace, characterSTR, characterDEX,
 
 	//Prep Combat Area
 	resetCombat();
+
+	//Prep Shops
+	initBlacksmith();
 
 	//HP & SP Calculation Functions
 	function calculateMaxHP(){

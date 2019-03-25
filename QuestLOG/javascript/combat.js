@@ -162,7 +162,7 @@ function monsterTakeDamage(val){
 			if(critRoll <= critReq){
 				addLogText("You <label class='logCrit'>crit</label> the " + combatMonsterName + " for <label class='logDamage'>" + Number(damageHold).toFixed(2) + "</label> damage! Wow!");
 			}else{
-				addLogText("You hit the " + combatMonsterName + " for <label class='logDamage'>" + Number(damageHold).toFixed(2) + "</label> damage!");
+				//addLogText("You hit the " + combatMonsterName + " for <label class='logDamage'>" + Number(damageHold).toFixed(2) + "</label> damage!");
 			}
 		}
 	}
@@ -182,7 +182,7 @@ function playerTakeDamage(val){
 		combatPlayerHP -= damageHold;
 	}
 	
-	addLogText(combatMonsterName + " hits you for <label class='logMonsterDamage'>" + Number(damageHold).toFixed(2) + "</label> damage!");
+	//addLogText(combatMonsterName + " hits you for <label class='logMonsterDamage'>" + Number(damageHold).toFixed(2) + "</label> damage!");
 	updateCombatPlayerArea();
 
 	if(combatPlayerHP <= 0){

@@ -49,10 +49,7 @@
 				</div>
 				<hr>
 				<h1 class="sectionHeader">Currency</h1>
-				<h2 class="sectionSubheader" id="characterCC">CC: <label class="sectionDetail" id="characterCCText"></label></h2>
-				<h2 class="sectionSubheader" id="characterSC">SC: <label class="sectionDetail" id="characterSCText"></label></h2>
-				<h2 class="sectionSubheader" id="characterGC">GC: <label class="sectionDetail" id="characterGCText"></label></h2>
-				<h2 class="sectionSubheader" id="characterPC">PC: <label class="sectionDetail" id="characterPCText"></label></h2>
+				<h2 class="sectionSubheader" id="characterGC">Gold Coins: <label class="sectionDetail" id="characterGCText"></label></h2>
 			</div>
 			<div class="section" id="inventoryArea">
 				<h1 class="sectionHeader">Armour</h1>
@@ -136,10 +133,25 @@
 			</div>
 			<div class="section" id="blacksmithArea">
 				<h1 class="sectionHeader">Blacksmith</h1>
+				<h2 class="sectionSubheader">Forge: </h2>
+				<br>
+				<button class="shopButton" onclick="bsmRandomWeapon()">Random Weapon - Cost: <label class="sectionDetail" id="bsmRandomWeaponCostText"></label> Gold Coins</button>
+				<hr>
+				<h2 class="sectionSubheader">Strengthen:</h2>
+				<br>
+				<h2 class="sectionSubheader">Chance: <label class="sectionDetail" id="bsmStrengthenPercentText"></label>%</h2>
+				<h2 class="sectionSubheader">Cost: <label class="sectionDetail" id="bsmStrengthenCostText"></label> Gold Coins</h2>
+				<button class="shopButton" id="bsmStrengthenBladeButton" onclick="bsmStrengthenBlade()">The Blade: <label class="sectionDetail" id="bsmStrengthenBladePercentText"></label>% Damage</button>
+				<button class="shopButton" id="bsmStrengthenHiltButton" onclick="bsmStrengthenHilt()">The Hilt: <label class="sectionDetail" id="bsmStrengthenHiltPercentText"></label>% Attack Speed</button>
+				<button class="shopButton" id="bsmStrengthenPointButton" onclick="bsmStrengthenPoint()">The Point: <label class="sectionDetail" id="bsmStrengthenPointPercentText"></label>% Critical Bonus</button>
+				<hr>
+				<h2 class="sectionSubheader">Upgrade:</h2>
+				<br>
+				<h2 class="sectionSubheader">Anvil: LV 1 (+1% Damage Bonus)</h2>
+				<button onclick="displayPopup('tiddies','butties')">popup</button>
 			</div>
 		</div>
 		<div class="sectionFull" id="textArea">
-			<!--h1 class="sectionFullHeader">Log</h1-->
 			<div id="textLog">
 				<span>> <text></text><br></span>
 				<span>> <text></text><br></span>
@@ -153,7 +165,15 @@
 				<span>> <text></text><br></span>
 			</div>
 		</div>
+		<div class="modalPopup" id="popupEntity">
+			<div class="modalPopupContent">
+				<span class="modalPopupClose" onclick="hidePopup()">&times;</span>
+				<h1 class="modalPopupTitle" id="popupTitle">Title</h1>
+				<p class="modalPopupText" id="popupText">Text</p>
+			</div>
+		</div>
 		<!-- Script Imports -->
+		<script type="text/javascript" src="javascript/popup.js"></script>
 		<script type="text/javascript" src="javascript/initialization.js"></script>
 		<script type="text/javascript" src="javascript/inventory.js"></script>
 		<script type="text/javascript" src="javascript/base.js"></script>
@@ -169,5 +189,6 @@
 		<script type="text/javascript" src="javascript/accessories.js"></script>
 		<script type="text/javascript" src="javascript/armour.js"></script>
 		<script type="text/javascript" src="javascript/combat.js"></script>
+		<script type="text/javascript" src="javascript/blacksmith.js"></script>
 	</body>
 </html>

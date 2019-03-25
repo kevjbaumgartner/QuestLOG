@@ -22,11 +22,11 @@ function addQuest(){
 	    var typeToBe;
 	    if(questToBe.getType() == 1){
 	    	typeToBe = "Short";
-	    	$('#questPostings').prepend('<div class="questPost" id="' + questToBe.getQuestId() + '"> <h3 class="questHeader">Title: ' + questToBe.getName() + '</h3> <h3 class="questHeader">Type: ' + typeToBe + ' LV ' + questToBe.getLevel() + '</h3><h3 class="questHeader">Expiry: <span id="questExpiryText">' + questToBe.getExpiry() + '</span></h3><hr><h3 class="questHeader">Monsters: ' + questToBe.monstersToString() + '</h3><h3 class="questHeader">Rewards: ' + questToBe.getReward() + ' CC</h3> </div>');
+	    	$('#questPostings').prepend('<div class="questPost" id="' + questToBe.getQuestId() + '"> <h3 class="questHeader">Title: ' + questToBe.getName() + '</h3> <h3 class="questHeader">Type: ' + typeToBe + ' LV ' + questToBe.getLevel() + '</h3><h3 class="questHeader">Expiry: <span id="questExpiryText">' + questToBe.getExpiry() + '</span></h3><hr><h3 class="questHeader">Monsters: ' + questToBe.monstersToString() + '</h3><h3 class="questHeader">Rewards: ' + questToBe.getReward() + ' Gold Coins</h3> </div>');
 	    }
 	    else if(questToBe.getType() == 2){
 	    	typeToBe = "Dungeon";
-	    	$('#questPostings').prepend('<div class="questPost" id="' + questToBe.getQuestId() + '"> <h3 class="questHeader">Title: ' + questToBe.getName() + '</h3> <h3 class="questHeader">Type: ' + typeToBe + ' LV ' + questToBe.getLevel() + '</h3><h3 class="questHeader">Expiry: <span id="questExpiryText">' + questToBe.getExpiry() + '</span></h3><hr><h3 class="questHeader">Monsters: ' + questToBe.monstersToString() + '</h3><h3 class="questHeader">Rewards: ' + questToBe.getReward() + ' CC</h3> </div>');
+	    	$('#questPostings').prepend('<div class="questPost" id="' + questToBe.getQuestId() + '"> <h3 class="questHeader">Title: ' + questToBe.getName() + '</h3> <h3 class="questHeader">Type: ' + typeToBe + ' LV ' + questToBe.getLevel() + '</h3><h3 class="questHeader">Expiry: <span id="questExpiryText">' + questToBe.getExpiry() + '</span></h3><hr><h3 class="questHeader">Monsters: ' + questToBe.monstersToString() + '</h3><h3 class="questHeader">Rewards: ' + questToBe.getReward() + ' Gold Coins</h3> </div>');
 	    }
 	    else if(questToBe.getType() == 3){
 	    	typeToBe = "Boss";

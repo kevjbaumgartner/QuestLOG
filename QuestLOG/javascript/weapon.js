@@ -156,10 +156,10 @@ function exchangeWeapon(newWeapon){
 //updateWeaponArea(), updates all relevant text areas
 function updateWeaponArea(){
 	$('#weaponNameText').html("<label class='rarity" + currentWeapon.getRarity() + "'>" + currentWeapon.getName() + "</label>");
-	$('#weaponDamageText').html(currentWeapon.getDamage());
+	$('#weaponDamageText').html(Number(currentWeapon.getDamage()).toFixed(2));
 	$('#weaponAttackSpeedText').html(Number(currentWeapon.getSpeed()).toFixed(2));
-	$('#weaponCriticalChanceText').html(currentWeapon.getCriticalChance());
-	$('#weaponCriticalDamageText').html(currentWeapon.getCriticalDamage());
+	$('#weaponCriticalChanceText').html(Number(currentWeapon.getCriticalChance()).toFixed(2));
+	$('#weaponCriticalDamageText').html(Number(currentWeapon.getCriticalDamage()).toFixed(2));
 	currentWeapon.determineDPS();
 	$('#weaponDPSText').html(Number(currentWeapon.getDPS()).toFixed(2));
 }

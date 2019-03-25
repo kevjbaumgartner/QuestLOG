@@ -53,7 +53,7 @@ body{
 }
 
 .sectionDetail{
-	color: #565656;
+	
 }
 
 .sectionFull{
@@ -430,4 +430,64 @@ body{
 	color: #B1B1B1;
 	background-color: #DBDBDB;
 	pointer-events: none;
+}
+
+/* Shop Specific */
+.shopButton{
+	font-family: 'Quicksand', sans-serif;
+	border: 0px solid transparent;
+	font-size: 0.8em;
+	background-color: #DBDBDB;
+	width: 100%;
+	margin: 1% 0.5%;
+	padding: 1% 0%;
+}
+
+.shopButton:hover{
+	background-color: #BABABA;
+	cursor: pointer;
+}
+
+.shopButton:hover:active{
+	color: #FAFAFA;
+}
+
+.shopButton:disabled{
+	pointer-events: none;
+}
+
+/* Popup Specific */
+.modalPopup{
+	display: none;
+	position: fixed;
+	z-index: 1;
+	vertical-align: middle;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+}
+
+.modalPopupContent{
+	background-color: #fefefe;
+	margin: 35vh auto;
+	padding: 20px;
+	width: 40%;
+	outline: 2px solid #121212;
+}
+
+.modalPopupClose{
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.modalPopupClose:hover, .modalPopupClose:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
